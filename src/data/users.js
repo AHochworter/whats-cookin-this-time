@@ -6479,3 +6479,4 @@ const usersData = [
       ]
     }
   ]
+export default userData

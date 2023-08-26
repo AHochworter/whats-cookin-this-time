@@ -1,15 +1,18 @@
 //NOTE: Data model and non-dom manipulating logic will live in this file.
 
-import './styles.css'
-import apiCalls from './apiCalls'
+import './styles.css';
+import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-import ingredientsData from './data/ingredients.js'
+// import './images/turing-logo.png'
+import ingredientsData from './data/ingredients.js';
+import recipeData from './data/recipes.js';
+import userData from './data/users.js';
+
+import { recipes } from './src/recipes-to-cook.js';
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
-import {exampleFunction1, exampleFunction2} from './domUpdates.js'
+// import { exampleFunction1, exampleFunction2 } from './domUpdates.js';
 
-exampleFunction1('heather')
-exampleFunction2('heather')
+recipes('nicole');
 
-console.log(ingredientsData)
+// console.log(ingredientsData);
