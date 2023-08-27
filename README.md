@@ -4,6 +4,8 @@
 
 We'll write something fun here about our recipe app!
 
+Added a PR template in .github/pull_request_template.md
+
 The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
 
 ## Set Up
