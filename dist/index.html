@@ -2,10 +2,41 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href=".src/styles.css">
     <title>Whats Cookin</title>
   </head>
   <body>
+    <header>
     <h1>Whats Cookin</h1>
+    </header>
+    <nav>
+      <!--  navigation search & buttons  -->
+    </nav>
+    <main>
+      <section class="homepage-view">
+        <h2>Discover Recipes</h2>
+        <div class="recipe-container">
+          <div class="recipe" id="recipe-1">
+            <!-- Recipe details here -->
+          </div>
+          <div class="recipe" id="recipe-2">
+            <!-- Recipe details here -->
+          </div>
+          <div class="recipe" id="recipe-3">
+            <!-- Recipe details here -->
+          </div>
+          <div class="recipe" id="recipe-4">
+            <!-- Recipe details here -->
+          </div>
+        </div>
+      </section>
+      <section class="saved-recipes-view">
+        <!-- Saved recipes go here -->
+      </section>
+      <section class="individual-recipe-view">
+        <!-- Individual recipe renders here with innerHTML -->
+      </section>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
