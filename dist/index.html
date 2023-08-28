@@ -10,6 +10,8 @@
     <h1>Whats Cookin</h1>
     </header>
     <nav>
+      <button>My Recipes</button>
+      <button>My Dashboard</button>
       <!--  navigation search & buttons  -->
     </nav>
     <main>
@@ -17,23 +19,40 @@
         <h2>Discover Recipes</h2>
         <div class="recipe-container">
           <div class="recipe" id="recipe-1">
-            <!-- Recipe details here -->
+            <h3 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h3>
+              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="picture of chocolate chip cookies"
+            <h4>antipasti</h4>
           </div>
           <div class="recipe" id="recipe-2">
-            <!-- Recipe details here -->
+            <h3 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h3>
+              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="picture of chocolate chip cookies"
+            <h4>antipasti</h4>
           </div>
           <div class="recipe" id="recipe-3">
-            <!-- Recipe details here -->
+            <h3 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h3>
+              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="picture of chocolate chip cookies"
+            <h4>antipasti</h4>
           </div>
           <div class="recipe" id="recipe-4">
-            <!-- Recipe details here -->
+            <h3 class="recipe-name">Loaded Chocolate Chip Pudding Cookie Cups</h3>
+              <img src="https://spoonacular.com/recipeImages/595736-556x370.jpg" alt="picture of chocolate chip cookies"
+            <h4>antipasti</h4>
           </div>
         </div>
       </section>
-      <section class="saved-recipes-view">
+      <section class="saved-recipes-view hidden">
         <!-- Saved recipes go here -->
       </section>
-      <section class="individual-recipe-view">
+      <section class="individual-recipe-view hidden">
+        <div class="recipe-image-wrapper"></div>
+        <div class="recipe-ingredients-wrapper">
+          <h3 class="individual-recipe-headings">Ingredients</h3>
+          <div class="recipe-ingredients-list"></div>
+        </div>
+        <div class="recipe-instructions-wrapper">
+          <h3 class="individual-recipe-headings">Instructions</h3>
+          <div class="recipe-instructions-list"></div>
+        </div>
         <!-- Individual recipe renders here with innerHTML -->
       </section>
     </main>
