@@ -1,16 +1,20 @@
 //Import all the functions that you run in scripts
 import { expect } from 'chai';
 import recipeData from '../sample-data/sample-recipes';
-import { filterByTag, filterByName } from '../src/filter-recipes.js';
+import {
+  filterByTag,
+  filterByName,
+  getRecipeInstructions,
+} from '../src/filter-recipes.js';
 
 //import all functions from scripts files
 
 describe('filter recipes', () => {
-  it('Should be a function', () => {
+  it('should be a function', () => {
     expect(filterByTag).to.be.a('function');
   });
 
-  it('Should filter recipes data based on a tag', () => {
+  it('should filter recipes data based on a tag', () => {
     const filtered1 = filterByTag(recipeData, 'lunch');
     const filtered2 = filterByTag(recipeData, 'snack');
     expect(filtered1.length).to.equal(1);
@@ -47,7 +51,7 @@ describe('filter recipes', () => {
     ]);
   });
 
-  it('Should be a function', () => {
+  it('should be a function', () => {
     expect(filterByName).to.be.a('function');
   });
 
@@ -66,5 +70,29 @@ describe('filter recipes', () => {
     expect(recipeName2[0].name).to.equal(
       'Maple Dijon Apple Cider Grilled Pork Chops'
     );
+  });
+
+  it('should be a function', () => {
+    expect(getRecipeInstructions).to.be.a('function');
+  });
+
+  it('should return instructions for a given recipe', () => {
+    const favRecipe = getRecipeInstructions(
+      recipeData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+
+    expect(favRecipe).to.deep.equal([
+      {
+        instruction:
+          'Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!',
+        number: 1,
+      },
+    ]);
+  });
+
+  it('should return an empty array if no recipe is found', () => {
+    const favRecipe = getRecipeInstructions(recipeData, 'Maple Baked Bread');
+    expect(favRecipe).to.deep.equal([]);
   });
 });
