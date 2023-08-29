@@ -1,12 +1,17 @@
-const filterRecipeByTag = (recipes, tag) => {
-  let filteredByTag = recipes.filter((recipe) => {
-    // return tags.every((tag) => {
-     return recipe.tags.includes(tag)
+const filterByTag = (recipes, tag) => {
+  let recipesFilteredByTag = recipes.filter((recipe) => {
+    // return tag.every((tag) => {
+     return recipe.tags.includes(tag.toLowerCase())
     // })
   })
-  return filteredByTag
+  return recipesFilteredByTag
 }
 
+const filterByName = (recipe, name) => {
+  const recipesFilteredByName = recipe.filter(recipe => recipe.name.includes(name))
+ return recipesFilteredByName
+ }
 
 
-export { filterRecipeByTag };
+
+export { filterByTag, filterByName };
