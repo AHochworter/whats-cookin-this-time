@@ -7,6 +7,7 @@ import {
   filterByName,
   getRecipeInstructions,
   getIngredientsByRecipe,
+  calculateRecipeCost,
 } from '../src/filter-recipes.js';
 
 //import all functions from scripts files
@@ -79,8 +80,12 @@ describe('filter recipes', () => {
   });
 
   it('should return a list of ingredients by recipe', () => {
-    const ingredientNames = getIngredientsByRecipe(recipeData, ingredientsData, 'Maple Dijon Apple Cider Grilled Pork Chops')
-    
+    const ingredientNames = getIngredientsByRecipe(
+      recipeData,
+      ingredientsData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+
     expect(ingredientNames).to.deep.equal([
       'apple cider',
       'apple',
@@ -93,7 +98,7 @@ describe('filter recipes', () => {
       'pork chop',
       's&p',
       'soy sauce',
-      'sriracha sauce'
+      'sriracha sauce',
     ]);
   });
 
@@ -123,6 +128,22 @@ describe('filter recipes', () => {
     expect(favRecipe).to.deep.equal([]);
   });
 
+  it('should be a function', () => {
+    expect(calculateRecipeCost).to.be.a('function');
+  });
 
-  
+  it('should calculate a recipe’s cost', () => {
+    const recipeSample = filterByName(
+      recipeData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+    // console.log('recipeSample', recipeSample);
+    const recipeSampleCost = calculateRecipeCost(
+      recipeSample,
+      ingredientsData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+
+    expect(recipeSampleCost).to.equal(15);
+  });
 });
