@@ -30,14 +30,23 @@ const filterByName = (recipeList, name) => {
 // }
 
 
-const getIngredientsByRecipe = (recipeList, 'Pulled Pork') => {
+const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   const recipeObject = recipeList.find((recipe) => {
-    if (recipe.name === 'Pulled Pork')
-    console.log("recipe:=====", recipe);
-    
-    return recipe
+    if (recipe.name === name){
+      return recipe
+    } else {
+      return false;
+    }
   });
-}
+
+  let recipeIngredientId = recipeObject.ingredients.map(ingredient => ingredient.id)
+
+  let filteredIngredients = ingredientsList.filter(ingredient => recipeIngredientId.includes(ingredient.id))
+  
+  let ingredientNames = filteredIngredients.map(ingredient => ingredient.name)
+
+  return ingredientNames;
+};
 
 
 
