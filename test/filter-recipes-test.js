@@ -5,6 +5,7 @@ import {
   filterByTag,
   filterByName,
   getRecipeInstructions,
+  getIngredientsByRecipe,
 } from '../src/filter-recipes.js';
 
 //import all functions from scripts files
@@ -73,6 +74,15 @@ describe('filter recipes', () => {
   });
 
   it('should be a function', () => {
+    expect(getIngredientsByRecipe).to.be.a('function');
+  });
+
+  it('should return an empty array if no recipe is found', () => {
+    const recipe = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
+    const ingredients = getIngredientsByRecipe(recipe)
+  });
+
+  it('should be a function', () => {
     expect(getRecipeInstructions).to.be.a('function');
   });
 
@@ -95,4 +105,7 @@ describe('filter recipes', () => {
     const favRecipe = getRecipeInstructions(recipeData, 'Maple Baked Bread');
     expect(favRecipe).to.deep.equal([]);
   });
+
+
+  
 });
