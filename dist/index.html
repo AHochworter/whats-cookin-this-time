@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
       rel="stylesheet"
     />
+    <link 
+     href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" 
+     rel="stylesheet"
+    />
     <title>Whats Cookin</title>
   </head>
   <body>
@@ -16,8 +20,36 @@
       <h1>Whats Cookin</h1>
     </header>
     <nav>
-      <button>My Recipes</button>
-      <button>My Dashboard</button>
+      <section class="nav-left">
+        <p>Filter recipes by tag</p>
+        <select>
+          <!-- need to use innerHTML on these buttons -->
+          <button><option value="select">Select</option></button>
+          <button><option value="all"><button>All</button></option>
+          <button><option value="antipasti">antipasti</option></button>
+          <button><option value="antipasto">antipasto</option></button>
+          <button><option value="appetizer">appetizer</option></button>
+          <button><option value="breakfast">breakfast</option></button>
+          <button><option value="condiment">condiment</option></button>
+          <button><option value="dinner">dinner</option></button>
+          <button><option value="dip">dip</option></button>
+          <button><option value="hor d'oeuvre">hor d'oeuvre</option></button>
+          <button><option value="lunch">lunch</option></button>
+          <button><option value="main course">main course</option></button>
+          <button><option value="main dish">main dish</option></button>
+          <button><option value="morning meal">morning meal</option></button>
+          <button><option value="salad">salad</option></button>
+          <button><option value="sauce">sauce</option></button>
+          <button><option value="side dish">side dish</option></button>
+          <button><option value="snack">snack</option></button>
+          <button><option value="spread">spread</option></button>
+          <button><option value="starter">starter</option></button>
+        </select>
+      </section>
+      <section class="nav-right">
+        <button>My Recipes</button>
+        <button>My Dashboard</button>
+      </section>
       <!--  navigation search & buttons  -->
     </nav>
     <main>
