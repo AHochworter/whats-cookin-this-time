@@ -1,11 +1,13 @@
 //Import all the functions that you run in scripts
 import { expect } from 'chai';
 import recipeData from '../sample-data/sample-recipes';
+import ingredientsData from '../sample-data/sample-ingredients';
 import {
   filterByTag,
   filterByName,
   getRecipeInstructions,
   getIngredientsByRecipe,
+  calculateRecipeCost,
 } from '../src/filter-recipes.js';
 
 //import all functions from scripts files
@@ -77,10 +79,30 @@ describe('filter recipes', () => {
     expect(getIngredientsByRecipe).to.be.a('function');
   });
 
-  it('should return an empty array if no recipe is found', () => {
-    const recipe = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops')
-    const ingredients = getIngredientsByRecipe(recipe)
+  it('should return a list of ingredients by recipe', () => {
+    const ingredientNames = getIngredientsByRecipe(
+      recipeData,
+      ingredientsData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+
+    expect(ingredientNames).to.deep.equal([
+      'apple cider',
+      'apple',
+      'corn starch',
+      'dijon style mustard',
+      'whole garlic clove',
+      'whole grain dijon mustard',
+      'maple',
+      'miso',
+      'pork chop',
+      's&p',
+      'soy sauce',
+      'sriracha sauce',
+    ]);
   });
+
+  //create sad path here
 
   it('should be a function', () => {
     expect(getRecipeInstructions).to.be.a('function');
@@ -106,6 +128,21 @@ describe('filter recipes', () => {
     expect(favRecipe).to.deep.equal([]);
   });
 
+  it('should be a function', () => {
+    expect(calculateRecipeCost).to.be.a('function');
+  });
 
-  
+  it('should calculate a recipe cost', () => {
+    const recipeSample = filterByName(
+      recipeData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+    // console.log('recipeSample', recipeSample);
+    const recipeSampleCost = calculateRecipeCost(
+      recipeSample,
+      ingredientsData,
+    );
+
+    expect(recipeSampleCost).to.equal('272.97');
+  });
 });

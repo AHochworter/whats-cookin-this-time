@@ -28,9 +28,10 @@ header {
 
 nav {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
   justify-content: space-around;
-  align-items: center;
+  align-content: end;
   background-color: #66b9bf;
   height: 65px;
 }

@@ -7,11 +7,10 @@ const filterByTag = (recipes, tag) => {
   return recipesFilteredByTag;
 };
 
-
 const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
     if (recipe.name.includes(name)) {
-      return recipe
+      return recipe;
     }
   });
 };
@@ -20,52 +19,57 @@ const filterByName = (recipeList, name) => {
 //map through the ingredients data, which returns a new array
 //forEach, iterate one step inside of that into the ingredients key and look at the ingredients.id
 
-// const getIngredientsByRecipe = (recipeObject, ingredientsList) => {
-//   const ingredientsInRecipe = recipeObject.ingredients.map((ingredient) => {
-//     ingredient.id
-//   });
-//   console.log("ingredientsInRecipe:=====", ingredientsInRecipe);
-//   console.log("recipeObject=====", recipeObject.name)
-//   // const targetRecipe = recipes.find(recipe => recipe.name ===  )
+const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
+  const recipeObject = recipeList.find(recipe => {
+    if (recipe.name === name) {
+      return recipe;
+    } else {
+      return false;
+    }
+  });
+  // console.log(recipeObject);
+
+  let recipeIngredientId = recipeObject.ingredients.map(
+    ingredient => ingredient.id
+  );
+
+  let filteredIngredients = ingredientsList.filter(ingredient =>
+    recipeIngredientId.includes(ingredient.id)
+  );
+  // console.log(filteredIngredients);
+
+  let ingredientNames = filteredIngredients.map(ingredient => ingredient.name);
+
+  return ingredientNames;
+};
+//find ingredient in recipe - access ingredient id
+//get ingredient id that's sitting in the recipe
+//math for estimated cost
+//return array of total cost of each ingredient based on their amount
+//reduce()? - add all numbers up to get total cost
+
+// const calculateRecipeCost = (recipe, ingredients) => {
+//   // console.log("RECIPE", recipe)
+//   return ingredients.reduce((sum, ingredient) => {
+//     // console.log(sum)
+//     // console.log(ingredient)
+//     console.log(recipe[0].ingredients)
+//     let ingredientQuantity = recipe[0].ingredients.find((dish) => {
+//       // console.log("DISH", dish)
+//       // console.log("Ing", ingredient)
+//       return dish.id ===  ingredient.id
+//     })
+//     console.log("INGED QUANTITY:, ", ingredientQuantity)
+//     sum += (ingredientQuantity.quantity.amount * ingredient.estimatedCostInCents)
+//     return sum
+//   }, 0)
 // }
 
-
-const getIngredientsByRecipe = (recipeList, 'Pulled Pork') => {
-  const recipeObject = recipeList.find((recipe) => {
-    if (recipe.name === 'Pulled Pork')
-    console.log("recipe:=====", recipe);
-    
-    return recipe
-  });
+const calculateRecipeCost = (recipe, ingredients) => {
+  const totalCost = recipe[0].ingredients.reduce((acc, {id, quantity: {amount}}) => 
+    acc + (amount / 100) * (ingredients.find(ingredient => ingredient.id === id).estimatedCostInCents), 0)
+  return totalCost.toFixed(2);
 }
-
-
-
-// const getIngredientsByRecipe = (recipeObj, ingredientsList) => {
-//   console.log("recipeObj:=====", recipeObj);
-
-  
-//   const ingredientsInRecipe = recipeObj.ingredients.map(
-//     ingredient => ingredient.id
-//   );
-
-//   const ingredientNamesInRecipe = ingredientsList
-//     .filter(ingredient => ingredientsInRecipe.includes(ingredient.id))
-//     .map(ingredient => ingredient.name);
-
-//   return ingredientNamesInRecipe;
-// };
-
-
-//   const ingredientNamesInRecipe = ingredientsList
-//     .filter(ingredient => ingredientsInRecipe.includes(ingredient.id))
-//     .map(ingredient => ingredient.name);
-
-//   return ingredientNamesInRecipe;
-// };
-
-//invoke filterByName()
-//error handling (sad path)
 
 const getRecipeInstructions = (recipes, name) => {
   const targetRecipe = recipes.find(recipe => recipe.name === name);
@@ -85,4 +89,10 @@ const getRecipeInstructions = (recipes, name) => {
 //   return recipeInstructions
 // }
 
-export { filterByTag, filterByName, getRecipeInstructions, getIngredientsByRecipe };
+export {
+  filterByTag,
+  filterByName,
+  getRecipeInstructions,
+  getIngredientsByRecipe,
+  calculateRecipeCost,
+};
