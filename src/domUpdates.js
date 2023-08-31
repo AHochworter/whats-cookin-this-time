@@ -1,16 +1,31 @@
 //NOTE: Your DOM manipulation will occur in this file
+import ingredientsData from '../sample-data/sample-ingredients';
+import recipeData from '../sample-data/sample-recipes.js';
+// import userData from '../sample-data/sample-users';
 
-//Here are 2 example functions just to demonstrate one way you can export/import between the two js files. You'll want to delete these once you get your own code going.
-function exampleFunction1(person) {
-  console.log(`oh hi there ${person}`)
-}
+//Query Selectors Here👇
+const recipeContainer = document.querySelector('.recipe-container');
 
-function exampleFunction2(person) {
-  console.log(`bye now ${person}`)
-}
+//Buttons
 
+//Event Handlers Here👇
+const renderRecipeCards = recipeList => {
+  console.log('getting here');
+  //Note - if time! could add iterator for tags array
+  recipeList.forEach(recipe => {
+    recipeContainer.innerHTML += `
+    <div class="recipe" id="${recipe.id}">
+      <img
+        src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
+      />
+      <h4>${recipe.tags[0]}</h4>
+      <h3 class="recipe-name">${recipe.name}</h3>
+    </div>`;
+  });
+};
 
-export {
-  exampleFunction1,
-  exampleFunction2,
-}
+//loop through the data
+//update each recipe card
+//view all recipes
+
+export { renderRecipeCards };
