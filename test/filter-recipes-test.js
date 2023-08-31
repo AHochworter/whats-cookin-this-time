@@ -132,7 +132,7 @@ describe('filter recipes', () => {
     expect(calculateRecipeCost).to.be.a('function');
   });
 
-  it('should calculate a recipe’s cost', () => {
+  it('should calculate a recipe cost', () => {
     const recipeSample = filterByName(
       recipeData,
       'Maple Dijon Apple Cider Grilled Pork Chops'
@@ -141,9 +141,8 @@ describe('filter recipes', () => {
     const recipeSampleCost = calculateRecipeCost(
       recipeSample,
       ingredientsData,
-      'Maple Dijon Apple Cider Grilled Pork Chops'
     );
 
-    expect(recipeSampleCost).to.equal(15);
+    expect(recipeSampleCost).to.equal('272.97');
   });
 });
