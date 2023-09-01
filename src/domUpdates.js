@@ -21,7 +21,7 @@ const clearSearch = document.querySelector('.clear-search-btn');
 //Event Listeners Here👇
 
 searchButton.addEventListener('click', function (event) {
-  showSearchResults();
+  renderSearchResults();
 });
 
 clearSearch.addEventListener('click', function (event) {
@@ -42,11 +42,17 @@ const renderRecipeCards = recipeList => {
       />
       <h4>${recipe.tags[0]}</h4>
       <h3 class="recipe-name">${recipe.name}</h3>
+    <img
+      src="src/images/notFavorite.png" id="unclickedHeart" alt="unclicked Favorite" class="favorite-toggle"
+      />
+      <img
+      src="src/images/favorite.png" id="clickedHeart" alt="clicked Favorite" class="favorite-toggle"
+      />
     </div>`;
   });
 };
 
-const showSearchResults = () => {
+const renderSearchResults = () => {
   let searchValue = searchInput.value;
   console.log('You Searched:', searchValue);
   recipeContainer.innerHTML = '';
@@ -69,4 +75,4 @@ const showSearchResults = () => {
   }
 };
 
-export { renderRecipeCards, showSearchResults };
+export { renderRecipeCards, renderSearchResults };

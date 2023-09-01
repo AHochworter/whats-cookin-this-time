@@ -168,6 +168,12 @@ select {
   height: auto;
 }
 
+.favorite-toggle {
+  height: 28px;
+  width: 28px;
+  margin: 0px 6px 6px 0px;
+}
+
 .recipe-container {
   display: flex;
   flex-direction: row-reverse;

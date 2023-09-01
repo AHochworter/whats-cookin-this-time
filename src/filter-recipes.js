@@ -8,9 +8,11 @@ const filterByTag = (recipes, tag) => {
 };
 
 const filterByName = (recipeList, name) => {
-  console.log(name);
   return recipeList.filter(recipe => {
-    if (recipe.name.includes(name)) {
+    // console.log(recipe)
+    if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
+      // console.log("FILTER RECIPE", recipe)
+
       return recipe;
     }
   });
