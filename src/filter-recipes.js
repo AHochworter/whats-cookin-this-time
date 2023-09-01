@@ -1,4 +1,4 @@
-const filterByTag = (recipes, tag) => {
+export const filterByTag = (recipes, tag) => {
   let recipesFilteredByTag = recipes.filter(recipe => {
     // return tag.every((tag) => {
     return recipe.tags.includes(tag.toLowerCase());
@@ -7,32 +7,22 @@ const filterByTag = (recipes, tag) => {
   return recipesFilteredByTag;
 };
 
-const filterByName = (recipeList, name) => {
+export const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
-    // console.log(recipe)
     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
-      // console.log("FILTER RECIPE", recipe)
-    
       return recipe
     }
   });
 };
 
-const findRecipe = (recipeList, name) => {
+export const findRecipe = (recipeList, name) => {
   const recipe = recipeList.find((recipeName) => {
-    // console.log(recipeName)
     return recipeName.name === name
   })
-  console.log("FIND RECIPE", recipe)
   return recipe
 }
 
-// const findRecipe = (recipeData, recipeName) => {
-//   const recipe = recipeData.find(({ name }) => name === recipeName);
-//   return recipe
-// };
-
-const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
+export const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   const recipeObject = recipeList.find(recipe => {
     if (recipe.name === name) {
       return recipe;
@@ -41,12 +31,9 @@ const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
     }
   });
   const recipeIngredientId = recipeObject.ingredients.map((ingredient) => {
-    // console.log("INGRED ID", ingredient.id)
+
     return ingredient.id
   });
-  // console.log("Recipe ingredient id:", recipeIngredientId)
-
-
   const filteredIngredients = ingredientsList.filter(ingredient =>
     recipeIngredientId.includes(ingredient.id)
   );
@@ -54,7 +41,7 @@ const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   return ingredientNames;
 };
 
-const calculateRecipeCost = (recipe, ingredients) => {
+export const calculateRecipeCost = (recipe, ingredients) => {
   const totalCost = recipe[0].ingredients.reduce((sum, ingredient) => {
     const recipeIngredId = ingredient.id;
     const recipeAmount = ingredient.quantity.amount;
@@ -68,7 +55,7 @@ const calculateRecipeCost = (recipe, ingredients) => {
   return totalCost.toFixed(2);
 }
 
-const getRecipeInstructions = (recipes, name) => {
+export const getRecipeInstructions = (recipes, name) => {
   const targetRecipe = recipes.find(recipe => recipe.name === name);
 
   if (targetRecipe) {
@@ -78,19 +65,10 @@ const getRecipeInstructions = (recipes, name) => {
   }
 };
 
-//2nd version of getRecipeInstructions
-// const getRecipeInstructions = (recipe) => {
-//   let recipeInstructions = recipe.instructions.map((step) => {
-//     `${step.number}. ${step.instruction}`
-//   })
-//   return recipeInstructions
-// }
+export const formatInstructions = (recipe) => { // need to write test
+  let recipeInstructions = recipe.map((step) => {
+   return `${step.number}. ${step.instruction}`
+  })
+  return recipeInstructions
+}
 
-export {
-  filterByTag,
-  filterByName,
-  getRecipeInstructions,
-  getIngredientsByRecipe,
-  calculateRecipeCost,
-  findRecipe,
-};
