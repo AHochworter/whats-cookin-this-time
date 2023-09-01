@@ -1,6 +1,7 @@
 const filterByTag = (recipes, tag) => {
   let recipesFilteredByTag = recipes.filter(recipe => {
     // return tag.every((tag) => {
+   
     return recipe.tags.includes(tag.toLowerCase());
     // })
   });
