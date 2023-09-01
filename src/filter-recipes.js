@@ -15,10 +15,6 @@ const filterByName = (recipeList, name) => {
   });
 };
 
-//want to iterate through the ingredientsData, targeting the id.
-//map through the ingredients data, which returns a new array
-//forEach, iterate one step inside of that into the ingredients key and look at the ingredients.id
-
 const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   const recipeObject = recipeList.find(recipe => {
     if (recipe.name === name) {
@@ -38,21 +34,8 @@ const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   return ingredientNames;
 };
 
-
-
-// const calculateRecipeCost = (recipe, ingredients) => {
-//   const totalCost = recipe[0].ingredients.reduce((sum, ingredient) => {
-//     let ingredientQuantity = recipe[0].ingredients.find((dish) => {
-//       return dish.id ===  ingredient.id
-//     })
-//     sum += (ingredientQuantity.quantity.amount * ingredient.estimatedCostInCents)
-//     return sum
-//   }, 0)
-// }
-
 const calculateRecipeCost = (recipe, ingredients) => {
   const totalCost = recipe[0].ingredients.reduce((sum, ingredient) => {
-    // console.log("Ingred", ingredient)
     const recipeIngredId = ingredient.id;
     const recipeAmount = ingredient.quantity.amount;
     const matchingIngredient = ingredients.find(ingredient => {
@@ -65,8 +48,6 @@ const calculateRecipeCost = (recipe, ingredients) => {
   return totalCost.toFixed(2);
 }
 
-
-
 const getRecipeInstructions = (recipes, name) => {
   const targetRecipe = recipes.find(recipe => recipe.name === name);
 
@@ -78,7 +59,8 @@ const getRecipeInstructions = (recipes, name) => {
 };
 
 //2nd version of getRecipeInstructions
-// const recipeInstructions = (recipe) => {
+// const getRecipeInstructions = (recipe) => {
+//   console.log(recipe)
 //   let recipeInstructions = recipe.instructions.map((step) => {
 //     `${step.number}. ${step.instruction}`
 //   })
