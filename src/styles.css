@@ -7,10 +7,6 @@ body {
   width: 100vw;
 }
 
-.hidden {
-  display: none;
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -113,4 +109,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.hidden {
+  display: none;
 }
