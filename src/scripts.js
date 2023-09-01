@@ -8,7 +8,15 @@ import ingredientsData from './data/ingredients.js';
 import recipeData from './data/recipes.js';
 import tagData from './data/tags';
 // import userData from './data/users.js';
+
+// import { renderRecipeCards, showSearchResults } from '../src/domUpdates';
 import { renderRecipeCards, renderRecipeCardsByTag, selectButton, dropDownMenu, renderSelectTagOptions } from '../src/domUpdates';
+// import { filterByName } from './filter-recipes';
+
+// import { recipes } from './src/recipes-to-cook.js';
+window.addEventListener('load', () => renderRecipeCards(recipeData));
+
+
 
 // import { recipes } from './src/recipes-to-cook.js';
 
@@ -31,3 +39,4 @@ renderRecipeCardsByTag(recipeData, dropDownMenu.value)
 // recipes('nicole');
 
 // console.log(ingredientsData);
+
