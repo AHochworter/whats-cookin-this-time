@@ -1,12 +1,22 @@
 //NOTE: Your DOM manipulation will occur in this file
 import ingredientsData from '../sample-data/sample-ingredients';
 import recipeData from '../sample-data/sample-recipes.js';
-import { filterByTag, filterByName, calculateRecipeCost, getRecipeInstructions } from '../src/filter-recipes'
+import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe, getRecipeInstructions, findRecipe} from '../src/filter-recipes'
 // import userData from '../sample-data/sample-users';
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
-const individualRecipeDetails = document.querySelector('.individual-recipe-view');
+const individualRecipeView = document.querySelector('.individual-recipe-view');
+const homeView = document.querySelector('.homepage-view')
+
+
+//Event Listeners Here👇
+recipeContainer.addEventListener('click', (event) => {
+  if (event.target.classList.contains('recipe')) {
+    renderRecipeDetails(event)
+  }
+})
+
 
 //Buttons
 
@@ -16,7 +26,7 @@ const renderRecipeCards = recipeList => {
   //Note - if time! could add iterator for tags array
   recipeList.forEach(recipe => {
     recipeContainer.innerHTML += `
-    <div class="recipe" id="${recipe.id}">
+    <div class="recipe" id="${recipe.name}">
       <img
         src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
       />
@@ -26,22 +36,28 @@ const renderRecipeCards = recipeList => {
   });
 };
 
-//loop through the data
-//update each recipe card
-//view all recipes
 
 const renderRecipeDetails = (event) =>{
   console.log("hellllo")
-  individualRecipeDetails.innerHTML += ' '
-  const chosenRecipe = filterByName(recipeData, name)
+  // console.log(event.target.id)
+removeHiddenClass([individualRecipeView])
+addHiddenClass([recipeContainer, homeView])
+  individualRecipeView.innerHTML += ' '
+  const recipeName = event.target.id
+
+
+  const chosenRecipe = findRecipe(recipeData, recipeName)
+  console.log("RECIPE", chosenRecipe)
+  console.log("clickedOnRecipe:", chosenRecipe) // 
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData)
-  const ingredientDetails = getIngredientsByRecipe(recipeData, ingredientsData, name)
-  const instructions = getRecipeInstructions(recipeData, ingredientsData, name)
+  const instructions = getRecipeInstructions(recipeData, ingredientsData)
+  // console.log("recipe instructions:", instructions) // returns empty array
+  const ingredientDetails = getIngredientsByRecipe(recipeData, ingredientsData, recipeName)
+  // console.log("Ingredients:", ingredientDetails) // returns undefined
 
-
-  individualRecipeDetails.innerHTML += `
+  individualRecipeView.innerHTML += `
   <div class="recipe-name-wrapper">
-    <h3 class="recipe-name">${chosenRecipe[0].name}</h3>
+    <h3 class="recipe-name">${chosenRecipe}</h3>
   </div>
   <div class="recipe-image-wrapper">
   <img
@@ -49,7 +65,7 @@ const renderRecipeDetails = (event) =>{
   </div>
   <div class="recipe-ingredients-wrapper">
     <h3 class="individual-recipe-headings">Ingredients</h3>
-    <div class="recipe-ingredients-list">${ingredientDetails.ingredients}</div>
+    <div class="recipe-ingredients-list">${ingredientDetails[0].ingredients}</div>
     <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
   </div>
   <div class="recipe-instructions-wrapper">
@@ -58,5 +74,22 @@ const renderRecipeDetails = (event) =>{
   </div>`
 }
 
+const removeHiddenClass = (elements) => {
+  elements.forEach((element) => {
+    element.classList.remove('hidden')
+  })
+return elements
+};
+
+const addHiddenClass = (elements) => {
+  elements.forEach((element) => {
+    element.classList.add('hidden')
+  })
+return elements
+};
+
+
+
 
 export { renderRecipeCards, renderRecipeDetails };
+// recipeContainer

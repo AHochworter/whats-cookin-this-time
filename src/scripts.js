@@ -7,21 +7,15 @@ import apiCalls from './apiCalls';
 import ingredientsData from './data/ingredients.js';
 import recipeData from './data/recipes.js';
 // import userData from './data/users.js';
-import { renderRecipeCards, renderRecipeDetails, } from '../src/domUpdates';
 
-// import { recipes } from './src/recipes-to-cook.js';
-const recipeContainer = document.querySelector('.recipe-container');
-//Event Listeners Here👇
+import { renderRecipeCards } from '../src/domUpdates';
+//  renderRecipeDetails, recipeContainer,
+
 window.addEventListener('load', () => renderRecipeCards(recipeData));
 
-recipeContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('recipe')) {
-    renderRecipeDetails(event)
-  }
-})
+
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import { exampleFunction1, exampleFunction2 } from './domUpdates.js';
 
 
-// console.log(ingredientsData);
