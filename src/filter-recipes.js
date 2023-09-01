@@ -9,12 +9,28 @@ const filterByTag = (recipes, tag) => {
 
 const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
-    console.log(recipe)
+    // console.log(recipe)
     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
-      return recipe;
+      // console.log("FILTER RECIPE", recipe)
+    
+      return recipe
     }
   });
 };
+
+const findRecipe = (recipeList, name) => {
+  const recipe = recipeList.find((recipeName) => {
+    // console.log(recipeName)
+    return recipeName.name === name
+  })
+  console.log("FIND RECIPE", recipe)
+  return recipe
+}
+
+// const findRecipe = (recipeData, recipeName) => {
+//   const recipe = recipeData.find(({ name }) => name === recipeName);
+//   return recipe
+// };
 
 const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   const recipeObject = recipeList.find(recipe => {
@@ -24,11 +40,12 @@ const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
       return false;
     }
   });
-  // console.log(recipeObject.ingredients)
-  const recipeIngredientId = recipeObject.ingredients.map(
-    ingredient => ingredient.id
-  );
-  // console.log(recipeIngredientId)
+  const recipeIngredientId = recipeObject.ingredients.map((ingredient) => {
+    // console.log("INGRED ID", ingredient.id)
+    return ingredient.id
+  });
+  // console.log("Recipe ingredient id:", recipeIngredientId)
+
 
   const filteredIngredients = ingredientsList.filter(ingredient =>
     recipeIngredientId.includes(ingredient.id)
@@ -75,4 +92,5 @@ export {
   getRecipeInstructions,
   getIngredientsByRecipe,
   calculateRecipeCost,
+  findRecipe,
 };
