@@ -9,7 +9,8 @@ const filterByTag = (recipes, tag) => {
 
 const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
-    if (recipe.name.includes(name)) {
+    console.log(recipe)
+    if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
       return recipe;
     }
   });
@@ -23,9 +24,11 @@ const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
       return false;
     }
   });
+  // console.log(recipeObject.ingredients)
   const recipeIngredientId = recipeObject.ingredients.map(
     ingredient => ingredient.id
   );
+  // console.log(recipeIngredientId)
 
   const filteredIngredients = ingredientsList.filter(ingredient =>
     recipeIngredientId.includes(ingredient.id)
@@ -60,7 +63,6 @@ const getRecipeInstructions = (recipes, name) => {
 
 //2nd version of getRecipeInstructions
 // const getRecipeInstructions = (recipe) => {
-//   console.log(recipe)
 //   let recipeInstructions = recipe.instructions.map((step) => {
 //     `${step.number}. ${step.instruction}`
 //   })
