@@ -62,9 +62,11 @@ describe('Save recipes', () => {
 
     it('should delete a recipe from the saved recipe array', () => {
     const filtered1 = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops');
-      const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name); 
+    const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name); 
       const deleteARecipe = deleteRecipe(savedRecipes, filtered1.name);
-      
+      const filtered2 = filterByName(recipeData, 'Sesame Cookies');
+      const mySecondFavoriteRecipe = saveRecipe(recipeData, filtered2[0].name);
+      const deleteBRecipe = deleteRecipe(savedRecipes, filtered2.name); 
       expect(savedRecipes.length).to.equal(0);
     });
   });
