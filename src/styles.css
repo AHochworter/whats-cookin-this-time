@@ -120,6 +120,7 @@ button {
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
+}
 
 button:hover {
   background-color:#e37222;
@@ -195,10 +196,10 @@ select {
   height: 450px;
   flex-wrap: wrap;
 }
+
 .recipe-name {
   display: flex;
   justify-content: center;
   margin: 0px 10px 2px 10px;
   font-family: 'Open Sans', sans-serif;
 }
-

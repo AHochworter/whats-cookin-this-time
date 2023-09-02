@@ -10,8 +10,6 @@ import {
   getRecipeInstructions,
 } from './filter-recipes';
 
-import { filterByTag } from './filter-recipes';
-
 // import userData from '../sample-data/sample-users';
 
 //Query Selectors Here👇
