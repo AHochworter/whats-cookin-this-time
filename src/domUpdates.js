@@ -36,7 +36,7 @@ const selectButton = document.querySelector('.select-button');
 const searchButton = document.querySelector('.search-btn');
 const clearSearch = document.querySelector('.clear-search-btn');
 const savedRecipesButton = document.querySelector('.saved-recipes-btn');
-const saveRecipeBtn = document.querySelector('.test-button');
+const saveRecipeBtn = document.querySelector('.save-delete-button');
 const saveButtonContainer = document.querySelector('.save-button-container');
 
 //Event Listeners Here👇
