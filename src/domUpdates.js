@@ -4,18 +4,11 @@ import ingredientsData from './data/ingredients';
 import recipeData from './data/recipes';
 import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe, getRecipeInstructions, findRecipe, formatInstructions } from '../src/filter-recipes'
 
-import ingredientsData from '../sample-data/sample-ingredients';
-import recipeData from '../sample-data/sample-recipes.js';
 
-import {
-  filterByTag,
-  filterByName,
-  getIngredientsByRecipe,
-  calculateRecipeCost,
-  getRecipeInstructions,
-} from './filter-recipes';
+// import recipeData from '../sample-data/sample-recipes.js';
 
-import { filterByTag } from './filter-recipes';
+
+// import { filterByTag } from './filter-recipes';
 
 
 // import userData from '../sample-data/sample-users';
@@ -174,6 +167,6 @@ const renderSelectTagOptions = (tagData) => {
 }
 
 
-export { renderRecipeCards, renderSearchResults, renderRecipeCardsByTag, renderSelectTagOptions, selectButton, dropDownMenu };
+export { renderSearchResults, renderRecipeCardsByTag, renderSelectTagOptions, selectButton, dropDownMenu };
 
 

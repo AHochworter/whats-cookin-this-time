@@ -12,8 +12,6 @@ export const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
       return recipe
-     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
-       return recipe;
     }
   });
 };
