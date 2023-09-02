@@ -2,6 +2,17 @@
 
 import ingredientsData from './data/ingredients';
 import recipeData from './data/recipes';
+<<<<<<< HEAD
+import {
+  filterByTag,
+  filterByName,
+  calculateRecipeCost,
+  getIngredientsByRecipe,
+  getRecipeInstructions,
+  findRecipe,
+  formatInstructions,
+} from '../src/filter-recipes';
+=======
 import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe, getRecipeInstructions, findRecipe, formatInstructions } from '../src/filter-recipes'
 
 
@@ -11,32 +22,29 @@ import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe,
 // import { filterByTag } from './filter-recipes';
 
 
+>>>>>>> bc389c98ac348d4686f120c8133d8a1b5c318761
 // import userData from '../sample-data/sample-users';
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
-
 const individualRecipeView = document.querySelector('.individual-recipe-view');
-const homeView = document.querySelector('.homepage-view')
-
-//Event Listeners Here👇
-recipeContainer.addEventListener('click', (event) => {
-  if (event.target.classList.contains('recipe')) {
-    renderRecipeDetails(event)
-  }
-})
-
+const homeView = document.querySelector('.homepage-view');
 const searchInput = document.getElementById('searchInput');
-
 
 // drop-down-menu & select button DOM querySelector
 const dropDownMenu = document.querySelector('.drop-down-menu');
 const selectButton = document.querySelector('.select-button');
+
 //Buttons
 const searchButton = document.querySelector('.search-btn');
 const clearSearch = document.querySelector('.clear-search-btn');
 
 //Event Listeners Here👇
+recipeContainer.addEventListener('click', event => {
+  if (event.target.classList.contains('recipe')) {
+    renderRecipeDetails(event);
+  }
+});
 
 searchButton.addEventListener('click', function (event) {
   renderSearchResults();
@@ -69,17 +77,20 @@ export const renderRecipeCards = recipeList => {
   });
 };
 
-
-export const renderRecipeDetails = (event) =>{
-removeHiddenClass([individualRecipeView])
-addHiddenClass([recipeContainer, homeView])
-  individualRecipeView.innerHTML += ' '
-  const recipeName = event.target.id
-  const chosenRecipe = findRecipe(recipeData, recipeName)
-  const recipeCost = calculateRecipeCost(recipeData, ingredientsData)
-  const instructions = getRecipeInstructions(recipeData, recipeName)
-  const formattedInstructions =  formatInstructions(instructions)
-  const ingredientDetails = getIngredientsByRecipe(recipeData, ingredientsData, recipeName)
+export const renderRecipeDetails = event => {
+  removeHiddenClass([individualRecipeView]);
+  addHiddenClass([recipeContainer, homeView]);
+  individualRecipeView.innerHTML += ' ';
+  const recipeName = event.target.id;
+  const chosenRecipe = findRecipe(recipeData, recipeName);
+  const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
+  const instructions = getRecipeInstructions(recipeData, recipeName);
+  const formattedInstructions = formatInstructions(instructions);
+  const ingredientDetails = getIngredientsByRecipe(
+    recipeData,
+    ingredientsData,
+    recipeName
+  );
   individualRecipeView.innerHTML += `
   <div class="recipe-name-wrapper">
     <h3 class="recipe-name">${chosenRecipe.name}</h3>
@@ -96,23 +107,22 @@ addHiddenClass([recipeContainer, homeView])
   <div class="recipe-instructions-wrapper">
     <h3 class="individual-recipe-headings">Instructions</h3>
     <div class="recipe-instructions-list">${formattedInstructions}</div>
-  </div>`
-}
-
-const removeHiddenClass = (elements) => {
-  elements.forEach((element) => {
-    element.classList.remove('hidden')
-  })
-return elements
+  </div>`;
 };
 
-const addHiddenClass = (elements) => {
-  elements.forEach((element) => {
-    element.classList.add('hidden')
-  })
-return elements
+const removeHiddenClass = elements => {
+  elements.forEach(element => {
+    element.classList.remove('hidden');
+  });
+  return elements;
 };
 
+const addHiddenClass = elements => {
+  elements.forEach(element => {
+    element.classList.add('hidden');
+  });
+  return elements;
+};
 
 const renderSearchResults = () => {
   let searchValue = searchInput.value;
@@ -138,14 +148,12 @@ const renderSearchResults = () => {
 };
 
 const renderRecipeCardsByTag = (recipeList, tag) => {
-  //Note - if time! could add iterator for tags array
   const recipeByTagList = filterByTag(recipeList, tag);
   recipeContainer.innerHTML = '';
   if (tag === 'all') {
     renderRecipeCards(recipeList);
   } else {
     recipeByTagList.forEach(recipe => {
- 
       recipeContainer.innerHTML += `
       <div class="recipe" id="${recipe.id}">
         <img
@@ -158,15 +166,28 @@ const renderRecipeCardsByTag = (recipeList, tag) => {
   }
 };
 
-const renderSelectTagOptions = (tagData) => {
+const renderSelectTagOptions = tagData => {
   tagData.forEach(tag => {
     dropDownMenu.innerHTML += `
     <option value='${tag}'>${tag}</option>
     `;
+<<<<<<< HEAD
+  });
+};
+=======
   }); 
 }
 
 
 export { renderSearchResults, renderRecipeCardsByTag, renderSelectTagOptions, selectButton, dropDownMenu };
 
+>>>>>>> bc389c98ac348d4686f120c8133d8a1b5c318761
 
+export {
+  // renderRecipeCards,
+  renderSearchResults,
+  renderRecipeCardsByTag,
+  renderSelectTagOptions,
+  selectButton,
+  dropDownMenu,
+};
