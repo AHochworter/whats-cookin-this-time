@@ -116,18 +116,18 @@ button {
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
+}
 
 button:hover {
-  background-color:#e37222;
+  background-color: #e37222;
   color: white;
   cursor: pointer;
 }
 
 button:active {
-  background-color:  #66b9bf;
+  background-color: #66b9bf;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
-
 }
 
 select {
@@ -198,8 +198,6 @@ select {
   font-family: 'Open Sans', sans-serif;
 }
 
-
 .hidden {
   display: none;
 }
-
