@@ -9,10 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
       rel="stylesheet"
     />
-    <link 
-     href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" 
-     rel="stylesheet"
-    />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">  
@@ -24,34 +20,21 @@
     </header>
     <nav>
       <section class="nav-left">
-        <p>Filter recipes by tag</p>
-        <select>
-          <!-- need to use innerHTML on these buttons -->
-          <button><option value="select">Select</option></button>
-          <button><option value="all"><button>All</button></option>
-          <button><option value="antipasti">antipasti</option></button>
-          <button><option value="antipasto">antipasto</option></button>
-          <button><option value="appetizer">appetizer</option></button>
-          <button><option value="breakfast">breakfast</option></button>
-          <button><option value="condiment">condiment</option></button>
-          <button><option value="dinner">dinner</option></button>
-          <button><option value="dip">dip</option></button>
-          <button><option value="hor d'oeuvre">hor d'oeuvre</option></button>
-          <button><option value="lunch">lunch</option></button>
-          <button><option value="main course">main course</option></button>
-          <button><option value="main dish">main dish</option></button>
-          <button><option value="morning meal">morning meal</option></button>
-          <button><option value="salad">salad</option></button>
-          <button><option value="sauce">sauce</option></button>
-          <button><option value="side dish">side dish</option></button>
-          <button><option value="snack">snack</option></button>
-          <button><option value="spread">spread</option></button>
-          <button><option value="starter">starter</option></button>
-        </select>
+        <form>
+          <select class="drop-down-menu">
+        <!-- drop down menu renders here -->
+          </select>
+          <button type = "submit" class="select-button">Filter</button>
+        </form>
       </section>
+      <div class="search-bar">
+        <input aria-label="search-all-recipes" class="search-bar-input" id="searchInput" type="text" placeholder="Search All Recipes">
+        <button class="search-btn">Search</button>
+        <button class="clear-search-btn">Clear Search</button>
+      </div>
       <section class="nav-right">
-        <button>My Recipes</button>
-        <button>My Dashboard</button>
+        <button class="nav-btn">My Recipes</button>
+        <button class="nav-btn">My Dashboard</button>
       </section>
       <!--  navigation search & buttons  -->
     </nav>
@@ -70,11 +53,11 @@
       <section class="individual-recipe-view hidden">
         <div class="recipe-image-wrapper"></div>
         <div class="recipe-ingredients-wrapper">
-          <h3 class="individual-recipe-headings">Ingredients</h3>
+          <h3 class="individual-recipe-headings"></h3>
           <div class="recipe-ingredients-list"></div>
         </div>
         <div class="recipe-instructions-wrapper">
-          <h3 class="individual-recipe-headings">Instructions</h3>
+          <h3 class="individual-recipe-headings"></h3>
           <div class="recipe-instructions-list"></div>
         </div>
         <!-- Individual recipe renders here with innerHTML -->

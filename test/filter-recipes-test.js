@@ -8,6 +8,7 @@ import {
   getRecipeInstructions,
   getIngredientsByRecipe,
   calculateRecipeCost,
+  findRecipe,
 } from '../src/filter-recipes.js';
 
 //import all functions from scripts files
@@ -103,6 +104,21 @@ describe('filter recipes', () => {
   });
 
   //create sad path here
+
+  it('should be a function', () => {
+    expect(findRecipe).to.be.a('function');
+  });
+
+
+  it('should find a recipe based on a name', () => {
+    const recipeName1 = findRecipe(
+      recipeData,
+      'Loaded Chocolate Chip Pudding Cookie Cups'
+    );
+    expect(recipeName1.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups')
+  });
+
+
 
   it('should be a function', () => {
     expect(getRecipeInstructions).to.be.a('function');
