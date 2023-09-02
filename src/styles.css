@@ -7,10 +7,6 @@ body {
   width: 100vw;
 }
 
-.hidden {
-  display: none;
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -200,5 +196,10 @@ select {
   justify-content: center;
   margin: 0px 10px 2px 10px;
   font-family: 'Open Sans', sans-serif;
+}
+
+
+.hidden {
+  display: none;
 }
 
