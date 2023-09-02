@@ -12,9 +12,11 @@ import {
   formatInstructions,
 } from '../src/filter-recipes';
 import { saveRecipe, deleteRecipe, savedRecipes } from '../src/user-recipes';
+import { render } from 'sass';
 // import userData from '../sample-data/sample-users';
 //Global Variables Here👇
 let currentRecipeName;
+let currentRecipeList = recipeData;
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
@@ -45,29 +47,36 @@ recipeContainer.addEventListener('click', event => {
 });
 
 searchButton.addEventListener('click', function (event) {
-  renderSearchResults();
+  renderSearchResults(currentRecipeList);
 });
 
 clearSearch.addEventListener('click', function (event) {
   console.log('Not so Sucky!');
   searchInput.value = '';
-  renderSearchResults();
+  renderSearchResults(currentRecipeList);
 });
 
 savedRecipesButton.addEventListener('click', function (event) {
+  addHiddenClass([individualRecipeView]);
+  removeHiddenClass([recipeContainer, homeView]);
+  renderSavedRecipeResults();
+  currentRecipeList = savedRecipes;
   console.log('Thanks Bret!!!');
   // saveRecipe();
   // console.log('Saved Recipes Array', savedRecipes);
 });
 
-saveRecipeBtn.addEventListener('click', function (event) {
-  console.log('SAVE RECIPE BUTTON CLICKED');
-  handleSaveRecipeClick();
-});
+const handleSaveRecipeClick = event => {
+  saveRecipe(recipeData, currentRecipeName);
+  console.log('Saved Recipe Array', savedRecipes);
+};
+
+saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
 
 //Event Handlers Here👇
 
 export const renderRecipeCards = recipeList => {
+  recipeContainer.innerHTML = ' ';
   recipeList.forEach(recipe => {
     recipeContainer.innerHTML += `
     <div class="recipe" id="${recipe.name}">
@@ -89,12 +98,13 @@ export const renderRecipeCards = recipeList => {
 export const renderRecipeDetails = event => {
   removeHiddenClass([individualRecipeView]);
   addHiddenClass([recipeContainer, homeView]);
-  individualRecipeContainer.innerHTML += ' ';
+  individualRecipeContainer.innerHTML = ' ';
   currentRecipeName = event.target.id;
   const chosenRecipe = findRecipe(recipeData, currentRecipeName);
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
   const instructions = getRecipeInstructions(recipeData, currentRecipeName);
   const formattedInstructions = formatInstructions(instructions);
+  console.log({ recipeData, ingredientsData, currentRecipeName });
   const ingredientDetails = getIngredientsByRecipe(
     recipeData,
     ingredientsData,
@@ -119,11 +129,6 @@ export const renderRecipeDetails = event => {
   </div>`;
 };
 
-const handleSaveRecipeClick = event => {
-  saveRecipe(recipeData, currentRecipeName);
-  console.log('Saved Recipe Array', savedRecipes);
-};
-
 const removeHiddenClass = elements => {
   elements.forEach(element => {
     element.classList.remove('hidden');
@@ -138,11 +143,11 @@ const addHiddenClass = elements => {
   return elements;
 };
 
-const renderSearchResults = () => {
+const renderSearchResults = recipes => {
   let searchValue = searchInput.value;
   console.log('You Searched:', searchValue);
   recipeContainer.innerHTML = '';
-  const searchedRecipes = filterByName(recipeData, searchValue);
+  const searchedRecipes = filterByName(recipes, searchValue);
   if (!searchedRecipes.length) {
     recipeContainer.innerHTML = `
     <div class="no-recipes-found-message">
@@ -150,7 +155,7 @@ const renderSearchResults = () => {
   } else {
     searchedRecipes.forEach(recipe => {
       recipeContainer.innerHTML += `
-      <div class="recipe" id="${recipe.id}">
+      <div class="recipe" id="${recipe.name}">
       <img
         src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
       />
@@ -159,6 +164,10 @@ const renderSearchResults = () => {
     </div>`;
     });
   }
+};
+
+const renderSavedRecipeResults = () => {
+  renderRecipeCards(savedRecipes);
 };
 
 const renderRecipeCardsByTag = (recipeList, tag) => {
