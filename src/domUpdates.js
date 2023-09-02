@@ -11,13 +11,18 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
+import { saveRecipe, deleteRecipe } from '../src/user-recipes';
 // import userData from '../sample-data/sample-users';
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
+const individualRecipeContainer = document.querySelector(
+  '.individual-recipe-container'
+);
 const homeView = document.querySelector('.homepage-view');
 const searchInput = document.getElementById('searchInput');
+const savedRecipesView = document.querySelector('.saved-recipes-view');
 
 // drop-down-menu & select button DOM querySelector
 const dropDownMenu = document.querySelector('.drop-down-menu');
@@ -26,6 +31,9 @@ const selectButton = document.querySelector('.select-button');
 //Buttons
 const searchButton = document.querySelector('.search-btn');
 const clearSearch = document.querySelector('.clear-search-btn');
+const savedRecipesButton = document.querySelector('.saved-recipes-btn');
+const saveRecipeBtn = document.querySelector('.test-button');
+const saveButtonContainer = document.querySelector('.save-button-container');
 
 //Event Listeners Here👇
 recipeContainer.addEventListener('click', event => {
@@ -41,9 +49,20 @@ searchButton.addEventListener('click', function (event) {
 clearSearch.addEventListener('click', function (event) {
   console.log('Not so Sucky!');
   searchInput.value = '';
-  renderRecipeCards;
+  renderSearchResults();
 });
 
+savedRecipesButton.addEventListener('click', function (event) {
+  console.log('Thanks Bret!!!');
+  // saveRecipe();
+  // console.log('Saved Recipes Array', savedRecipes);
+});
+const testFunction = () => {
+  console.log('Did This Work?');
+};
+
+console.log('TEST', saveRecipeBtn);
+saveRecipeBtn.addEventListener('click', testFunction);
 //Event Handlers Here👇
 
 export const renderRecipeCards = recipeList => {
@@ -68,7 +87,7 @@ export const renderRecipeCards = recipeList => {
 export const renderRecipeDetails = event => {
   removeHiddenClass([individualRecipeView]);
   addHiddenClass([recipeContainer, homeView]);
-  individualRecipeView.innerHTML += ' ';
+  individualRecipeContainer.innerHTML += ' ';
   const recipeName = event.target.id;
   const chosenRecipe = findRecipe(recipeData, recipeName);
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
@@ -79,7 +98,7 @@ export const renderRecipeDetails = event => {
     ingredientsData,
     recipeName
   );
-  individualRecipeView.innerHTML += `
+  individualRecipeContainer.innerHTML += `
   <div class="recipe-name-wrapper">
     <h3 class="recipe-name">${chosenRecipe.name}</h3>
   </div>
@@ -96,6 +115,7 @@ export const renderRecipeDetails = event => {
     <h3 class="individual-recipe-headings">Instructions</h3>
     <div class="recipe-instructions-list">${formattedInstructions}</div>
   </div>`;
+  console.log('Inside Devin Function', saveRecipeBtn);
 };
 
 const removeHiddenClass = elements => {

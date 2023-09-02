@@ -33,8 +33,8 @@
         <button class="clear-search-btn">Clear Search</button>
       </div>
       <section class="nav-right">
-        <button class="nav-btn">My Recipes</button>
-        <button class="nav-btn">My Dashboard</button>
+        <button class="home-btn">Home</button>
+        <button class="saved-recipes-btn">Saved Recipes</button>
       </section>
       <!--  navigation search & buttons  -->
     </nav>
@@ -42,26 +42,29 @@
       <section class="homepage-view">
         <h2 class="discoverHeader">Discover Recipes</h2>
         <div class="recipe-container" id="homepageViewContainer">
-         <!-- Recipe Cards Render Here -->
-      </section>
-      <section class="saved-recipes-view hidden">
-        <h2 class="discoverHeader" id="myRecipesHeader">My Saved Recipes</h2>
-        <div class="recipe-container" id="mySavedRecipesContainer">
-        <!-- Saved recipes go here -->
-        </div>
-      </section>
-      <section class="individual-recipe-view hidden">
-        <div class="recipe-image-wrapper"></div>
-        <div class="recipe-ingredients-wrapper">
-          <h3 class="individual-recipe-headings"></h3>
-          <div class="recipe-ingredients-list"></div>
-        </div>
-        <div class="recipe-instructions-wrapper">
-          <h3 class="individual-recipe-headings"></h3>
-          <div class="recipe-instructions-list"></div>
-        </div>
-        <!-- Individual recipe renders here with innerHTML -->
-      </section>
+          <!-- Recipe Cards Render Here -->
+          <!-- <button class="save-recipe" id="saveRecipeBtn">Save Recipe</button> -->
+        </section>
+        <section class="saved-recipes-view hidden">
+          <h2 class="discoverHeader" id="myRecipesHeader">My Saved Recipes</h2>
+          <div class="recipe-container" id="mySavedRecipesContainer">
+            <!-- Saved recipes go here -->
+          </div>
+        </section>
+        <section class="individual-recipe-view hidden">
+          <button class="test-button">SAVE</button>
+          <div class="individual-recipe-container">
+            <div class="recipe-image-wrapper"></div>
+            <div class="recipe-ingredients-wrapper">
+              <h3 class="individual-recipe-headings"></h3>
+              <div class="recipe-ingredients-list"></div>
+            </div>
+            <div class="recipe-instructions-wrapper">
+              <h3 class="individual-recipe-headings"></h3>
+              <div class="recipe-instructions-list"></div>
+            </div>
+          </div>
+        </section>
     </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
