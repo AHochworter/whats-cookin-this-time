@@ -9,7 +9,7 @@ import {
 } from '../src/filter-recipes.js';
 
 import recipeData from '../sample-data/sample-recipes';
-import { saveRecipe, savedRecipes } from '../src/user-recipes.js';
+import { deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
 
 // import ingredientsData from '../sample-data/sample-ingredients';
 // import usersData from '../sample-data/sample-users';
@@ -55,6 +55,17 @@ describe('Save recipes', () => {
           tags: ['lunch', 'main course', 'main dish', 'dinner'],
         },
       ]);
+    });
+  it('should be a function', () => {
+    expect(deleteRecipe).to.be.a('function');
+    });
+
+    it('should delete a recipe from the saved recipe array', () => {
+    const filtered1 = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops');
+      const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name); 
+      const deleteARecipe = deleteRecipe(savedRecipes, filtered1.name);
+      
+      expect(savedRecipes.length).to.equal(0);
     });
   });
 

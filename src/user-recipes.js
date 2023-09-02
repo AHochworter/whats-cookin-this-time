@@ -3,12 +3,19 @@ export let savedRecipes = [];
 export const saveRecipe = (recipeList, recipeName) => {
   const recipeFullInfo = recipeList.find(recipe => recipe.name === recipeName);
 
-  if (!savedRecipes.some(currentRecipe => recipeFullInfo && recipeFullInfo.id === currentRecipe.id)) {
+  if (!savedRecipes.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
     savedRecipes.push(recipeFullInfo);
   }
 
   return savedRecipes;
 };
+
+export const deleteRecipe = (savedRecipes, recipeName) => {
+  const recipeToDelete = savedRecipes.findIndex(recipe => recipe.name === recipeName);
+  savedRecipes.splice( recipeToDelete , 1)
+  return savedRecipes
+}
+
 
 // export const saveRecipe = (recipeList, recipeName) => {
 
