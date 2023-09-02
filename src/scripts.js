@@ -19,7 +19,12 @@ import {
 } from '../src/domUpdates';
 // import { filterByName } from './filter-recipes';
 // import { recipes } from './src/recipes-to-cook.js';
-// renderRecipeDetails, recipeContainer,
+window.addEventListener('load', () => renderRecipeCards(recipeData));
+
+import { renderRecipeCards } from '../src/domUpdates';
+//  renderRecipeDetails, recipeContainer,
+
+window.addEventListener('load', () => renderRecipeCards(recipeData));
 
 //Event Listeners Here👇
 window.addEventListener('load', e => {

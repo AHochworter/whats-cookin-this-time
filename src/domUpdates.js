@@ -2,6 +2,7 @@
 
 import ingredientsData from './data/ingredients';
 import recipeData from './data/recipes';
+<<<<<<< HEAD
 import {
   filterByTag,
   filterByName,
@@ -11,6 +12,17 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
+=======
+import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe, getRecipeInstructions, findRecipe, formatInstructions } from '../src/filter-recipes'
+
+
+// import recipeData from '../sample-data/sample-recipes.js';
+
+
+// import { filterByTag } from './filter-recipes';
+
+
+>>>>>>> bc389c98ac348d4686f120c8133d8a1b5c318761
 // import userData from '../sample-data/sample-users';
 
 //Query Selectors Here👇
@@ -159,8 +171,17 @@ const renderSelectTagOptions = tagData => {
     dropDownMenu.innerHTML += `
     <option value='${tag}'>${tag}</option>
     `;
+<<<<<<< HEAD
   });
 };
+=======
+  }); 
+}
+
+
+export { renderSearchResults, renderRecipeCardsByTag, renderSelectTagOptions, selectButton, dropDownMenu };
+
+>>>>>>> bc389c98ac348d4686f120c8133d8a1b5c318761
 
 export {
   // renderRecipeCards,

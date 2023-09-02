@@ -11,7 +11,11 @@ export const filterByTag = (recipes, tag) => {
 export const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
+<<<<<<< HEAD
       return recipe;
+=======
+      return recipe
+>>>>>>> bc389c98ac348d4686f120c8133d8a1b5c318761
     }
   });
 };
