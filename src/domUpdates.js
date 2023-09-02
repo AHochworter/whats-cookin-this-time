@@ -11,8 +11,10 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
-import { saveRecipe, deleteRecipe } from '../src/user-recipes';
+import { saveRecipe, deleteRecipe, savedRecipes } from '../src/user-recipes';
 // import userData from '../sample-data/sample-users';
+//Global Variables Here👇
+let currentRecipeName;
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
@@ -57,12 +59,12 @@ savedRecipesButton.addEventListener('click', function (event) {
   // saveRecipe();
   // console.log('Saved Recipes Array', savedRecipes);
 });
-const testFunction = () => {
-  console.log('Did This Work?');
-};
 
-console.log('TEST', saveRecipeBtn);
-saveRecipeBtn.addEventListener('click', testFunction);
+saveRecipeBtn.addEventListener('click', function (event) {
+  console.log('SAVE RECIPE BUTTON CLICKED');
+  handleSaveRecipeClick();
+});
+
 //Event Handlers Here👇
 
 export const renderRecipeCards = recipeList => {
@@ -88,15 +90,15 @@ export const renderRecipeDetails = event => {
   removeHiddenClass([individualRecipeView]);
   addHiddenClass([recipeContainer, homeView]);
   individualRecipeContainer.innerHTML += ' ';
-  const recipeName = event.target.id;
-  const chosenRecipe = findRecipe(recipeData, recipeName);
+  currentRecipeName = event.target.id;
+  const chosenRecipe = findRecipe(recipeData, currentRecipeName);
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
-  const instructions = getRecipeInstructions(recipeData, recipeName);
+  const instructions = getRecipeInstructions(recipeData, currentRecipeName);
   const formattedInstructions = formatInstructions(instructions);
   const ingredientDetails = getIngredientsByRecipe(
     recipeData,
     ingredientsData,
-    recipeName
+    currentRecipeName
   );
   individualRecipeContainer.innerHTML += `
   <div class="recipe-name-wrapper">
@@ -115,7 +117,11 @@ export const renderRecipeDetails = event => {
     <h3 class="individual-recipe-headings">Instructions</h3>
     <div class="recipe-instructions-list">${formattedInstructions}</div>
   </div>`;
-  console.log('Inside Devin Function', saveRecipeBtn);
+};
+
+const handleSaveRecipeClick = event => {
+  saveRecipe(recipeData, currentRecipeName);
+  console.log('Saved Recipe Array', savedRecipes);
 };
 
 const removeHiddenClass = elements => {
