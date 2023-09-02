@@ -21,7 +21,6 @@ import {
 // import { recipes } from './src/recipes-to-cook.js';
 window.addEventListener('load', () => renderRecipeCards(recipeData));
 
-import { renderRecipeCards } from '../src/domUpdates';
 //  renderRecipeDetails, recipeContainer,
 
 window.addEventListener('load', () => renderRecipeCards(recipeData));
