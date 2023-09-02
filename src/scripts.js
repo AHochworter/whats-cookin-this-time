@@ -18,7 +18,7 @@ window.addEventListener('load', () => renderRecipeCards(recipeData));
 
 
 
-import { renderRecipeCards } from '../src/domUpdates';
+
 //  renderRecipeDetails, recipeContainer,
 
 window.addEventListener('load', () => renderRecipeCards(recipeData));

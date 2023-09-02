@@ -116,6 +116,7 @@ button {
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
+}
 
 button:hover {
   background-color:#e37222;
