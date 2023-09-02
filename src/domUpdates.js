@@ -1,14 +1,13 @@
 //NOTE: Your DOM manipulation will occur in this file
-import ingredientsData from '../sample-data/sample-ingredients';
-import recipeData from '../sample-data/sample-recipes.js';
-import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe, getRecipeInstructions, findRecipe} from '../src/filter-recipes'
+import ingredientsData from './data/ingredients';
+import recipeData from './data/recipes';
+import { filterByTag, filterByName, calculateRecipeCost, getIngredientsByRecipe, getRecipeInstructions, findRecipe, formatInstructions } from '../src/filter-recipes'
 // import userData from '../sample-data/sample-users';
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
 const homeView = document.querySelector('.homepage-view')
-
 
 //Event Listeners Here👇
 recipeContainer.addEventListener('click', (event) => {
@@ -17,12 +16,10 @@ recipeContainer.addEventListener('click', (event) => {
   }
 })
 
-
 //Buttons
 
 //Event Handlers Here👇
-const renderRecipeCards = recipeList => {
-  console.log('getting here');
+export const renderRecipeCards = recipeList => {
   //Note - if time! could add iterator for tags array
   recipeList.forEach(recipe => {
     recipeContainer.innerHTML += `
@@ -36,41 +33,32 @@ const renderRecipeCards = recipeList => {
   });
 };
 
-
-const renderRecipeDetails = (event) =>{
-  console.log("hellllo")
-  // console.log(event.target.id)
+export const renderRecipeDetails = (event) =>{
 removeHiddenClass([individualRecipeView])
 addHiddenClass([recipeContainer, homeView])
   individualRecipeView.innerHTML += ' '
   const recipeName = event.target.id
-
-
   const chosenRecipe = findRecipe(recipeData, recipeName)
-  console.log("RECIPE", chosenRecipe)
-  console.log("clickedOnRecipe:", chosenRecipe) // 
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData)
-  const instructions = getRecipeInstructions(recipeData, ingredientsData)
-  // console.log("recipe instructions:", instructions) // returns empty array
+  const instructions = getRecipeInstructions(recipeData, recipeName)
+  const formattedInstructions =  formatInstructions(instructions)
   const ingredientDetails = getIngredientsByRecipe(recipeData, ingredientsData, recipeName)
-  // console.log("Ingredients:", ingredientDetails) // returns undefined
-
   individualRecipeView.innerHTML += `
   <div class="recipe-name-wrapper">
-    <h3 class="recipe-name">${chosenRecipe}</h3>
+    <h3 class="recipe-name">${chosenRecipe.name}</h3>
   </div>
   <div class="recipe-image-wrapper">
   <img
-          src="${chosenRecipe[0].image}" alt="${chosenRecipe[0].name}" class="recipe-image">
+          src="${chosenRecipe.image}" alt="${chosenRecipe.name}" class="recipe-image">
   </div>
   <div class="recipe-ingredients-wrapper">
     <h3 class="individual-recipe-headings">Ingredients</h3>
-    <div class="recipe-ingredients-list">${ingredientDetails[0].ingredients}</div>
+    <div class="recipe-ingredients-list">${ingredientDetails}</div>
     <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
   </div>
   <div class="recipe-instructions-wrapper">
     <h3 class="individual-recipe-headings">Instructions</h3>
-    <div class="recipe-instructions-list">${instructions[0].instructions}</div>
+    <div class="recipe-instructions-list">${formattedInstructions}</div>
   </div>`
 }
 
@@ -88,8 +76,4 @@ const addHiddenClass = (elements) => {
 return elements
 };
 
-
-
-
-export { renderRecipeCards, renderRecipeDetails };
-// recipeContainer
+// export { renderRecipeCards, renderRecipeDetails };

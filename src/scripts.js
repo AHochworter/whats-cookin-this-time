@@ -6,7 +6,7 @@ import apiCalls from './apiCalls';
 // import './images/turing-logo.png'
 import ingredientsData from './data/ingredients.js';
 import recipeData from './data/recipes';
-// import userData from './data/users.js';
+// import userData from './data/users.js
 
 import { renderRecipeCards } from '../src/domUpdates';
 //  renderRecipeDetails, recipeContainer,
