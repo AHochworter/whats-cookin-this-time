@@ -1,6 +1,7 @@
 export const filterByTag = (recipes, tag) => {
   let recipesFilteredByTag = recipes.filter(recipe => {
     // return tag.every((tag) => {
+   
     return recipe.tags.includes(tag.toLowerCase());
     // })
   });
@@ -11,6 +12,8 @@ export const filterByName = (recipeList, name) => {
   return recipeList.filter(recipe => {
     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
       return recipe
+     if (recipe.name.toLowerCase().includes(name.toLowerCase())) {
+       return recipe;
     }
   });
 };
@@ -53,7 +56,7 @@ export const calculateRecipeCost = (recipe, ingredients) => {
   }, 0);
 
   return totalCost.toFixed(2);
-}
+};
 
 export const getRecipeInstructions = (recipes, name) => {
   const targetRecipe = recipes.find(recipe => recipe.name === name);

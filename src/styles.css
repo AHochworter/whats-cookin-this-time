@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Kaushan Script', cursive;
-  background-color: #e7f1f1;
+  background-color: #dfd7c0;
   height: 100vh;
   width: 100vw;
 }
@@ -19,24 +19,45 @@ header {
   justify-content: center;
   align-items: center;
   background-color: #e37222;
-  height: 85px;
+  height: 100px;
 }
 
 nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column-reverse;
+  align-content: space-between;
   background-color: #66b9bf;
   height: 65px;
+}
+
+.nav-left {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: reverse;
+  align-content: center;
+  background-color: #66b9bf;
+  height: 65px;
+  width: 25vw;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  align-content: center;
+  background-color: #66b9bf;
+  height: 65px;
+  width: 25vw;
 }
 
 h1 {
   display: flex;
   font-size: 68px;
   color: #ffffff;
-  stroke: #66b9bf;
-  stroke-width: 2px;
+  -webkit-text-stroke: 0.005px #66b9bf;
 }
 
 h2 {
@@ -48,24 +69,81 @@ h2 {
 
 h4 {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: left;
   font-size: 15px;
   color: #080808;
 }
 
 button {
-  background-color: #000000;
+  background-color: #07889b;
   color: #ffffff;
   font-family: 'Poppins', sans-serif;
-  width: 240px;
-  height: 45px;
-  font-size: 25px;
+  width: 200px;
+  height: 35px;
+  font-size: 20px;
   font-weight: 250;
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
 }
+
+.search-bar-input {
+  border: none;
+  border-radius: 30px 30px 30px 30px;
+  padding-left: 16px;
+  height: 45px;
+  width: 300px;
+  flex-grow: 2;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 750px;
+}
+
+.search-btn,
+.clear-search-btn {
+  background-color: #07889b;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  width: 125px;
+  height: 35px;
+  font-size: 15px;
+  font-weight: 250;
+  border-radius: 1px 50px;
+  font-variant: common-ligatures;
+  border: none;
+
+button:hover {
+  background-color:#e37222;
+  color: white;
+  cursor: pointer;
+}
+
+button:active {
+  background-color:  #66b9bf;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+
+}
+
+select {
+  background-color: #07889b;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  width: 200px;
+  height: 35px;
+  font-size: 20px;
+  font-weight: 250;
+  border-radius: 1px 50px;
+  font-variant: common-ligatures;
+  border: none;
+  text-align: center;
+}
+
 .homepage-view {
   display: flex;
   flex-direction: column;
@@ -77,40 +155,51 @@ button {
 
 .recipe-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px;
   justify-content: center;
-  align-items: center;
-  /* background-color: #dfd7c0; */
-  height: 450px;
 }
 
 .recipe {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #ffffff;
   border-style: solid;
-  margin: 7px;
-  /* stroke: #66b9bf; */
-  width: 276px;
+  margin: 10px;
+  width: 275px;
   height: 300px;
 }
 
 .recipe-image {
-  display: flex;
-  justify-content: center;
-  margin: 15px 0px 3px 0px;
-  width: 265px;
-  height: 150px;
+  max-width: 285px;
+  max-height: 165px;
+  width: auto;
+  height: auto;
 }
 
+.favorite-toggle {
+  height: 28px;
+  width: 28px;
+  margin: 0px 6px 6px 0px;
+}
+
+.recipe-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: stretch;
+  height: 450px;
+  flex-wrap: wrap;
+}
 .recipe-name {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  margin: 0px 10px 2px 10px;
+  font-family: 'Open Sans', sans-serif;
 }
+
 
 .hidden {
   display: none;
 }
+

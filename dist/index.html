@@ -9,6 +9,9 @@
       href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">  
     <title>Whats Cookin</title>
   </head>
   <body>
@@ -16,18 +19,36 @@
       <h1>Whats Cookin</h1>
     </header>
     <nav>
-      <button>My Recipes</button>
-      <button>My Dashboard</button>
+      <section class="nav-left">
+        <form>
+          <select class="drop-down-menu">
+        <!-- drop down menu renders here -->
+          </select>
+          <button type = "submit" class="select-button">Filter</button>
+        </form>
+      </section>
+      <div class="search-bar">
+        <input aria-label="search-all-recipes" class="search-bar-input" id="searchInput" type="text" placeholder="Search All Recipes">
+        <button class="search-btn">Search</button>
+        <button class="clear-search-btn">Clear Search</button>
+      </div>
+      <section class="nav-right">
+        <button class="nav-btn">My Recipes</button>
+        <button class="nav-btn">My Dashboard</button>
+      </section>
       <!--  navigation search & buttons  -->
     </nav>
     <main>
       <section class="homepage-view">
-        <h2>Discover Recipes</h2>
-        <div class="recipe-container">
+        <h2 class="discoverHeader">Discover Recipes</h2>
+        <div class="recipe-container" id="homepageViewContainer">
          <!-- Recipe Cards Render Here -->
       </section>
       <section class="saved-recipes-view hidden">
+        <h2 class="discoverHeader" id="myRecipesHeader">My Saved Recipes</h2>
+        <div class="recipe-container" id="mySavedRecipesContainer">
         <!-- Saved recipes go here -->
+        </div>
       </section>
       <section class="individual-recipe-view hidden">
         <div class="recipe-image-wrapper"></div>
