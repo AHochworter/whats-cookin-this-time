@@ -50,7 +50,7 @@ homeBtn.addEventListener('click', function() {
 });
 
 recipeContainer.addEventListener('click', event => {
-  if (event.target.classList.contains('recipe')) {
+  if (event.target.classList.contains('recipe-card')) {
     renderRecipeDetails(event);
   }
 });
@@ -100,16 +100,16 @@ export const renderRecipeCards = (recipeList) => {
   recipeContainer.innerHTML = ' ';
   recipeList.forEach(recipe => {
     recipeContainer.innerHTML += `
-    <div class="recipe" id="${recipe.name}">
-      <img
-        src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
+    <div class="recipe recipe-card" id="${recipe.name}">
+      <img class="recipe-card"
+        src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
       />
-      <h4>${recipe.tags[0]}</h4>
-      <h3 class="recipe-name">${recipe.name}</h3>
-    <img
+      <h4 class="recipe-card" id="${recipe.name}">${recipe.tags[0]}</h4>
+      <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+    <img  id="${recipe.name}"
       src="src/images/notFavorite.png" id="unclickedHeart" alt="unclicked Favorite" class="favorite-toggle"
       />
-      <img
+      <img  id="${recipe.name}"
       src="src/images/favorite.png" id="clickedHeart" alt="clicked Favorite" class="favorite-toggle"
       />
     </div>`;
@@ -117,6 +117,7 @@ export const renderRecipeCards = (recipeList) => {
 };
 
 export const renderRecipeDetails = event => {
+  console.log(event.target)
   removeHiddenClass([individualRecipeView]);
   addHiddenClass([recipeContainer, homeView]);
   individualRecipeContainer.innerHTML = ' ';
@@ -125,7 +126,7 @@ export const renderRecipeDetails = event => {
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
   const instructions = getRecipeInstructions(recipeData, currentRecipeName);
   const formattedInstructions = formatInstructions(instructions);
-  console.log({ recipeData, ingredientsData, currentRecipeName });
+  // console.log({ recipeData, ingredientsData, currentRecipeName });
   const ingredientDetails = getIngredientsByRecipe(
     recipeData,
     ingredientsData,
