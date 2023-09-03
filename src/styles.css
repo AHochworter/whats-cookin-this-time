@@ -170,6 +170,10 @@ select {
   height: 300px;
 }
 
+.recipe-card {
+  cursor: pointer;
+}
+
 .recipe-image {
   max-width: 285px;
   max-height: 165px;
