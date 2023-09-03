@@ -1,11 +1,8 @@
 export const filterByTag = (recipes, tag) => {
   let recipesFilteredByTag = recipes.filter(recipe => {
-    // return tag.every((tag) => {
-
-    return recipe.tags.includes(tag.toLowerCase());
-    // })
+    return recipe.tags.includes(tag);
   });
-  return recipesFilteredByTag;
+return recipesFilteredByTag;
 };
 
 export const filterByName = (recipeList, name) => {
@@ -63,7 +60,7 @@ export const getRecipeInstructions = (recipes, name) => {
   if (targetRecipe) {
     return targetRecipe.instructions;
   } else {
-    return []; // Return an empty array if the recipe is not found
+    return [];
   }
 };
 
