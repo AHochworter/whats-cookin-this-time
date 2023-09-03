@@ -187,7 +187,7 @@ const renderSearchResults = recipes => {
 
 const renderSavedRecipeResults = () => {
 
-  if (savedRecipes.length === 0) {
+  if (currentUser.savedRecipes.length === 0) {
     discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
     recipeContainer.innerHTML = '';
   } else {
