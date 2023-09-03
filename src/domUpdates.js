@@ -25,6 +25,7 @@ const individualRecipeContainer = document.querySelector(
   '.individual-recipe-container'
 );
 const homeView = document.querySelector('.homepage-view');
+const discoverRecipesHeader = document.querySelector('.discoverHeader')
 const searchInput = document.getElementById('searchInput');
 const savedRecipesView = document.querySelector('.saved-recipes-view');
 
@@ -65,7 +66,6 @@ selectButton.addEventListener('click', e => {
 });
 
 clearSearch.addEventListener('click', function (event) {
-  console.log('Not so Sucky!');
   searchInput.value = '';
   renderSearchResults(currentRecipeList);
 });
@@ -85,12 +85,12 @@ deleteRecipeBtn.addEventListener('click', function() {
 })
 
 
-
-
 const handleSaveRecipeClick = event => {
   saveRecipe(recipeData, currentRecipeName);
   console.log('Saved Recipe Array', savedRecipes);
 };
+
+
 
 saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
 
@@ -189,8 +189,14 @@ const renderSearchResults = recipes => {
 };
 
 const renderSavedRecipeResults = () => {
-  renderRecipeCards(savedRecipes);
+    renderRecipeCards(savedRecipes);
 };
+// inside renderSavedRecipeResults, wanting to add conditional that checks if the savedRecipes array length is 0 then change "Discover Recipes" to "There are no saved recipes yet"
+// if (!savedRecipes.length) {
+//   discoverRecipesHeader.innerHTML = "There are no saved recipes yet."
+// } else {
+//   renderRecipeCards(savedRecipes);
+// }
 
 const renderDeleteRecipeResults = () => {
   renderRecipeCards(savedRecipes);
