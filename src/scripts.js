@@ -12,6 +12,7 @@ import recipeData from './data/recipes';
 import tagData from './data/tags';
 import {
   renderRecipeCards,
+  welcomeNewUser,
   renderRecipeCardsByTag,
   selectButton,
   dropDownMenu,
@@ -19,7 +20,7 @@ import {
 } from '../src/domUpdates';
 // import { filterByName } from './filter-recipes';
 // import { recipes } from './src/recipes-to-cook.js';
-window.addEventListener('load', () => renderRecipeCards(recipeData));
+// window.addEventListener('load', () => renderRecipeCards(recipeData));
 
 //  renderRecipeDetails, recipeContainer,
 
@@ -29,6 +30,7 @@ window.addEventListener('load', () => renderRecipeCards(recipeData));
 window.addEventListener('load', e => {
   renderRecipeCards(recipeData);
   renderSelectTagOptions(tagData);
+  welcomeNewUser();
 
 });
 

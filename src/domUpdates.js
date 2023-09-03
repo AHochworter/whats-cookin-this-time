@@ -11,7 +11,7 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
-import { saveRecipe, deleteRecipe, savedRecipes } from '../src/user-recipes';
+import { saveRecipe, deleteRecipe, currentUser } from '../src/user-recipes';
 import { render } from 'sass';
 // import userData from '../sample-data/sample-users';
 //Global Variables Here👇
@@ -25,7 +25,7 @@ const individualRecipeContainer = document.querySelector(
   '.individual-recipe-container'
 );
 const homeView = document.querySelector('.homepage-view');
-const discoverRecipesHeader = document.querySelector('.discoverHeader')
+const discoverRecipesHeader = document.querySelector('.discover-header');
 const searchInput = document.getElementById('searchInput');
 const savedRecipesView = document.querySelector('.saved-recipes-view');
 
@@ -39,14 +39,16 @@ const clearSearch = document.querySelector('.clear-search-btn');
 const savedRecipesButton = document.querySelector('.saved-recipes-btn');
 const saveRecipeBtn = document.querySelector('.save-button');
 const deleteRecipeBtn = document.querySelector('.delete-button');
-const homeBtn = document.querySelector('.home-btn')
- 
+const homeBtn = document.querySelector('.home-btn');
 
+const welcomeUser = document.querySelector('.welcome-user');
+ 
 //Event Listeners Here👇
 
-homeBtn.addEventListener('click', function() {
+homeBtn.addEventListener('click', function () {
   addHiddenClass([individualRecipeView]);
   removeHiddenClass([recipeContainer, homeView]);
+  discoverRecipesHeader.innerText = 'Discover Recipes';
   renderRecipeCards(recipeData);
 });
 
@@ -74,29 +76,23 @@ savedRecipesButton.addEventListener('click', function (event) {
   addHiddenClass([individualRecipeView]);
   removeHiddenClass([recipeContainer, homeView]);
   renderSavedRecipeResults();
-  currentRecipeList = savedRecipes;
-  console.log('Thanks Bret!!!');
-  // saveRecipe();
-  // console.log('Saved Recipes Array', savedRecipes);
+
+  currentRecipeList = currentUser.savedRecipes;
 });
 
-deleteRecipeBtn.addEventListener('click', function() {
-  renderDeleteRecipeResults()
-})
-
+deleteRecipeBtn.addEventListener('click', function () {
+  renderDeleteRecipeResults();
+});
 
 const handleSaveRecipeClick = event => {
   saveRecipe(recipeData, currentRecipeName);
-  console.log('Saved Recipe Array', savedRecipes);
 };
-
-
 
 saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
 
 //Event Handlers Here👇
 
-export const renderRecipeCards = (recipeList) => {
+export const renderRecipeCards = recipeList => {
   recipeContainer.innerHTML = ' ';
     recipeList.forEach(recipe => {
       if (recipe.tags.length === 0) {
@@ -135,7 +131,6 @@ export const renderRecipeCards = (recipeList) => {
 
 
 export const renderRecipeDetails = event => {
-  console.log(event.target)
   removeHiddenClass([individualRecipeView]);
   addHiddenClass([recipeContainer, homeView]);
   individualRecipeContainer.innerHTML = ' ';
@@ -144,7 +139,6 @@ export const renderRecipeDetails = event => {
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
   const instructions = getRecipeInstructions(recipeData, currentRecipeName);
   const formattedInstructions = formatInstructions(instructions);
-  // console.log({ recipeData, ingredientsData, currentRecipeName });
   const ingredientDetails = getIngredientsByRecipe(
     recipeData,
     ingredientsData,
@@ -169,6 +163,72 @@ export const renderRecipeDetails = event => {
   </div>`;
 };
 
+const renderSearchResults = recipes => {
+  let searchValue = searchInput.value;
+  recipeContainer.innerHTML = '';
+  const searchedRecipes = filterByName(recipes, searchValue);
+  if (!searchedRecipes.length) {
+    recipeContainer.innerHTML = `
+    <div class="no-recipes-found-message">
+    </div>`;
+  } else {
+    searchedRecipes.forEach(recipe => {
+      recipeContainer.innerHTML += `
+      <div class="recipe" id="${recipe.name}">
+      <img
+      src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
+      />
+      <h4>${recipe.tags[0]}</h4>
+      <h3 class="recipe-name">${recipe.name}</h3>
+      </div>`;
+    });
+  }
+};
+
+const renderSavedRecipeResults = () => {
+
+  if (savedRecipes.length === 0) {
+    discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
+    recipeContainer.innerHTML = '';
+  } else {
+    discoverRecipesHeader.innerText = 'Saved Recipes';
+  renderRecipeCards(currentUser.savedRecipes);
+  }
+};
+
+const renderDeleteRecipeResults = () => {
+  renderRecipeCards(currentUser.savedRecipes);
+  deleteRecipe(currentUser.savedRecipes, currentRecipeName)
+}
+
+const renderRecipeCardsByTag = (recipeList, tag) => {
+  const recipeByTagList = filterByTag(recipeList, tag);
+  recipeContainer.innerHTML = '';
+  if (tag === 'all') {
+    renderRecipeCards(recipeList);
+  } else {
+    recipeByTagList.forEach(recipe => {
+      recipeContainer.innerHTML += `
+      <div class="recipe" id="${recipe.name}">
+        <img
+          src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
+          />
+          <h4>${recipe.tags[0]}</h4>
+          <h3 class="recipe-name">${recipe.name}</h3>
+          </div>`;
+    });
+  }
+};
+
+const renderSelectTagOptions = tagData => {
+  tagData.forEach(tag => {
+    dropDownMenu.innerHTML += `
+        <option value="${tag}">${tag}</option>
+        `;
+  });
+};
+
+//Helper Functions👇
 const removeHiddenClass = elements => {
   elements.forEach(element => {
     element.classList.remove('hidden');
@@ -183,76 +243,15 @@ const addHiddenClass = elements => {
   return elements;
 };
 
-const renderSearchResults = recipes => {
-  let searchValue = searchInput.value;
-  console.log('You Searched:', searchValue);
-  recipeContainer.innerHTML = '';
-  const searchedRecipes = filterByName(recipes, searchValue);
-  if (!searchedRecipes.length) {
-    recipeContainer.innerHTML = `
-    <div class="no-recipes-found-message">
-    </div>`;
-  } else {
-    searchedRecipes.forEach(recipe => {
-      recipeContainer.innerHTML += `
-      <div class="recipe" id="${recipe.name}">
-      <img
-        src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
-      />
-      <h4>${recipe.tags[0]}</h4>
-      <h3 class="recipe-name">${recipe.name}</h3>
-    </div>`;
-    });
-  }
-};
-
-const renderSavedRecipeResults = () => {
-    renderRecipeCards(savedRecipes);
-};
-// inside renderSavedRecipeResults, wanting to add conditional that checks if the savedRecipes array length is 0 then change "Discover Recipes" to "There are no saved recipes yet"
-// if (!savedRecipes.length) {
-//   discoverRecipesHeader.innerHTML = "There are no saved recipes yet."
-// } else {
-//   renderRecipeCards(savedRecipes);
-// }
-
-const renderDeleteRecipeResults = () => {
-  renderRecipeCards(savedRecipes);
-  deleteRecipe(savedRecipes, currentRecipeName)
+const welcomeNewUser = () => {
+  welcomeUser.innerText = `Welcome to the site ${currentUser.name}!`
 }
 
-const renderRecipeCardsByTag = (recipeList, tag) => {
-  const recipeByTagList = filterByTag(recipeList, tag);
-  recipeContainer.innerHTML = '';
-  if (tag === 'all') {
-    renderRecipeCards(recipeList);
-  } else {
-    recipeByTagList.forEach(recipe => {
-      recipeContainer.innerHTML += `
-      <div class="recipe" id="${recipe.name}">
-        <img
-          src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
-        />
-        <h4>${recipe.tags[0]}</h4>
-        <h3 class="recipe-name">${recipe.name}</h3>
-      </div>`;
-    });
-  }
-};
-
-const renderSelectTagOptions = tagData => {
-  tagData.forEach(tag => {
-    dropDownMenu.innerHTML += `
-    <option value="${tag}">${tag}</option>
-    `;
-  });
-};
-
 export {
-  // renderRecipeCards,
   renderSearchResults,
   renderRecipeCardsByTag,
   renderSelectTagOptions,
+  welcomeNewUser,
   selectButton,
   dropDownMenu,
 };
