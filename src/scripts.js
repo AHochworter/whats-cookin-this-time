@@ -27,12 +27,12 @@ import {
 // window.addEventListener('load', () => renderRecipeCards(recipeData));
 
 //Event Listeners Here👇
-window.addEventListener('load', e => {
-  renderRecipeCards(recipeData);
-  renderSelectTagOptions(tagData);
-  welcomeNewUser();
+// window.addEventListener('load', e => {
+//   renderRecipeCards(recipeData);
+//   renderSelectTagOptions(tagData);
+//   welcomeNewUser();
 
-});
+// });
 
 // drop-down-menu & select button DOM querySelector
 // dropDownMenu.addEventListener("click", filterByTag);
