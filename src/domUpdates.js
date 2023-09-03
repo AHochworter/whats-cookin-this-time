@@ -59,6 +59,11 @@ searchButton.addEventListener('click', function (event) {
   renderSearchResults(currentRecipeList);
 });
 
+selectButton.addEventListener('click', e => {
+  e.preventDefault();
+  renderRecipeCardsByTag(currentRecipeList, dropDownMenu.value);
+});
+
 clearSearch.addEventListener('click', function (event) {
   console.log('Not so Sucky!');
   searchInput.value = '';

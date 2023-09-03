@@ -29,15 +29,15 @@ window.addEventListener('load', () => renderRecipeCards(recipeData));
 window.addEventListener('load', e => {
   renderRecipeCards(recipeData);
   renderSelectTagOptions(tagData);
-  
+
 });
 
 // drop-down-menu & select button DOM querySelector
 // dropDownMenu.addEventListener("click", filterByTag);
-selectButton.addEventListener('click', e => {
-  e.preventDefault();
-  renderRecipeCardsByTag(recipeData, dropDownMenu.value);
-});
+// selectButton.addEventListener('click', e => {
+//   e.preventDefault();
+//   renderRecipeCardsByTag(recipeData, dropDownMenu.value);
+// });
 
 //Example of one way to import functions from the domUpdates file. You will delete these examples.
 // import { exampleFunction1, exampleFunction2 } from './domUpdates.js';
