@@ -36,10 +36,19 @@ const selectButton = document.querySelector('.select-button');
 const searchButton = document.querySelector('.search-btn');
 const clearSearch = document.querySelector('.clear-search-btn');
 const savedRecipesButton = document.querySelector('.saved-recipes-btn');
-const saveRecipeBtn = document.querySelector('.save-delete-button');
-const saveButtonContainer = document.querySelector('.save-button-container');
+const saveRecipeBtn = document.querySelector('.save-button');
+const deleteRecipeBtn = document.querySelector('.delete-button');
+const homeBtn = document.querySelector('.home-btn')
+ 
 
 //Event Listeners Here👇
+
+homeBtn.addEventListener('click', function() {
+  addHiddenClass([individualRecipeView]);
+  removeHiddenClass([recipeContainer, homeView]);
+  renderRecipeCards(recipeData);
+});
+
 recipeContainer.addEventListener('click', event => {
   if (event.target.classList.contains('recipe')) {
     renderRecipeDetails(event);
@@ -66,6 +75,13 @@ savedRecipesButton.addEventListener('click', function (event) {
   // console.log('Saved Recipes Array', savedRecipes);
 });
 
+deleteRecipeBtn.addEventListener('click', function() {
+  renderDeleteRecipeResults()
+})
+
+
+
+
 const handleSaveRecipeClick = event => {
   saveRecipe(recipeData, currentRecipeName);
   console.log('Saved Recipe Array', savedRecipes);
@@ -75,7 +91,7 @@ saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
 
 //Event Handlers Here👇
 
-export const renderRecipeCards = recipeList => {
+export const renderRecipeCards = (recipeList) => {
   recipeContainer.innerHTML = ' ';
   recipeList.forEach(recipe => {
     recipeContainer.innerHTML += `
@@ -170,6 +186,11 @@ const renderSavedRecipeResults = () => {
   renderRecipeCards(savedRecipes);
 };
 
+const renderDeleteRecipeResults = () => {
+  renderRecipeCards(savedRecipes);
+  deleteRecipe(savedRecipes, currentRecipeName)
+}
+
 const renderRecipeCardsByTag = (recipeList, tag) => {
   const recipeByTagList = filterByTag(recipeList, tag);
   recipeContainer.innerHTML = '';
@@ -192,7 +213,7 @@ const renderRecipeCardsByTag = (recipeList, tag) => {
 const renderSelectTagOptions = tagData => {
   tagData.forEach(tag => {
     dropDownMenu.innerHTML += `
-    <option value='${tag}'>${tag}</option>
+    <option value="${tag}">${tag}</option>
     `;
   });
 };

@@ -1,7 +1,6 @@
 const tagData = [
     'all',  
     'antipasti', 'antipasto',
-    'antipasto', 'appetizer',
     'appetizer', 'breakfast',
     'brunch',    'condiment',
     'dinner',  

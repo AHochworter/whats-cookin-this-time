@@ -12,7 +12,7 @@ export const saveRecipe = (recipeList, recipeName) => {
 
 export const deleteRecipe = (savedRecipes, recipeName) => {
   const recipeToDelete = savedRecipes.findIndex(recipe => recipe.name === recipeName);
-  savedRecipes.splice( recipeToDelete , 1)
+  savedRecipes.splice(recipeToDelete , 1)
   return savedRecipes
 }
 
