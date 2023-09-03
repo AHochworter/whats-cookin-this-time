@@ -76,7 +76,6 @@ savedRecipesButton.addEventListener('click', function (event) {
   addHiddenClass([individualRecipeView]);
   removeHiddenClass([recipeContainer, homeView]);
   renderSavedRecipeResults();
-
   currentRecipeList = currentUser.savedRecipes;
 });
 
@@ -103,12 +102,6 @@ export const renderRecipeCards = recipeList => {
           />
           <h4 class="recipe-card" id="${recipe.name}">category not indicated</h4>
           <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
-        <img  id="${recipe.name}"
-          src="src/images/notFavorite.png" id="unclickedHeart" alt="unclicked Favorite" class="favorite-toggle"
-          />
-          <img  id="${recipe.name}"
-          src="src/images/favorite.png" id="clickedHeart" alt="clicked Favorite" class="favorite-toggle"
-          />
         </div>`;
       } else {
         recipeContainer.innerHTML += `
@@ -118,12 +111,6 @@ export const renderRecipeCards = recipeList => {
           />
           <h4 class="recipe-card" id="${recipe.name}">${recipe.tags[0]}</h4>
           <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
-        <img  id="${recipe.name}"
-          src="src/images/notFavorite.png" id="unclickedHeart" alt="unclicked Favorite" class="favorite-toggle"
-          />
-          <img  id="${recipe.name}"
-          src="src/images/favorite.png" id="clickedHeart" alt="clicked Favorite" class="favorite-toggle"
-          />
         </div>`;
       }
       });
