@@ -11,7 +11,7 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
-import { saveRecipe, deleteRecipe, savedRecipes } from '../src/user-recipes';
+import { saveRecipe, deleteRecipe, currentUser } from '../src/user-recipes';
 import { render } from 'sass';
 // import userData from '../sample-data/sample-users';
 //Global Variables Here👇
@@ -41,6 +41,8 @@ const saveRecipeBtn = document.querySelector('.save-button');
 const deleteRecipeBtn = document.querySelector('.delete-button');
 const homeBtn = document.querySelector('.home-btn');
 
+const welcomeUser = document.querySelector('.welcome-user');
+ 
 //Event Listeners Here👇
 
 homeBtn.addEventListener('click', function () {
@@ -74,8 +76,8 @@ savedRecipesButton.addEventListener('click', function (event) {
   addHiddenClass([individualRecipeView]);
   removeHiddenClass([recipeContainer, homeView]);
   renderSavedRecipeResults();
-  currentRecipeList = savedRecipes;
-  console.log({ currentRecipeList });
+
+  currentRecipeList = currentUser.savedRecipes;
 });
 
 deleteRecipeBtn.addEventListener('click', function () {
@@ -105,7 +107,6 @@ export const renderRecipeCards = recipeList => {
 };
 
 export const renderRecipeDetails = event => {
-  console.log(event.target);
   removeHiddenClass([individualRecipeView]);
   addHiddenClass([recipeContainer, homeView]);
   individualRecipeContainer.innerHTML = ' ';
@@ -114,7 +115,6 @@ export const renderRecipeDetails = event => {
   const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
   const instructions = getRecipeInstructions(recipeData, currentRecipeName);
   const formattedInstructions = formatInstructions(instructions);
-  // console.log({ recipeData, ingredientsData, currentRecipeName });
   const ingredientDetails = getIngredientsByRecipe(
     recipeData,
     ingredientsData,
@@ -141,7 +141,6 @@ export const renderRecipeDetails = event => {
 
 const renderSearchResults = recipes => {
   let searchValue = searchInput.value;
-  console.log('You Searched:', searchValue);
   recipeContainer.innerHTML = '';
   const searchedRecipes = filterByName(recipes, searchValue);
   if (!searchedRecipes.length) {
@@ -163,26 +162,20 @@ const renderSearchResults = recipes => {
 };
 
 const renderSavedRecipeResults = () => {
+
   if (savedRecipes.length === 0) {
     discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
-    recipeContainer.innerHTML = ''; // Clear the recipe container when there are no saved recipes
+    recipeContainer.innerHTML = '';
   } else {
     discoverRecipesHeader.innerText = 'Saved Recipes';
-    renderRecipeCards(savedRecipes);
+  renderRecipeCards(currentUser.savedRecipes);
   }
 };
 
-// inside renderSavedRecipeResults, wanting to add conditional that checks if the savedRecipes array length is 0 then change "Discover Recipes" to "There are no saved recipes yet"
-// if (!savedRecipes.length) {
-//   discoverRecipesHeader.innerHTML = "There are no saved recipes yet."
-// } else {
-//   renderRecipeCards(savedRecipes);
-// }
-
 const renderDeleteRecipeResults = () => {
-  renderRecipeCards(savedRecipes);
-  deleteRecipe(savedRecipes, currentRecipeName);
-};
+  renderRecipeCards(currentUser.savedRecipes);
+  deleteRecipe(currentUser.savedRecipes, currentRecipeName)
+}
 
 const renderRecipeCardsByTag = (recipeList, tag) => {
   const recipeByTagList = filterByTag(recipeList, tag);
@@ -226,11 +219,15 @@ const addHiddenClass = elements => {
   return elements;
 };
 
+const welcomeNewUser = () => {
+  welcomeUser.innerText = `Welcome to the site ${currentUser.name}!`
+}
+
 export {
-  // renderRecipeCards,
   renderSearchResults,
   renderRecipeCardsByTag,
   renderSelectTagOptions,
+  welcomeNewUser,
   selectButton,
   dropDownMenu,
 };
