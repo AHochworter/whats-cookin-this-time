@@ -11,7 +11,7 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
-import { saveRecipe, deleteRecipe, savedRecipes } from '../src/user-recipes';
+import { saveRecipe, deleteRecipe, currentUser } from '../src/user-recipes';
 import { render } from 'sass';
 // import userData from '../sample-data/sample-users';
 //Global Variables Here👇
@@ -39,7 +39,8 @@ const clearSearch = document.querySelector('.clear-search-btn');
 const savedRecipesButton = document.querySelector('.saved-recipes-btn');
 const saveRecipeBtn = document.querySelector('.save-button');
 const deleteRecipeBtn = document.querySelector('.delete-button');
-const homeBtn = document.querySelector('.home-btn')
+const homeBtn = document.querySelector('.home-btn');
+const welcomeUser = document.querySelector('.welcome-user');
  
 
 //Event Listeners Here👇
@@ -74,7 +75,7 @@ savedRecipesButton.addEventListener('click', function (event) {
   addHiddenClass([individualRecipeView]);
   removeHiddenClass([recipeContainer, homeView]);
   renderSavedRecipeResults();
-  currentRecipeList = savedRecipes;
+  currentRecipeList = currentUser.savedRecipes;
   console.log('Thanks Bret!!!');
   // saveRecipe();
   // console.log('Saved Recipes Array', savedRecipes);
@@ -87,7 +88,7 @@ deleteRecipeBtn.addEventListener('click', function() {
 
 const handleSaveRecipeClick = event => {
   saveRecipe(recipeData, currentRecipeName);
-  console.log('Saved Recipe Array', savedRecipes);
+  console.log('Saved Recipe Array', currentUser.savedRecipes);
 };
 
 
@@ -189,7 +190,8 @@ const renderSearchResults = recipes => {
 };
 
 const renderSavedRecipeResults = () => {
-    renderRecipeCards(savedRecipes);
+  renderRecipeCards(currentUser.savedRecipes);
+
 };
 // inside renderSavedRecipeResults, wanting to add conditional that checks if the savedRecipes array length is 0 then change "Discover Recipes" to "There are no saved recipes yet"
 // if (!savedRecipes.length) {
@@ -199,8 +201,8 @@ const renderSavedRecipeResults = () => {
 // }
 
 const renderDeleteRecipeResults = () => {
-  renderRecipeCards(savedRecipes);
-  deleteRecipe(savedRecipes, currentRecipeName)
+  renderRecipeCards(currentUser.savedRecipes);
+  deleteRecipe(currentUser.savedRecipes, currentRecipeName)
 }
 
 const renderRecipeCardsByTag = (recipeList, tag) => {
@@ -230,11 +232,16 @@ const renderSelectTagOptions = tagData => {
   });
 };
 
+const welcomeNewUser = () => {
+  welcomeUser.innerText = `Welcome to the site ${currentUser.name}!`
+}
+
 export {
   // renderRecipeCards,
   renderSearchResults,
   renderRecipeCardsByTag,
   renderSelectTagOptions,
+  welcomeNewUser,
   selectButton,
   dropDownMenu,
 };
