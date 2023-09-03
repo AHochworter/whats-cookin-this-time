@@ -55,6 +55,11 @@ describe('filter recipes', () => {
     ]);
   });
 
+  it('should return an empty array if a recipe does not have a tag', () => {
+    const filtered3 = filterByTag(recipeData, []);
+    expect(filtered3).to.deep.equal([]);
+  })
+
   it('should be a function', () => {
     expect(filterByName).to.be.a('function');
   });

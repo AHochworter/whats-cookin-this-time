@@ -94,17 +94,41 @@ saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
 
 export const renderRecipeCards = recipeList => {
   recipeContainer.innerHTML = ' ';
-  recipeList.forEach(recipe => {
-    recipeContainer.innerHTML += `
-    <div class="recipe recipe-card" id="${recipe.name}">
-        <img class="recipe-card"
-        src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
-      />
-      <h4 class="recipe-card" id="${recipe.name}">${recipe.tags[0]}</h4>
-      <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
-    </div>`;
-  });
-};
+    recipeList.forEach(recipe => {
+      if (recipe.tags.length === 0) {
+        recipeContainer.innerHTML += `
+        <div class="recipe recipe-card" id="${recipe.name}">
+          <img class="recipe-card"
+            src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
+          />
+          <h4 class="recipe-card" id="${recipe.name}">category not indicated</h4>
+          <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+        <img  id="${recipe.name}"
+          src="src/images/notFavorite.png" id="unclickedHeart" alt="unclicked Favorite" class="favorite-toggle"
+          />
+          <img  id="${recipe.name}"
+          src="src/images/favorite.png" id="clickedHeart" alt="clicked Favorite" class="favorite-toggle"
+          />
+        </div>`;
+      } else {
+        recipeContainer.innerHTML += `
+        <div class="recipe recipe-card" id="${recipe.name}">
+          <img class="recipe-card"
+            src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
+          />
+          <h4 class="recipe-card" id="${recipe.name}">${recipe.tags[0]}</h4>
+          <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+        <img  id="${recipe.name}"
+          src="src/images/notFavorite.png" id="unclickedHeart" alt="unclicked Favorite" class="favorite-toggle"
+          />
+          <img  id="${recipe.name}"
+          src="src/images/favorite.png" id="clickedHeart" alt="clicked Favorite" class="favorite-toggle"
+          />
+        </div>`;
+      }
+      });
+  }
+
 
 export const renderRecipeDetails = event => {
   removeHiddenClass([individualRecipeView]);
@@ -125,7 +149,7 @@ export const renderRecipeDetails = event => {
     <h3 class="recipe-name">${chosenRecipe.name}</h3>
   </div>
   <div class="recipe-image-wrapper">
-  <img
+  <img 
           src="${chosenRecipe.image}" alt="${chosenRecipe.name}" class="recipe-image">
   </div>
   <div class="recipe-ingredients-wrapper">
@@ -185,8 +209,8 @@ const renderRecipeCardsByTag = (recipeList, tag) => {
   } else {
     recipeByTagList.forEach(recipe => {
       recipeContainer.innerHTML += `
-          <div class="recipe" id="${recipe.id}">
-          <img
+      <div class="recipe" id="${recipe.name}">
+        <img
           src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
           />
           <h4>${recipe.tags[0]}</h4>
