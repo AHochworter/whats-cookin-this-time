@@ -23,12 +23,13 @@ window.addEventListener('load', () => renderRecipeCards(recipeData));
 
 //  renderRecipeDetails, recipeContainer,
 
-window.addEventListener('load', () => renderRecipeCards(recipeData));
+// window.addEventListener('load', () => renderRecipeCards(recipeData));
 
 //Event Listeners Here👇
 window.addEventListener('load', e => {
   renderRecipeCards(recipeData);
   renderSelectTagOptions(tagData);
+  
 });
 
 // drop-down-menu & select button DOM querySelector

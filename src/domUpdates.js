@@ -44,10 +44,9 @@ const homeBtn = document.querySelector('.home-btn')
 //Event Listeners Here👇
 
 homeBtn.addEventListener('click', function() {
-  // removeHiddenClass([homeView]);
   addHiddenClass([individualRecipeView]);
-  currentRecipeList = recipeData;
-  renderRecipeCards();
+  removeHiddenClass([recipeContainer, homeView]);
+  renderRecipeCards(recipeData);
 });
 
 recipeContainer.addEventListener('click', event => {
@@ -214,7 +213,7 @@ const renderRecipeCardsByTag = (recipeList, tag) => {
 const renderSelectTagOptions = tagData => {
   tagData.forEach(tag => {
     dropDownMenu.innerHTML += `
-    <option value='${tag}'>${tag}</option>
+    <option value="${tag}">${tag}</option>
     `;
   });
 };
