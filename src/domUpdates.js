@@ -20,6 +20,11 @@ import tagData from './data/tags';
 let currentRecipeName;
 let currentUser;
 
+export let usersData;
+export let recipeData;
+export let ingredientsData;
+export let currentRecipeList;
+
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
@@ -49,10 +54,10 @@ const welcomeUser = document.querySelector('.welcome-user');
 
 const beginFetch = () => {
   Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
-    let usersData = data[0].users;
-    let recipeData = data[1].recipes;
-    let ingredientsData = data[2].ingredients;
-    let currentRecipeList = recipeData;
+    usersData = data[0].users;
+    recipeData = data[1].recipes;
+    ingredientsData = data[2].ingredients;
+    currentRecipeList = recipeData;
     currentUser = getRandomUser(usersData);
 
     homeBtn.addEventListener('click', function () {
