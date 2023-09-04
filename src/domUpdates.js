@@ -18,8 +18,6 @@ import tagData from './data/tags';
 // import userData from '../sample-data/sample-users';
 
 //Global Variables Here👇
-let currentRecipeName;
-let currentRecipeList = recipeData;
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
@@ -54,9 +52,14 @@ const beginFetch = () => {
     let recipeData = data[1].recipes;
     let ingredientsData = data[2].ingredients;
 
+    let currentRecipeName;
+    let currentRecipeList = recipeData;
+
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
       removeHiddenClass([recipeContainer, homeView]);
+      recipeContainer.innerHTML = '';
+      currentRecipeList = recipeData;
       discoverRecipesHeader.innerText = 'Discover Recipes';
       renderRecipeCards(recipeData);
     });
@@ -159,8 +162,9 @@ const beginFetch = () => {
 
     const renderSearchResults = recipes => {
       let searchValue = searchInput.value;
+      console.log('currentRecipeList', currentRecipeList);
       recipeContainer.innerHTML = '';
-      const searchedRecipes = filterByName(recipes, searchValue);
+      const searchedRecipes = filterByName(currentRecipeList, searchValue);
       if (!searchedRecipes.length) {
         recipeContainer.innerHTML = `
       <div class="no-recipes-found-message">
@@ -195,19 +199,19 @@ const beginFetch = () => {
     };
 
     const renderRecipeCardsByTag = (recipeList, tag) => {
-      const recipeByTagList = filterByTag(recipeList, tag);
+      const recipeByTagList = filterByTag(currentRecipeList, tag);
       recipeContainer.innerHTML = '';
       if (tag === 'all') {
         renderRecipeCards(recipeList);
       } else {
         recipeByTagList.forEach(recipe => {
           recipeContainer.innerHTML += `
-        <div class="recipe" id="${recipe.name}">
+        <div class="recipe recipe-card" id="${recipe.name}">
           <img
-            src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
+            src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
             />
-            <h4>${recipe.tags[0]}</h4>
-            <h3 class="recipe-name">${recipe.name}</h3>
+            <h4 class="recipe-card">${recipe.tags[0]}</h4>
+            <h3 class="recipe-name recipe-card">${recipe.name}</h3>
             </div>`;
         });
       }
