@@ -51,11 +51,8 @@ const individualRecipeContainer = document.querySelector(
   const beginFetch = () => {
     Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
       let usersData = data[0].users;
-      // console.log("usersData:=====", usersData);
       let recipeData = data[1].recipes;
-      // console.log("recipeData:=====", recipeData);
       let ingredientsData = data[2].ingredients;
-      // console.log("ingredientsData:=====", ingredientsData);
       let currentRecipeList = recipeData;
       currentUser = getRandomUser(usersData)
       
