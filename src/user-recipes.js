@@ -1,9 +1,9 @@
 import usersData from './data/users';
-export let currentUser = getRandomUser(usersData)
-currentUser.savedRecipes = [];
+//export let currentUser = getRandomUser(usersData)
+//currentUser.savedRecipes = [];
 // console.log("currentUser:=====", currentUser.name);
 
-function getRandomUser(data) {
+export function getRandomUser(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
@@ -17,11 +17,11 @@ function getRandomUser(data) {
 export const saveRecipe = (recipeList, recipeName) => {
   const recipeFullInfo = recipeList.find(recipe => recipe.name === recipeName);
 
-  if (!currentUser.savedRecipes.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
-    currentUser.savedRecipes.push(recipeFullInfo);
+  if (!currentUser.recipesToCook.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
+    currentUser.recipesToCook.push(recipeFullInfo);
   }
 
-  return currentUser.savedRecipes;
+  return currentUser.recipesToCook;
 };
 
 export const deleteRecipe = (savedRecipes, recipeName) => {
