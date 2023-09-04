@@ -1,3 +1,5 @@
+export let savedRecipes = [];
+
 export function getRandomUser(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
