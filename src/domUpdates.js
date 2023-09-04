@@ -19,6 +19,7 @@ import tagData from './data/tags';
 //Global Variables👇
 let currentRecipeName;
 let currentUser;
+let recipeCards;
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
@@ -29,7 +30,7 @@ const individualRecipeContainer = document.querySelector(
 const homeView = document.querySelector('.homepage-view');
 const discoverRecipesHeader = document.querySelector('.discover-header');
 const searchInput = document.getElementById('searchInput');
-const savedRecipesView = document.querySelector('.saved-recipes-view');
+// const savedRecipesView = document.querySelector('.saved-recipes-view');
 
 // drop-down-menu & select button DOM querySelector
 const dropDownMenu = document.querySelector('.drop-down-menu');
@@ -66,9 +67,11 @@ const beginFetch = () => {
     });
 
     recipeContainer.addEventListener('click', event => {
-      if (event.target.classList.contains('recipe-card')) {
-        renderRecipeDetails(event);
-      }
+      const recipeName = event.target.closest('div').id;
+      console.log('event-target', event.target);
+      console.log(event.target.closest('div').id);
+      renderRecipeDetails(recipeName);
+      console.log('recipeName', recipeName);
     });
 
     searchButton.addEventListener('click', function (event) {
@@ -129,23 +132,27 @@ const beginFetch = () => {
       });
     };
 
-    const renderRecipeDetails = event => {
+    const renderRecipeDetails = recipeName => {
+      // console.log(event.target.id);
+      // currentRecipeName = recipeName;
       removeHiddenClass([individualRecipeView]);
       addHiddenClass([recipeContainer, homeView]);
       individualRecipeContainer.innerHTML = ' ';
-      currentRecipeName = event.target.id;
-      const chosenRecipe = findRecipe(recipeData, currentRecipeName);
+      const chosenRecipe = findRecipe(recipeData, recipeName);
+      console.log('chosenRecipe', chosenRecipe);
+      console.log({ recipeData });
+
       const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
-      const instructions = getRecipeInstructions(recipeData, currentRecipeName);
+      const instructions = getRecipeInstructions(recipeData, recipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
         recipeData,
         ingredientsData,
-        currentRecipeName
+        recipeName
       );
       individualRecipeContainer.innerHTML += `
     <div class="recipe-name-wrapper">
-      <h3 class="recipe-name">${chosenRecipe.name}</h3>
+      <h3 class="recipe-name" id="${chosenRecipe.name}">${chosenRecipe.name}</h3>
     </div>
     <div class="recipe-image-wrapper">
     <img 
@@ -169,19 +176,33 @@ const beginFetch = () => {
       const searchedRecipes = filterByName(currentRecipeList, searchValue);
       if (!searchedRecipes.length) {
         recipeContainer.innerHTML = `
-      <div class="no-recipes-found-message">
-        <p class="no-recipe-match">No recipes found</p>
-      </div>`;
+          <div class="no-recipes-found-message">
+            <p class="no-recipe-match">No recipes found</p>
+          </div>`;
       } else {
         searchedRecipes.forEach(recipe => {
           recipeContainer.innerHTML += `
-        <div class="recipe recipe-card" id="${recipe.name}">
-        <img
-        src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
-        />
-        <h4 class="recipe-card">${recipe.tags[0]}</h4>
-        <h3 class="recipe-name recipe-card">${recipe.name}</h3>
-        </div>`;
+            <div class="recipe recipe-card" id="${recipe.name}">
+              <img
+                src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
+              />
+              <h4 class="recipe-card">${recipe.tags[0]}</h4>
+              <h3 class="recipe-name recipe-card">${recipe.name}</h3>
+            </div>`;
+        });
+
+        // Update currentRecipeList with the searched recipes
+        currentRecipeList = searchedRecipes;
+        console.log({ searchedRecipes });
+
+        // Add event listeners to the new recipe cards
+        recipeCards = document.querySelectorAll('.recipe-card');
+        recipeCards.forEach(card => {
+          card.addEventListener('click', function (event) {
+            console.log(event.target.id);
+            currentRecipeName = event.target.id;
+            renderRecipeDetails(event);
+          });
         });
       }
     };
