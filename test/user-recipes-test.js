@@ -9,10 +9,27 @@ import {
 } from '../src/filter-recipes.js';
 
 import recipeData from '../sample-data/sample-recipes';
-import { deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
+import { getRandomUser, deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
 
 // import ingredientsData from '../sample-data/sample-ingredients';
 // import usersData from '../sample-data/sample-users';
+
+describe('getRandomUser', () => {
+  it('should be a function', () => {
+    expect(getRandomUser).to.be.a('function'); 
+  });
+
+  it('should return a user from user list', () => {
+    const users = [
+      { id: 1, name: 'Sadye Welch' },
+      { id: 2, name: 'Jordyn West' },
+      { id: 3, name: 'Willie Eichmann' },
+    ];
+    const randomUser = getRandomUser(users);
+
+    expect(users).to.include(randomUser);
+  });
+});
 
 describe('Save recipes', () => {
   it('should be a function', () => {
