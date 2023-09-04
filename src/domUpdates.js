@@ -1,7 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-//import ingredientsData from './data/ingredients';
-//import recipeData from './data/recipes';
+//Imports🤞
 import {
   filterByTag,
   filterByName,
@@ -17,7 +16,7 @@ import tagData from './data/tags';
 // import { render } from 'sass';
 // import userData from '../sample-data/sample-users';
 
-//Global Variables Here👇
+//Global Variables👇
 let currentRecipeName;
 let currentUser;
 
@@ -26,42 +25,45 @@ const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
 const individualRecipeContainer = document.querySelector(
   '.individual-recipe-container'
-  );
-  const homeView = document.querySelector('.homepage-view');
-  const discoverRecipesHeader = document.querySelector('.discover-header');
-  const searchInput = document.getElementById('searchInput');
-  const savedRecipesView = document.querySelector('.saved-recipes-view');
-  
-  // drop-down-menu & select button DOM querySelector
-  const dropDownMenu = document.querySelector('.drop-down-menu');
-  const selectButton = document.querySelector('.select-button');
-  
-  //Buttons
-  const searchButton = document.querySelector('.search-btn');
-  const clearSearch = document.querySelector('.clear-search-btn');
-  const savedRecipesButton = document.querySelector('.saved-recipes-btn');
-  const saveRecipeBtn = document.querySelector('.save-button');
-  const deleteRecipeBtn = document.querySelector('.delete-button');
-  const homeBtn = document.querySelector('.home-btn');
-  
-  const welcomeUser = document.querySelector('.welcome-user');
-  
-  //Event Listeners Here👇
-  
-  const beginFetch = () => {
-    Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
-      let usersData = data[0].users;
-      let recipeData = data[1].recipes;
-      let ingredientsData = data[2].ingredients;
-      let currentRecipeList = recipeData;
-      currentUser = getRandomUser(usersData)
-      
-      homeBtn.addEventListener('click', function () {
-        addHiddenClass([individualRecipeView]);
-        removeHiddenClass([recipeContainer, homeView]);
-        discoverRecipesHeader.innerText = 'Discover Recipes';
-        renderRecipeCards(recipeData);
-      });
+);
+const homeView = document.querySelector('.homepage-view');
+const discoverRecipesHeader = document.querySelector('.discover-header');
+const searchInput = document.getElementById('searchInput');
+const savedRecipesView = document.querySelector('.saved-recipes-view');
+
+// drop-down-menu & select button DOM querySelector
+const dropDownMenu = document.querySelector('.drop-down-menu');
+const selectButton = document.querySelector('.select-button');
+
+//Buttons
+const searchButton = document.querySelector('.search-btn');
+const clearSearch = document.querySelector('.clear-search-btn');
+const savedRecipesButton = document.querySelector('.saved-recipes-btn');
+const saveRecipeBtn = document.querySelector('.save-button');
+const deleteRecipeBtn = document.querySelector('.delete-button');
+const homeBtn = document.querySelector('.home-btn');
+
+const welcomeUser = document.querySelector('.welcome-user');
+
+//Event Listeners Here👇
+
+const beginFetch = () => {
+  Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
+    let usersData = data[0].users;
+    let recipeData = data[1].recipes;
+    let ingredientsData = data[2].ingredients;
+    let currentRecipeList = recipeData;
+    currentUser = getRandomUser(usersData);
+
+    homeBtn.addEventListener('click', function () {
+      addHiddenClass([individualRecipeView]);
+      removeHiddenClass([recipeContainer, homeView]);
+      recipeContainer.innerHTML = '';
+      currentRecipeList = recipeData;
+      discoverRecipesHeader.innerText = 'Discover Recipes';
+      renderRecipeCards(recipeData);
+      dropDownMenu.value = 'all';
+    });
 
     recipeContainer.addEventListener('click', event => {
       if (event.target.classList.contains('recipe-card')) {
@@ -73,14 +75,14 @@ const individualRecipeContainer = document.querySelector(
       renderSearchResults(currentRecipeList);
     });
 
-    selectButton.addEventListener('click', e => {
-      e.preventDefault();
-      renderRecipeCardsByTag(currentRecipeList, dropDownMenu.value);
-    });
-
     clearSearch.addEventListener('click', function (event) {
       searchInput.value = '';
       renderSearchResults(currentRecipeList);
+    });
+
+    selectButton.addEventListener('click', e => {
+      e.preventDefault();
+      renderRecipeCardsByTag(currentRecipeList, dropDownMenu.value);
     });
 
     savedRecipesButton.addEventListener('click', function (event) {
@@ -88,6 +90,7 @@ const individualRecipeContainer = document.querySelector(
       removeHiddenClass([recipeContainer, homeView]);
       renderSavedRecipeResults();
       currentRecipeList = currentUser.recipesToCook;
+      dropDownMenu.value = 'all';
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
@@ -171,12 +174,12 @@ const individualRecipeContainer = document.querySelector(
       } else {
         searchedRecipes.forEach(recipe => {
           recipeContainer.innerHTML += `
-        <div class="recipe" id="${recipe.name}">
+        <div class="recipe recipe-card" id="${recipe.name}">
         <img
-        src="${recipe.image}" alt="${recipe.name}" class="recipe-image"
+        src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
         />
-        <h4>${recipe.tags[0]}</h4>
-        <h3 class="recipe-name">${recipe.name}</h3>
+        <h4 class="recipe-card">${recipe.tags[0]}</h4>
+        <h3 class="recipe-name recipe-card">${recipe.name}</h3>
         </div>`;
         });
       }
@@ -200,6 +203,7 @@ const individualRecipeContainer = document.querySelector(
     const renderRecipeCardsByTag = (recipeList, tag) => {
       const recipeByTagList = filterByTag(currentRecipeList, tag);
       recipeContainer.innerHTML = '';
+      let defaultTag = '';
       if (tag === 'all') {
         renderRecipeCards(recipeList);
       } else {
@@ -250,13 +254,3 @@ const renderSelectTagOptions = tagData => {
         `;
   });
 };
-
-// export {
-//   renderRecipeCards,
-//   renderSearchResults,
-//   renderRecipeCardsByTag,
-//   renderSelectTagOptions,
-//   welcomeNewUser,
-//   selectButton,
-//   dropDownMenu,
-// };

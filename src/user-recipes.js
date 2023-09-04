@@ -2,7 +2,6 @@
 //export let currentUser = getRandomUser(usersData)
 //currentUser.savedRecipes = [];
 
-
 export function getRandomUser(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
@@ -11,7 +10,11 @@ export function getRandomUser(data) {
 export const saveRecipe = (recipeList, recipeName, currentUser) => {
   const recipeFullInfo = recipeList.find(recipe => recipe.name === recipeName);
 
-  if (!currentUser.recipesToCook.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
+  if (
+    !currentUser.recipesToCook.some(
+      currentRecipe => recipeFullInfo.name === currentRecipe.name
+    )
+  ) {
     currentUser.recipesToCook.push(recipeFullInfo);
   }
 
@@ -19,11 +22,12 @@ export const saveRecipe = (recipeList, recipeName, currentUser) => {
 };
 
 export const deleteRecipe = (savedRecipes, recipeName) => {
-  const recipeToDelete = savedRecipes.findIndex(recipe => recipe.name === recipeName);
-  savedRecipes.splice(recipeToDelete , 1)
-  return savedRecipes
-}
-
+  const recipeToDelete = savedRecipes.findIndex(
+    recipe => recipe.name === recipeName
+  );
+  savedRecipes.splice(recipeToDelete, 1);
+  return savedRecipes;
+};
 
 // export const saveRecipe = (recipeList, recipeName) => {
 
@@ -36,25 +40,20 @@ export const deleteRecipe = (savedRecipes, recipeName) => {
 //   let isRecipeSaved = false;
 //     savedRecipes.forEach(currentRecipe => {
 //       if (currentRecipe.id === recipeFullInfo.id) {
-//         isRecipeSaved = true; 
+//         isRecipeSaved = true;
 //       }
 //     });
 
 //     if (!isRecipeSaved) {
 //       savedRecipes.push(recipeFullInfo)
-//     } 
+//     }
 //     return savedRecipes
 //   };
-
-
 
 //click on saved button
 //need full recipe object, push into the empty saved recipes array
 //need to iterate through
 //find method? push method?
-
-
-
 
 // generateRandomUser
 // const generateRandomUser = users => {
@@ -67,4 +66,3 @@ export const deleteRecipe = (savedRecipes, recipeName) => {
 //   recipes.sort(() => Math.random() - 0.5)
 //   return
 // }
-
