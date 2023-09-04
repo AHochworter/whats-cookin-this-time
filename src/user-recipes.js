@@ -1,4 +1,4 @@
-import usersData from './data/users';
+//import usersData from './data/users';
 //export let currentUser = getRandomUser(usersData)
 //currentUser.savedRecipes = [];
 // console.log("currentUser:=====", currentUser.name);
@@ -14,7 +14,7 @@ export function getRandomUser(data) {
 // };
 
 
-export const saveRecipe = (recipeList, recipeName) => {
+export const saveRecipe = (recipeList, recipeName, currentUser) => {
   const recipeFullInfo = recipeList.find(recipe => recipe.name === recipeName);
 
   if (!currentUser.recipesToCook.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {

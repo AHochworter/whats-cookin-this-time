@@ -1,6 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import ingredientsData from './data/ingredients';
+//import ingredientsData from './data/ingredients';
 //import recipeData from './data/recipes';
 import {
   filterByTag,
@@ -98,7 +98,7 @@ const individualRecipeContainer = document.querySelector(
     });
 
     const handleSaveRecipeClick = event => {
-      saveRecipe(recipeData, currentRecipeName);
+      saveRecipe(recipeData, currentRecipeName, currentUser);
     };
 
     saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
@@ -185,7 +185,7 @@ const individualRecipeContainer = document.querySelector(
     };
 
     const renderSavedRecipeResults = () => {
-      if (currentUser.savedRecipes.length === 0) {
+      if (currentUser.recipesToCook.length === 0) {
         discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
         recipeContainer.innerHTML = '';
       } else {
