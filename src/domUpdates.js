@@ -1,6 +1,6 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import ingredientsData from './data/ingredients';
+//import ingredientsData from './data/ingredients';
 //import recipeData from './data/recipes';
 import {
   filterByTag,
@@ -51,11 +51,8 @@ const individualRecipeContainer = document.querySelector(
   const beginFetch = () => {
     Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
       let usersData = data[0].users;
-      // console.log("usersData:=====", usersData);
       let recipeData = data[1].recipes;
-      // console.log("recipeData:=====", recipeData);
       let ingredientsData = data[2].ingredients;
-      // console.log("ingredientsData:=====", ingredientsData);
       let currentRecipeList = recipeData;
       currentUser = getRandomUser(usersData)
       
@@ -98,7 +95,7 @@ const individualRecipeContainer = document.querySelector(
     });
 
     const handleSaveRecipeClick = event => {
-      saveRecipe(recipeData, currentRecipeName);
+      saveRecipe(recipeData, currentRecipeName, currentUser);
     };
 
     saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
@@ -185,7 +182,7 @@ const individualRecipeContainer = document.querySelector(
     };
 
     const renderSavedRecipeResults = () => {
-      if (currentUser.savedRecipes.length === 0) {
+      if (currentUser.recipesToCook.length === 0) {
         discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
         recipeContainer.innerHTML = '';
       } else {
