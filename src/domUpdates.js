@@ -170,6 +170,7 @@ const beginFetch = () => {
       if (!searchedRecipes.length) {
         recipeContainer.innerHTML = `
       <div class="no-recipes-found-message">
+        <p class="no-recipe-match">No recipes found</p>
       </div>`;
       } else {
         searchedRecipes.forEach(recipe => {
