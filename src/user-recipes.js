@@ -1,27 +1,21 @@
-import usersData from './data/users';
-export let currentUser = getRandomUser(usersData)
-currentUser.savedRecipes = [];
-// console.log("currentUser:=====", currentUser.name);
+//import usersData from './data/users';
+//export let currentUser = getRandomUser(usersData)
+//currentUser.savedRecipes = [];
 
-function getRandomUser(data) {
+
+export function getRandomUser(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
 
-// const getRandomUser = (data) => {
-//   const randomIndex = Math.floor(Math.random() * data.length);
-//   return data[randomIndex];
-// };
-
-
-export const saveRecipe = (recipeList, recipeName) => {
+export const saveRecipe = (recipeList, recipeName, currentUser) => {
   const recipeFullInfo = recipeList.find(recipe => recipe.name === recipeName);
 
-  if (!currentUser.savedRecipes.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
-    currentUser.savedRecipes.push(recipeFullInfo);
+  if (!currentUser.recipesToCook.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
+    currentUser.recipesToCook.push(recipeFullInfo);
   }
 
-  return currentUser.savedRecipes;
+  return currentUser.recipesToCook;
 };
 
 export const deleteRecipe = (savedRecipes, recipeName) => {

@@ -1,7 +1,7 @@
 //NOTE: Your DOM manipulation will occur in this file
 
-import ingredientsData from './data/ingredients';
-import recipeData from './data/recipes';
+//import ingredientsData from './data/ingredients';
+//import recipeData from './data/recipes';
 import {
   filterByTag,
   filterByName,
@@ -11,58 +11,57 @@ import {
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
-import { saveRecipe, deleteRecipe, currentUser } from '../src/user-recipes';
+import { saveRecipe, deleteRecipe, getRandomUser } from '../src/user-recipes';
 import { getUsers, getRecipes, getIngredients } from './apiCalls';
 import tagData from './data/tags';
 // import { render } from 'sass';
 // import userData from '../sample-data/sample-users';
 
 //Global Variables Here👇
+let currentRecipeName;
+let currentUser;
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
 const individualRecipeContainer = document.querySelector(
   '.individual-recipe-container'
-);
-const homeView = document.querySelector('.homepage-view');
-const discoverRecipesHeader = document.querySelector('.discover-header');
-const searchInput = document.getElementById('searchInput');
-const savedRecipesView = document.querySelector('.saved-recipes-view');
-
-// drop-down-menu & select button DOM querySelector
-const dropDownMenu = document.querySelector('.drop-down-menu');
-const selectButton = document.querySelector('.select-button');
-
-//Buttons
-const searchButton = document.querySelector('.search-btn');
-const clearSearch = document.querySelector('.clear-search-btn');
-const savedRecipesButton = document.querySelector('.saved-recipes-btn');
-const saveRecipeBtn = document.querySelector('.save-button');
-const deleteRecipeBtn = document.querySelector('.delete-button');
-const homeBtn = document.querySelector('.home-btn');
-
-const welcomeUser = document.querySelector('.welcome-user');
-
-//Event Listeners Here👇
-
-const beginFetch = () => {
-  Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
-    let usersData = data[0].usersData;
-    let recipeData = data[1].recipes;
-    let ingredientsData = data[2].ingredients;
-
-    let currentRecipeName;
-    let currentRecipeList = recipeData;
-
-    homeBtn.addEventListener('click', function () {
-      addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView]);
-      recipeContainer.innerHTML = '';
-      currentRecipeList = recipeData;
-      discoverRecipesHeader.innerText = 'Discover Recipes';
-      renderRecipeCards(recipeData);
-    });
+  );
+  const homeView = document.querySelector('.homepage-view');
+  const discoverRecipesHeader = document.querySelector('.discover-header');
+  const searchInput = document.getElementById('searchInput');
+  const savedRecipesView = document.querySelector('.saved-recipes-view');
+  
+  // drop-down-menu & select button DOM querySelector
+  const dropDownMenu = document.querySelector('.drop-down-menu');
+  const selectButton = document.querySelector('.select-button');
+  
+  //Buttons
+  const searchButton = document.querySelector('.search-btn');
+  const clearSearch = document.querySelector('.clear-search-btn');
+  const savedRecipesButton = document.querySelector('.saved-recipes-btn');
+  const saveRecipeBtn = document.querySelector('.save-button');
+  const deleteRecipeBtn = document.querySelector('.delete-button');
+  const homeBtn = document.querySelector('.home-btn');
+  
+  const welcomeUser = document.querySelector('.welcome-user');
+  
+  //Event Listeners Here👇
+  
+  const beginFetch = () => {
+    Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
+      let usersData = data[0].users;
+      let recipeData = data[1].recipes;
+      let ingredientsData = data[2].ingredients;
+      let currentRecipeList = recipeData;
+      currentUser = getRandomUser(usersData)
+      
+      homeBtn.addEventListener('click', function () {
+        addHiddenClass([individualRecipeView]);
+        removeHiddenClass([recipeContainer, homeView]);
+        discoverRecipesHeader.innerText = 'Discover Recipes';
+        renderRecipeCards(recipeData);
+      });
 
     recipeContainer.addEventListener('click', event => {
       if (event.target.classList.contains('recipe-card')) {
@@ -88,7 +87,7 @@ const beginFetch = () => {
       addHiddenClass([individualRecipeView]);
       removeHiddenClass([recipeContainer, homeView]);
       renderSavedRecipeResults();
-      currentRecipeList = currentUser.savedRecipes;
+      currentRecipeList = currentUser.recipesToCook;
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
@@ -96,7 +95,7 @@ const beginFetch = () => {
     });
 
     const handleSaveRecipeClick = event => {
-      saveRecipe(recipeData, currentRecipeName);
+      saveRecipe(recipeData, currentRecipeName, currentUser);
     };
 
     saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
@@ -184,18 +183,18 @@ const beginFetch = () => {
     };
 
     const renderSavedRecipeResults = () => {
-      if (currentUser.savedRecipes.length === 0) {
+      if (currentUser.recipesToCook.length === 0) {
         discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
         recipeContainer.innerHTML = '';
       } else {
         discoverRecipesHeader.innerText = 'Saved Recipes';
-        renderRecipeCards(currentUser.savedRecipes);
+        renderRecipeCards(currentUser.recipesToCook);
       }
     };
 
     const renderDeleteRecipeResults = () => {
-      renderRecipeCards(currentUser.savedRecipes);
-      deleteRecipe(currentUser.savedRecipes, currentRecipeName);
+      renderRecipeCards(currentUser.recipesToCook);
+      deleteRecipe(currentUser.recipesToCook, currentRecipeName);
     };
 
     const renderRecipeCardsByTag = (recipeList, tag) => {
