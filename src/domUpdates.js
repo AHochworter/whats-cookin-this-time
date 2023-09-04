@@ -63,7 +63,7 @@ const beginFetch = () => {
 
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView]);
+      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
       discoverRecipesHeader.innerText = 'Discover Recipes';
@@ -73,8 +73,8 @@ const beginFetch = () => {
 
     recipeContainer.addEventListener('click', event => {
       const recipeName = event.target.closest('div').id;
-      console.log('event-target', event.target);
-      console.log(event.target.closest('div').id);
+      // console.log('event-target', event.target);
+      // console.log(event.target.closest('div').id);
       renderRecipeDetails(recipeName);
       console.log('recipeName', recipeName);
     });
@@ -94,7 +94,7 @@ const beginFetch = () => {
     });
 
     savedRecipesButton.addEventListener('click', function (event) {
-      addHiddenClass([individualRecipeView]);
+      addHiddenClass([individualRecipeView, dropDownMenu, selectButton]);
       removeHiddenClass([recipeContainer, homeView]);
       renderSavedRecipeResults();
       currentRecipeList = currentUser.recipesToCook;
@@ -144,8 +144,8 @@ const beginFetch = () => {
       addHiddenClass([recipeContainer, homeView]);
       individualRecipeContainer.innerHTML = ' ';
       const chosenRecipe = findRecipe(recipeData, recipeName);
-      console.log('chosenRecipe', chosenRecipe);
-      console.log({ recipeData });
+      // console.log('chosenRecipe', chosenRecipe);
+      // console.log({ recipeData });
 
       const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
       const instructions = getRecipeInstructions(recipeData, recipeName);
