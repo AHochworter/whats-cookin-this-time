@@ -51,21 +51,20 @@ const individualRecipeContainer = document.querySelector(
   const beginFetch = () => {
     Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
       let usersData = data[0].users;
-      console.log("usersData:=====", usersData);
+      // console.log("usersData:=====", usersData);
       let recipeData = data[1].recipes;
-      console.log("recipeData:=====", recipeData);
+      // console.log("recipeData:=====", recipeData);
       let ingredientsData = data[2].ingredients;
-      console.log("ingredientsData:=====", ingredientsData);
-      currentUser = getRandomUser(usersData)
-      currentUser.savedRecipes = [];
+      // console.log("ingredientsData:=====", ingredientsData);
       let currentRecipeList = recipeData;
+      currentUser = getRandomUser(usersData)
       
-    homeBtn.addEventListener('click', function () {
-      addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView]);
-      discoverRecipesHeader.innerText = 'Discover Recipes';
-      renderRecipeCards(recipeData);
-    });
+      homeBtn.addEventListener('click', function () {
+        addHiddenClass([individualRecipeView]);
+        removeHiddenClass([recipeContainer, homeView]);
+        discoverRecipesHeader.innerText = 'Discover Recipes';
+        renderRecipeCards(recipeData);
+      });
 
     recipeContainer.addEventListener('click', event => {
       if (event.target.classList.contains('recipe-card')) {
