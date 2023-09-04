@@ -2,7 +2,7 @@ export const filterByTag = (recipes, tag) => {
   let recipesFilteredByTag = recipes.filter(recipe => {
     return recipe.tags.includes(tag);
   });
-return recipesFilteredByTag;
+  return recipesFilteredByTag;
 };
 
 export const filterByName = (recipeList, name) => {
@@ -21,23 +21,22 @@ export const findRecipe = (recipeList, name) => {
 };
 
 export const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
-  const recipeObject = recipeList.find(recipe => {
-    if (recipe.name === name) {
-      return recipe;
-    } else {
-      return false;
-    }
-  });
-  const recipeIngredientId = recipeObject.ingredients.map(ingredient => {
-    return ingredient.id;
-  });
-  const filteredIngredients = ingredientsList.filter(ingredient =>
-    recipeIngredientId.includes(ingredient.id)
-  );
-  const ingredientNames = filteredIngredients.map(
-    ingredient => ingredient.name
-  );
-  return ingredientNames;
+  const recipeObject = recipeList.find(recipe => recipe.name === name);
+
+  if (recipeObject && recipeObject.ingredients) {
+    const recipeIngredientIds = recipeObject.ingredients.map(
+      ingredient => ingredient.id
+    );
+    const filteredIngredients = ingredientsList.filter(ingredient =>
+      recipeIngredientIds.includes(ingredient.id)
+    );
+    const ingredientNames = filteredIngredients.map(
+      ingredient => ingredient.name
+    );
+    return ingredientNames;
+  } else {
+    return [];
+  }
 };
 
 export const calculateRecipeCost = (recipe, ingredients) => {
