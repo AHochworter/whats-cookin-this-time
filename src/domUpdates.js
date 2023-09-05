@@ -68,7 +68,7 @@ const beginFetch = () => {
       console.log('event-target', event.target);
       console.log(event.target.closest('div').id);
       renderRecipeDetails(recipeName);
-      console.log('recipeName', recipeName);
+      console.log('recipeName-insideEventListener', recipeName);
     });
 
     searchButton.addEventListener('click', function (event) {
@@ -130,8 +130,7 @@ const beginFetch = () => {
     };
 
     const renderRecipeDetails = recipeName => {
-      // console.log(event.target.id);
-      // currentRecipeName = recipeName;
+      currentRecipeName = recipeName;
       removeHiddenClass([individualRecipeView]);
       addHiddenClass([recipeContainer, homeView]);
       individualRecipeContainer.innerHTML = ' ';
