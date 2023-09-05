@@ -64,7 +64,6 @@ export const getRecipeInstructions = (recipes, name) => {
 };
 
 export const formatInstructions = recipe => {
-  // need to write test
   let recipeInstructions = recipe.map(step => {
     return `${step.number}. ${step.instruction}`;
   });
