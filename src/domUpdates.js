@@ -63,7 +63,7 @@ const beginFetch = () => {
 
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView]);
+      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
       discoverRecipesHeader.innerText = 'Discover Recipes';
@@ -72,11 +72,9 @@ const beginFetch = () => {
     });
 
     recipeContainer.addEventListener('click', event => {
-      const recipeName = event.target.closest('div').id;
-      console.log('event-target', event.target);
-      console.log(event.target.closest('div').id);
-      renderRecipeDetails(recipeName);
-      console.log('recipeName', recipeName);
+      if (event.target.classList.contains('recipe-card')) {
+        renderRecipeDetails(event);
+      }
     });
 
     searchButton.addEventListener('click', function (event) {
@@ -94,7 +92,7 @@ const beginFetch = () => {
     });
 
     savedRecipesButton.addEventListener('click', function (event) {
-      addHiddenClass([individualRecipeView]);
+      addHiddenClass([individualRecipeView, dropDownMenu, selectButton]);
       removeHiddenClass([recipeContainer, homeView]);
       renderSavedRecipeResults();
       currentRecipeList = currentUser.recipesToCook;
@@ -114,6 +112,7 @@ const beginFetch = () => {
     //Event Handlers Here👇
     const renderRecipeCards = recipeList => {
       recipeContainer.innerHTML = ' ';
+      console.log("RECIPE LIST", recipeList)
       recipeList.forEach(recipe => {
         if (recipe.tags.length === 0) {
           recipeContainer.innerHTML += `
@@ -137,27 +136,23 @@ const beginFetch = () => {
       });
     };
 
-    const renderRecipeDetails = recipeName => {
-      // console.log(event.target.id);
-      // currentRecipeName = recipeName;
+    const renderRecipeDetails = event => {
       removeHiddenClass([individualRecipeView]);
       addHiddenClass([recipeContainer, homeView]);
       individualRecipeContainer.innerHTML = ' ';
-      const chosenRecipe = findRecipe(recipeData, recipeName);
-      console.log('chosenRecipe', chosenRecipe);
-      console.log({ recipeData });
-
+      currentRecipeName = event.target.id;
+      const chosenRecipe = findRecipe(recipeData, currentRecipeName);
       const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
-      const instructions = getRecipeInstructions(recipeData, recipeName);
+      const instructions = getRecipeInstructions(recipeData, currentRecipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
         recipeData,
         ingredientsData,
-        recipeName
+        currentRecipeName
       );
       individualRecipeContainer.innerHTML += `
     <div class="recipe-name-wrapper">
-      <h3 class="recipe-name" id="${chosenRecipe.name}">${chosenRecipe.name}</h3>
+      <h3 class="recipe-name">${chosenRecipe.name}</h3>
     </div>
     <div class="recipe-image-wrapper">
     <img 
@@ -176,7 +171,7 @@ const beginFetch = () => {
 
     const renderSearchResults = recipes => {
       let searchValue = searchInput.value;
-      console.log('currentRecipeList', currentRecipeList);
+      // console.log('currentRecipeList', currentRecipeList);
       recipeContainer.innerHTML = '';
       const searchedRecipes = filterByName(currentRecipeList, searchValue);
       if (!searchedRecipes.length) {
@@ -198,13 +193,13 @@ const beginFetch = () => {
 
         // Update currentRecipeList with the searched recipes
         currentRecipeList = searchedRecipes;
-        console.log({ searchedRecipes });
+  
 
         // Add event listeners to the new recipe cards
         recipeCards = document.querySelectorAll('.recipe-card');
         recipeCards.forEach(card => {
           card.addEventListener('click', function (event) {
-            console.log(event.target.id);
+            // console.log(event.target.id);
             currentRecipeName = event.target.id;
             renderRecipeDetails(event);
           });
@@ -213,6 +208,7 @@ const beginFetch = () => {
     };
 
     const renderSavedRecipeResults = () => {
+      console.log("currentUser.recipesToCook:", currentUser.recipesToCook)
       if (currentUser.recipesToCook.length === 0) {
         discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
         recipeContainer.innerHTML = '';
