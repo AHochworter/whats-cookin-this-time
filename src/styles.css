@@ -118,7 +118,7 @@ button {
   border: none;
 }
 /* Individual Recipe View */
-.individual-recipe-view {
+/* .individual-recipe-view {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -164,7 +164,7 @@ button {
 .individual-recipe-heading {
   background-color: 66B9BF;
   color: #ffffff;
-}
+} */
 
 button:hover {
   background-color: #e37222;
