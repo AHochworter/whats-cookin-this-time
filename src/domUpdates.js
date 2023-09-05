@@ -93,8 +93,8 @@ const beginFetch = () => {
     });
 
     savedRecipesButton.addEventListener('click', function (event) {
-      addHiddenClass([individualRecipeView, dropDownMenu, selectButton]);
-      removeHiddenClass([recipeContainer, homeView]);
+      addHiddenClass([individualRecipeView]);
+      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
       renderSavedRecipeResults();
       currentRecipeList = currentUser.recipesToCook;
       dropDownMenu.value = 'all';
@@ -141,9 +141,8 @@ const beginFetch = () => {
     const renderRecipeDetails = recipeName => {
       console.log("recipeName:=====", recipeName);
       // currentRecipeName = recipeName;
-      
       removeHiddenClass([individualRecipeView]);
-      addHiddenClass([recipeContainer, homeView]);
+      addHiddenClass([recipeContainer, homeView, selectButton, dropDownMenu]);
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
