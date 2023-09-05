@@ -139,7 +139,9 @@ const beginFetch = () => {
 
 
     const renderRecipeDetails = recipeName => {
-      currentRecipeName = recipeName;
+      console.log("recipeName:=====", recipeName);
+      // currentRecipeName = recipeName;
+      
       removeHiddenClass([individualRecipeView]);
       addHiddenClass([recipeContainer, homeView]);
       individualRecipeContainer.innerHTML = ' ';
@@ -177,37 +179,38 @@ const beginFetch = () => {
       // console.log('currentRecipeList', currentRecipeList);
       recipeContainer.innerHTML = '';
       const searchedRecipes = filterByName(currentRecipeList, searchValue);
-      if (!searchedRecipes.length) {
-        recipeContainer.innerHTML = `
-          <div class="no-recipes-found-message">
-            <p class="no-recipe-match">No recipes found</p>
-          </div>`;
-      } else {
-        searchedRecipes.forEach(recipe => {
-          recipeContainer.innerHTML += `
-            <div class="recipe recipe-card" id="${recipe.name}">
-              <img
-                src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
-              />
-              <h4 class="recipe-card">${recipe.tags[0]}</h4>
-              <h3 class="recipe-name recipe-card">${recipe.name}</h3>
-            </div>`;
-        });
-
+      // if (!searchedRecipes.length) {
+      //   recipeContainer.innerHTML = `
+      //     <div class="no-recipes-found-message">
+      //       <p class="no-recipe-match">No recipes found</p>
+      //     </div>`;
+      // } else {
+      //   searchedRecipes.forEach(recipe => {
+      //     recipeContainer.innerHTML += `
+      //       <div class="recipe recipe-card" id="${recipe.name}">
+      //         <img
+      //           src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
+      //         />
+      //         <h4 class="recipe-card">${recipe.tags[0]}</h4>
+      //         <h3 class="recipe-name recipe-card">${recipe.name}</h3>
+      //       </div>`;
+      //   });
+      renderRecipeCards(searchedRecipes)
         // Update currentRecipeList with the searched recipes
         currentRecipeList = searchedRecipes;
+        console.log("searchedRecipes:=====", searchedRecipes);
   
 
         // Add event listeners to the new recipe cards
-        recipeCards = document.querySelectorAll('.recipe-card');
-        recipeCards.forEach(card => {
-          card.addEventListener('click', function (event) {
-            // console.log(event.target.id);
-            currentRecipeName = event.target.id;
-            renderRecipeDetails(event);
-          });
-        });
-      }
+        // recipeCards = document.querySelectorAll('.recipe-card');
+        // recipeCards.forEach(card => {
+        //   card.addEventListener('click', function (event) {
+        //     // console.log(event.target.id);
+        //     currentRecipeName = event.target.id;
+        //     renderRecipeDetails(event);
+        //   });
+        // });
+      // }
     };
 
     const renderSavedRecipeResults = () => {
@@ -233,18 +236,21 @@ const beginFetch = () => {
       if (tag === 'all') {
         renderRecipeCards(recipeList);
       } else {
-        recipeByTagList.forEach(recipe => {
-          recipeContainer.innerHTML += `
-        <div class="recipe recipe-card" id="${recipe.name}">
-          <img
-            src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
-            />
-            <h4 class="recipe-card">${recipe.tags[0]}</h4>
-            <h3 class="recipe-name recipe-card">${recipe.name}</h3>
-            </div>`;
-        });
+        renderRecipeCards(recipeByTagList);
+        currentRecipeList = recipeByTagList;
+      //   recipeByTagList.forEach(recipe => {
+      //     recipeContainer.innerHTML += `
+      //   <div class="recipe recipe-card" id="${recipe.name}">
+      //     <img
+      //       src="${recipe.image}" alt="${recipe.name}" class="recipe-image recipe-card"
+      //       />
+      //       <h4 class="recipe-card">${recipe.tags[0]}</h4>
+      //       <h3 class="recipe-name recipe-card">${recipe.name}</h3>
+      //       </div>`;
+        // });
       }
     };
+
 
     const welcomeNewUser = () => {
       welcomeUser.innerText = `Welcome to the site ${currentUser.name}!`;
