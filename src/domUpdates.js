@@ -69,9 +69,13 @@ const beginFetch = () => {
     });
 
     recipeContainer.addEventListener('click', event => {
-      if (event.target.classList.contains('recipe-card')) {
-        renderRecipeDetails(event);
-      }
+
+      const recipeName = event.target.closest('div').id;
+      console.log('event-target', event.target);
+      console.log(event.target.closest('div').id);
+      renderRecipeDetails(recipeName);
+      console.log('recipeName-insideEventListener', recipeName);
+
     });
 
     searchButton.addEventListener('click', function (event) {
@@ -133,7 +137,9 @@ const beginFetch = () => {
       });
     };
 
-    const renderRecipeDetails = event => {
+
+    const renderRecipeDetails = recipeName => {
+      currentRecipeName = recipeName;
       removeHiddenClass([individualRecipeView]);
       addHiddenClass([recipeContainer, homeView]);
       individualRecipeContainer.innerHTML = ' ';
