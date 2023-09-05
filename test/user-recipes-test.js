@@ -7,12 +7,29 @@ import {
   getIngredientsByRecipe,
   calculateRecipeCost,
 } from '../src/filter-recipes.js';
-
-import recipeData from '../sample-data/sample-recipes';
-import { deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
+import { getRandomUser, deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
 
 // import ingredientsData from '../sample-data/sample-ingredients';
-// import usersData from '../sample-data/sample-users';
+import usersData from '../sample-data/sample-users';
+import recipeData from '../sample-data/sample-recipes';
+import ingredientsData from '../sample-data/sample-ingredients';
+
+describe('getRandomUser', () => {
+  it('should be a function', () => {
+    expect(getRandomUser).to.be.a('function'); 
+  });
+
+  it('should return a user from user list', () => {
+    const users = [
+      { id: 1, name: 'Sadye Welch' },
+      { id: 2, name: 'Jordyn West' },
+      { id: 3, name: 'Willie Eichmann' },
+    ];
+    const randomUser = getRandomUser(users);
+
+    expect(users).to.include(randomUser);
+  });
+});
 
 describe('Save recipes', () => {
   it('should be a function', () => {
@@ -20,11 +37,22 @@ describe('Save recipes', () => {
   });
 
   it('should save a recipe to the savedRecipe array', () => {
-      const filtered1 = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops');
-      const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name); 
+    const currentUser = {
+      name: "Saige O'Kon",
+      id: 1,
+      pantry: [
+        {
+          ingredient: 11297,
+          amount: 4,
+        }
+      ],
+      recipesToCook: [],
+    } 
+    const filtered1 = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops');
+      const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name, currentUser); 
     
       expect(filtered1.length).to.equal(1);
-      expect(savedRecipes.length).to.equal(1);
+      expect(currentUser.recipesToCook.length).to.equal(1);
 
       expect(myFirstFavoriteRecipe).to.deep.equal([
         {
@@ -61,11 +89,22 @@ describe('Save recipes', () => {
     });
 
     it('should delete a recipe from the saved recipe array', () => {
+      const currentUser = {
+        name: "Saige O'Kon",
+        id: 1,
+        pantry: [
+          {
+            ingredient: 11297,
+            amount: 4,
+          }
+        ],
+        recipesToCook: [],
+      } 
     const filtered1 = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops');
-    const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name); 
+    const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name, currentUser); 
       const deleteARecipe = deleteRecipe(savedRecipes, filtered1.name);
       const filtered2 = filterByName(recipeData, 'Sesame Cookies');
-      const mySecondFavoriteRecipe = saveRecipe(recipeData, filtered2[0].name);
+      const mySecondFavoriteRecipe = saveRecipe(recipeData, filtered2[0].name, currentUser);
       const deleteBRecipe = deleteRecipe(savedRecipes, filtered2.name); 
       expect(savedRecipes.length).to.equal(0);
     });
