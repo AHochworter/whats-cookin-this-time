@@ -48,9 +48,11 @@ const welcomeUser = document.querySelector('.welcome-user');
 const beginFetch = () => {
   Promise.all([getUsers(), getRecipes(), getIngredients()]).then(data => {
     let usersData = data[0].users;
+    console.log(usersData);
     let recipeData = data[1].recipes;
     let ingredientsData = data[2].ingredients;
     let currentRecipeList = recipeData;
+    console.log(currentRecipeList);
     currentUser = getRandomUser(usersData);
 
     homeBtn.addEventListener('click', function () {
