@@ -28,4 +28,4 @@ export const getIngredients = () => {
     .catch(error => console.log('error'));
 };
 
-console.log('I will be a fetch request!');
+

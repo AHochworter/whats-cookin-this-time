@@ -8,11 +8,7 @@ import {
   calculateRecipeCost,
 } from '../src/filter-recipes.js';
 import { getRandomUser, deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
-
-// import ingredientsData from '../sample-data/sample-ingredients';
-import usersData from '../sample-data/sample-users';
 import recipeData from '../sample-data/sample-recipes';
-import ingredientsData from '../sample-data/sample-ingredients';
 
 describe('getRandomUser', () => {
   it('should be a function', () => {
@@ -50,10 +46,8 @@ describe('Save recipes', () => {
     } 
     const filtered1 = filterByName(recipeData, 'Maple Dijon Apple Cider Grilled Pork Chops');
       const myFirstFavoriteRecipe = saveRecipe(recipeData, filtered1[0].name, currentUser); 
-    
       expect(filtered1.length).to.equal(1);
       expect(currentUser.recipesToCook.length).to.equal(1);
-
       expect(myFirstFavoriteRecipe).to.deep.equal([
         {
           id: 678353,
@@ -84,7 +78,8 @@ describe('Save recipes', () => {
         },
       ]);
     });
-  it('should be a function', () => {
+    
+    it('should be a function', () => {
     expect(deleteRecipe).to.be.a('function');
     });
 

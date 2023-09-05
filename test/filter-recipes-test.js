@@ -12,7 +12,6 @@ import {
   formatInstructions
 } from '../src/filter-recipes.js';
 
-
 describe('filter recipes', () => {
   it('should be a function', () => {
     expect(filterByTag).to.be.a('function');
