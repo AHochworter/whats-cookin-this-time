@@ -13,8 +13,6 @@ import {
 import { saveRecipe, deleteRecipe, getRandomUser } from '../src/user-recipes';
 import { getUsers, getRecipes, getIngredients } from './apiCalls';
 import tagData from './data/tags';
-// import { render } from 'sass';
-// import userData from '../sample-data/sample-users';
 
 //Global Variables👇
 let currentRecipeName;
@@ -30,7 +28,6 @@ const individualRecipeContainer = document.querySelector(
 const homeView = document.querySelector('.homepage-view');
 const discoverRecipesHeader = document.querySelector('.discover-header');
 const searchInput = document.getElementById('searchInput');
-// const savedRecipesView = document.querySelector('.saved-recipes-view');
 
 // drop-down-menu & select button DOM querySelector
 const dropDownMenu = document.querySelector('.drop-down-menu');
