@@ -22,7 +22,6 @@ export const findRecipe = (recipeList, name) => {
 
 export const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   const recipeObject = recipeList.find(recipe => recipe.name === name);
-
   if (recipeObject && recipeObject.ingredients) {
     const recipeIngredientIds = recipeObject.ingredients.map(
       ingredient => ingredient.id
@@ -55,7 +54,6 @@ export const calculateRecipeCost = (recipe, ingredients) => {
 
 export const getRecipeInstructions = (recipes, name) => {
   const targetRecipe = recipes.find(recipe => recipe.name === name);
-
   if (targetRecipe) {
     return targetRecipe.instructions;
   } else {

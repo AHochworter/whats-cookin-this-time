@@ -7,11 +7,9 @@ export function getRandomUser(data) {
 
 export const saveRecipe = (recipeList, recipeName, currentUser) => {
   const recipeFullInfo = recipeList.find(recipe => recipe.name === recipeName);
-
   if (!currentUser.recipesToCook.some(currentRecipe => recipeFullInfo.id === currentRecipe.id)) {
     currentUser.recipesToCook.push(recipeFullInfo);
   }
-
   return currentUser.recipesToCook;
 };
 
