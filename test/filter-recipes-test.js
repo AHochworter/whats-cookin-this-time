@@ -13,6 +13,18 @@ import {
 } from '../src/filter-recipes.js';
 
 describe('filter recipes', () => {
+  let recipeName1, recipeName2
+  beforeEach(() => {
+    recipeName1 = filterByName(
+      recipeData,
+      'Loaded Chocolate Chip Pudding Cookie Cups'
+    );
+    recipeName2 = filterByName(
+      recipeData,
+      'Maple Dijon Apple Cider Grilled Pork Chops'
+    );
+  })
+
   it('should be a function', () => {
     expect(filterByTag).to.be.a('function');
   });
@@ -64,14 +76,6 @@ describe('filter recipes', () => {
   });
 
   it('should filter recipes based on a name', () => {
-    const recipeName1 = filterByName(
-      recipeData,
-      'Loaded Chocolate Chip Pudding Cookie Cups'
-    );
-    const recipeName2 = filterByName(
-      recipeData,
-      'Maple Dijon Apple Cider Grilled Pork Chops'
-    );
     expect(recipeName1[0].name).to.equal(
       'Loaded Chocolate Chip Pudding Cookie Cups'
     );
