@@ -21,9 +21,9 @@ The details of this project are outlined in the <a href="https://frontend.turing
 
 ## Contributors
 
-[Ann Hochworter](https://github.com/AHochworter)
-[Nicole Lam](https://github.com/Nicolelam8891)
-[Devin Altobello](https://github.com/daltobello)
+- [Ann Hochworter](https://github.com/AHochworter)
+- [Nicole Lam](https://github.com/Nicolelam8891)
+- [Devin Altobello](https://github.com/daltobello)
 
 ## Installation Instructions
 
