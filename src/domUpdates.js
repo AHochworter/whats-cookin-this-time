@@ -81,6 +81,7 @@ const beginFetch = () => {
     selectButton.addEventListener('click', e => {
       e.preventDefault();
       renderRecipeCardsByTag(currentRecipeList, dropDownMenu.value);
+      currentRecipeList = recipeData;
     });
 
     savedRecipesButton.addEventListener('click', function (event) {
