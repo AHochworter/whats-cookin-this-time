@@ -18,7 +18,6 @@ import tagData from './data/tags';
 //Global Variables👇
 let currentRecipeName;
 let currentUser;
-let recipeCards;
 
 export let usersData;
 export let recipeData;

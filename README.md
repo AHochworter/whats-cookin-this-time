@@ -67,7 +67,7 @@ Resources used: MDN Documents, Google, Stack Overflow.
 - Equipped with a comprehensive DTR, we strategized our project approach, incorporating detailed notes that will serve as valuable reference for future projects.
 
 ### Challenges:
-
 - Establishing our git flow practice as a group and resolving merge conflicts
 - Managing collaborative time across time zones.
 - Keeping our data model functions separate from DOM functions and learning where to call API fetches
+

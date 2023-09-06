@@ -1,11 +1,7 @@
 import { expect } from 'chai';
 
 import {
-  filterByTag,
   filterByName,
-  getRecipeInstructions,
-  getIngredientsByRecipe,
-  calculateRecipeCost,
 } from '../src/filter-recipes.js';
 import { getRandomUser, deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
 import recipeData from '../sample-data/sample-recipes';
