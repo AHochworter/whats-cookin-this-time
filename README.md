@@ -15,6 +15,7 @@ In essence, our application is the ideal culinary companion, offering a rich rec
 Added a PR template in .github/pull_request_template.md
 
 ## Preview of the App
+![Whats-Cookin_01](https://user-images.githubusercontent.com/130494366/265861865-969a1361-ad61-4f65-b5f9-36cdd669211a.gif)
 
 The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
 
