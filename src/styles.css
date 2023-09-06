@@ -30,6 +30,7 @@ nav {
   align-content: space-between;
   background-color: #66b9bf;
   height: 65px;
+  margin-bottom: 50px;
 }
 
 .nav-left {
@@ -118,20 +119,21 @@ button {
   border: none;
 }
 /* Individual Recipe View */
-/* .individual-recipe-view {
+.individual-recipe-view {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #ffffff;
-  width: 100vw;
+  width: 20vw;
   height: 100vh;
 }
 
 .individual-recipe-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
   justify-content: center;
-  width: 80vw;
+  width: 20vw;
   height: 75vh;
 }
 
@@ -146,7 +148,7 @@ button {
 
 .recipe-ingredients-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-end;
   background-color: #efaa78;
   width: 30vh;
@@ -154,7 +156,7 @@ button {
 }
 .recipe-instructions-wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   background-color: #efaa78;
   width: 30vh;
@@ -164,7 +166,7 @@ button {
 .individual-recipe-heading {
   background-color: 66B9BF;
   color: #ffffff;
-} */
+}
 
 button:hover {
   background-color: #e37222;
