@@ -2,17 +2,17 @@
 
 # Abstract
 
-Discover, Save, and Savor: Your Friendly Recipe Companion!
+- Discover, Save, and Savor: Your Friendly Recipe Companion!
 
-Our application transforms how users engage with a diverse recipe collection. Featuring a user-friendly and colorful interface, it invites users to explore, save, and enjoy their favorite dishes like never before.
+- Our application transforms how users engage with a diverse recipe collection. Featuring a user-friendly and colorful interface, it invites users to explore, save, and enjoy their favorite dishes like never before.
 
-With a wide array of recipes catering to all tastes, from novice cooks to seasoned chefs, finding and saving beloved recipes is effortless. Our intuitive search options, based on tags or ingredients, simplify the quest for specific dishes.
+- With a wide array of recipes catering to all tastes, from novice cooks to seasoned chefs, finding and saving beloved recipes is effortless. Our intuitive search options, based on tags or ingredients, simplify the quest for specific dishes.
 
-A simple click on a recipe card leads users to a dedicated page with all the essential details, from ingredients to step-by-step instructions, tags, and cost considerations. This ensures users have all they need to create delicious meals at their fingertips.
+- A simple click on a recipe card leads users to a dedicated page with all the essential details, from ingredients to step-by-step instructions, tags, and cost considerations. This ensures users have all they need to create delicious meals at their fingertips.
 
-In essence, our application is the ideal culinary companion, offering a rich recipe collection, user-friendly search features, and comprehensive recipe details for passionate cooks and food enthusiasts.
+- In essence, our application is the ideal culinary companion, offering a rich recipe collection, user-friendly search features, and comprehensive recipe details for passionate cooks and food enthusiasts.
 
-Added a PR template in .github/pull_request_template.md
+- Added a PR template in .github/pull_request_template.md
 
 ## Preview of the App
 ![Whats-Cookin_01](https://user-images.githubusercontent.com/130494366/265861865-969a1361-ad61-4f65-b5f9-36cdd669211a.gif)
@@ -21,9 +21,9 @@ The details of this project are outlined in the <a href="https://frontend.turing
 
 ## Contributors
 
-https://github.com/AHochworter
-https://github.com/Nicolelam8891
-https://github.com/daltobello
+[Ann Hochworter](https://github.com/AHochworter)
+[Nicole Lam](https://github.com/Nicolelam8891)
+[Devin Altobello](https://github.com/daltobello)
 
 ## Installation Instructions
 
@@ -48,10 +48,10 @@ https://github.com/daltobello
 - Make network requests to retrieve data
 - Document changes with atomic commits and code reviews during standups
 
-Tech used: Github, Terminal, VS Code, Dev Tools, Javascript, Figma, CSS, and HTML.
-
-Resources used: MDN Documents, Google, Stack Overflow.
-
+## Tech used: 
+- Github, Terminal, VS Code, Dev Tools, Javascript, Figma, CSS, and HTML.
+## Resources used: 
+- MDN Documents, Google, Stack Overflow.
 ## Wins + Challenges
 
 ### Wins:
