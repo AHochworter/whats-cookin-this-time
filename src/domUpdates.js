@@ -18,17 +18,18 @@ import tagData from './data/tags';
 //Global Variables👇
 let currentRecipeName;
 let currentUser;
-let recipeCards;
 
-export let usersData;
-export let recipeData;
-export let ingredientsData;
-export let currentRecipeList;
+let usersData;
+let recipeData;
+let ingredientsData;
+let currentRecipeList;
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
-const individualRecipeContainer = document.querySelector('.individual-recipe-container');
+const individualRecipeContainer = document.querySelector(
+  '.individual-recipe-container'
+);
 const homeView = document.querySelector('.homepage-view');
 const discoverRecipesHeader = document.querySelector('.discover-header');
 const searchInput = document.getElementById('searchInput');
@@ -56,7 +57,12 @@ const beginFetch = () => {
 
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
+      removeHiddenClass([
+        recipeContainer,
+        homeView,
+        dropDownMenu,
+        selectButton,
+      ]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
       discoverRecipesHeader.innerText = 'Discover Recipes';
@@ -86,7 +92,12 @@ const beginFetch = () => {
 
     savedRecipesButton.addEventListener('click', function (event) {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
+      removeHiddenClass([
+        recipeContainer,
+        homeView,
+        dropDownMenu,
+        selectButton,
+      ]);
       renderSavedRecipeResults();
       currentRecipeList = currentUser.recipesToCook;
       dropDownMenu.value = 'all';
@@ -166,12 +177,12 @@ const beginFetch = () => {
       recipeContainer.innerHTML = '';
       const searchedRecipes = filterByName(currentRecipeList, searchValue);
       if (!searchedRecipes.length) {
-           recipeContainer.innerHTML = `
-          <div class="no-recipes-found-message">
-            <p class="no-recipe-match">No recipes found</p>
-          </div>`;
+        recipeContainer.innerHTML = `
+            <div class="no-recipes-found-message">
+              <p class="no-recipe-match">No recipes found</p>
+            </div>`;
       } else {
-        renderRecipeCards(searchedRecipes)
+        renderRecipeCards(searchedRecipes);
         currentRecipeList = searchedRecipes;
       }
     };
@@ -203,32 +214,32 @@ const beginFetch = () => {
       }
     };
 
-    const welcomeNewUser = () => {
-      welcomeUser.innerText = `Welcome to the site ${currentUser.name}!`;
-    };
-
     (window.onload = renderRecipeCards(recipeData)),
       renderSelectTagOptions(tagData),
       welcomeNewUser();
-
-    //Helper Functions👇
-    const removeHiddenClass = elements => {
-      elements.forEach(element => {
-        element.classList.remove('hidden');
-      });
-      return elements;
-    };
-
-    const addHiddenClass = elements => {
-      elements.forEach(element => {
-        element.classList.add('hidden');
-      });
-      return elements;
-    };
-  });
-};
+  }); //End of Promise.all
+}; //End of beginFetch function
 
 beginFetch();
+
+const welcomeNewUser = () => {
+  welcomeUser.innerText = `Welcome to the site ${currentUser.name}!`;
+};
+
+//Helper Functions👇
+const removeHiddenClass = elements => {
+  elements.forEach(element => {
+    element.classList.remove('hidden');
+  });
+  return elements;
+};
+
+const addHiddenClass = elements => {
+  elements.forEach(element => {
+    element.classList.add('hidden');
+  });
+  return elements;
+};
 
 const renderSelectTagOptions = tagData => {
   tagData.forEach(tag => {
