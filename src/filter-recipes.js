@@ -39,6 +39,14 @@ export const getIngredientsByRecipe = (recipeList, ingredientsList, name) => {
   }
 };
 
+export const formatIngredients = ingredients => {
+  return ingredients
+    .map(ingredient => {
+      return `${ingredient}\n`;
+    })
+    .join('');
+};
+
 export const calculateRecipeCost = (recipe, ingredients) => {
   const totalCost = recipe[0].ingredients.reduce((sum, ingredient) => {
     const recipeIngredId = ingredient.id;

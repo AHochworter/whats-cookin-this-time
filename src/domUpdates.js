@@ -7,6 +7,7 @@ import {
   calculateRecipeCost,
   getIngredientsByRecipe,
   getRecipeInstructions,
+  formatIngredients,
   findRecipe,
   formatInstructions,
 } from '../src/filter-recipes';
@@ -63,7 +64,12 @@ const beginFetch = () => {
 
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
+      removeHiddenClass([
+        recipeContainer,
+        homeView,
+        dropDownMenu,
+        selectButton,
+      ]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
       discoverRecipesHeader.innerText = 'Discover Recipes';
@@ -112,7 +118,7 @@ const beginFetch = () => {
     //Event Handlers Here👇
     const renderRecipeCards = recipeList => {
       recipeContainer.innerHTML = ' ';
-      console.log("RECIPE LIST", recipeList)
+      console.log('RECIPE LIST', recipeList);
       recipeList.forEach(recipe => {
         if (recipe.tags.length === 0) {
           recipeContainer.innerHTML += `
@@ -150,22 +156,32 @@ const beginFetch = () => {
         ingredientsData,
         currentRecipeName
       );
+      const formattedIngredients = formatIngredients(ingredientDetails);
       individualRecipeContainer.innerHTML += `
-    <div class="recipe-name-wrapper">
-      <h3 class="recipe-name">${chosenRecipe.name}</h3>
-    </div>
-    <div class="recipe-image-wrapper">
-    <img 
-            src="${chosenRecipe.image}" alt="${chosenRecipe.name}" class="recipe-image">
-    </div>
-    <div class="recipe-ingredients-wrapper">
-      <h3 class="individual-recipe-headings">Ingredients</h3>
-      <div class="recipe-ingredients-list">${ingredientDetails}</div>
-      <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
-    </div>
-    <div class="recipe-instructions-wrapper">
-      <h3 class="individual-recipe-headings">Instructions</h3>
-      <div class="recipe-instructions-list">${formattedInstructions}</div>
+    <div class="individual-recipe-container">    
+      <div class="recipe-ingredients-wrapper">
+        <div class="recipe-name-heading">
+        <h3 class="recipe-name-details">${chosenRecipe.name}</h3>
+        </div>
+        <div class="recipe-image-details-wrapper">
+          <img 
+                  src="${chosenRecipe.image}" alt="${
+        chosenRecipe.name
+      }" class="recipe-image-details">
+        </div>
+          <h3 class="ingredients-instructions-headings">Ingredients</h3>
+          <div class="recipe-ingredients-list">${formattedIngredients.replace(
+            /\n/g,
+            '<br>'
+          )}</div>
+          <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
+      </div>
+      <div class="recipe-instructions-wrapper">
+        <h3 class="ingredients-instructions-headings">Instructions</h3>
+        <div class="recipe-instructions-list">${formattedInstructions.join(
+          '<br>'
+        )}</div>
+      </div>
     </div>`;
     };
 
@@ -193,7 +209,6 @@ const beginFetch = () => {
 
         // Update currentRecipeList with the searched recipes
         currentRecipeList = searchedRecipes;
-  
 
         // Add event listeners to the new recipe cards
         recipeCards = document.querySelectorAll('.recipe-card');
@@ -208,7 +223,7 @@ const beginFetch = () => {
     };
 
     const renderSavedRecipeResults = () => {
-      console.log("currentUser.recipesToCook:", currentUser.recipesToCook)
+      console.log('currentUser.recipesToCook:', currentUser.recipesToCook);
       if (currentUser.recipesToCook.length === 0) {
         discoverRecipesHeader.innerText = "You haven't saved any recipes yet.";
         recipeContainer.innerHTML = '';
