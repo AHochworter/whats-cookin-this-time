@@ -6,6 +6,7 @@ import {
   filterByName,
   calculateRecipeCost,
   getIngredientsByRecipe,
+  formatIngredients,
   getRecipeInstructions,
   findRecipe,
   formatInstructions,
@@ -27,7 +28,9 @@ export let currentRecipeList;
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
 const individualRecipeView = document.querySelector('.individual-recipe-view');
-const individualRecipeContainer = document.querySelector('.individual-recipe-container');
+const individualRecipeContainer = document.querySelector(
+  '.individual-recipe-container'
+);
 const homeView = document.querySelector('.homepage-view');
 const discoverRecipesHeader = document.querySelector('.discover-header');
 const searchInput = document.getElementById('searchInput');
@@ -55,7 +58,12 @@ const beginFetch = () => {
 
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
+      removeHiddenClass([
+        recipeContainer,
+        homeView,
+        dropDownMenu,
+        selectButton,
+      ]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
       discoverRecipesHeader.innerText = 'Discover Recipes';
@@ -85,7 +93,12 @@ const beginFetch = () => {
 
     savedRecipesButton.addEventListener('click', function (event) {
       addHiddenClass([individualRecipeView]);
-      removeHiddenClass([recipeContainer, homeView, dropDownMenu, selectButton]);
+      removeHiddenClass([
+        recipeContainer,
+        homeView,
+        dropDownMenu,
+        selectButton,
+      ]);
       renderSavedRecipeResults();
       currentRecipeList = currentUser.recipesToCook;
       dropDownMenu.value = 'all';
@@ -141,22 +154,32 @@ const beginFetch = () => {
         ingredientsData,
         currentRecipeName
       );
+      const formattedIngredients = formatIngredients(ingredientDetails);
       individualRecipeContainer.innerHTML += `
-    <div class="recipe-name-wrapper">
-      <h3 class="recipe-name">${chosenRecipe.name}</h3>
-    </div>
-    <div class="recipe-image-wrapper">
-    <img 
-            src="${chosenRecipe.image}" alt="${chosenRecipe.name}" class="recipe-image">
-    </div>
-    <div class="recipe-ingredients-wrapper">
-      <h3 class="individual-recipe-headings">Ingredients</h3>
-      <div class="recipe-ingredients-list">${ingredientDetails}</div>
-      <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
-    </div>
-    <div class="recipe-instructions-wrapper">
-      <h3 class="individual-recipe-headings">Instructions</h3>
-      <div class="recipe-instructions-list">${formattedInstructions}</div>
+    <div class="individual-recipe-container">    
+      <div class="recipe-ingredients-wrapper">
+        <div class="recipe-name-heading">
+        <h3 class="recipe-name-details">${chosenRecipe.name}</h3>
+        </div>
+        <div class="recipe-image-details-wrapper">
+          <img 
+                  src="${chosenRecipe.image}" alt="${
+        chosenRecipe.name
+      }" class="recipe-image-details">
+        </div>
+          <h3 class="ingredients-instructions-headings">Ingredients</h3>
+          <div class="recipe-ingredients-list">${formattedIngredients.replace(
+            /\n/g,
+            '<br>'
+          )}</div>
+          <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
+      </div>
+      <div class="recipe-instructions-wrapper">
+        <h3 class="ingredients-instructions-headings">Instructions</h3>
+        <div class="recipe-instructions-list">${formattedInstructions.join(
+          '<br>'
+        )}</div>
+      </div>
     </div>`;
     };
 
@@ -165,12 +188,12 @@ const beginFetch = () => {
       recipeContainer.innerHTML = '';
       const searchedRecipes = filterByName(currentRecipeList, searchValue);
       if (!searchedRecipes.length) {
-           recipeContainer.innerHTML = `
+        recipeContainer.innerHTML = `
           <div class="no-recipes-found-message">
             <p class="no-recipe-match">No recipes found</p>
           </div>`;
       } else {
-        renderRecipeCards(searchedRecipes)
+        renderRecipeCards(searchedRecipes);
         currentRecipeList = searchedRecipes;
       }
     };
