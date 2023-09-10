@@ -158,8 +158,8 @@ const beginFetch = () => {
       individualRecipeContainer.innerHTML += `
     <div class="individual-recipe-container">    
       <div class="recipe-ingredients-wrapper">
-        <div class="recipe-name-heading">
-        <h3 class="recipe-name-details">${chosenRecipe.name}</h3>
+        <div class="recipe-name-heading-wrapper">
+        <h3 class="recipe-name-recipe-view">${chosenRecipe.name}</h3>
         </div>
         <div class="recipe-image-details-wrapper">
           <img 
@@ -167,15 +167,21 @@ const beginFetch = () => {
         chosenRecipe.name
       }" class="recipe-image-details">
         </div>
-          <h3 class="ingredients-instructions-headings">Ingredients</h3>
+          <div class="ingredients-heading-wrapper">
+            <h3 class="ingredients-instructions-headings">Ingredients</h3>
+          </div>
           <div class="recipe-ingredients-list">${formattedIngredients.replace(
             /\n/g,
             '<br>'
           )}</div>
-          <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
+          <div class="recipe-cost-wrapper">
+            <p class="recipe-cost">This recipe costs $${recipeCost} to make.</p>
+          </div>
       </div>
       <div class="recipe-instructions-wrapper">
-        <h3 class="ingredients-instructions-headings">Instructions</h3>
+        <div class="instructions-heading-wrapper">
+          <h3 class="ingredients-instructions-headings">Instructions</h3>
+        </div>
         <div class="recipe-instructions-list">${formattedInstructions.join(
           '<br>'
         )}</div>
