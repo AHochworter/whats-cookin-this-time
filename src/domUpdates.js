@@ -82,7 +82,8 @@ const beginFetch = () => {
 
     clearSearch.addEventListener('click', function (event) {
       searchInput.value = '';
-      renderSearchResults(currentRecipeList);
+      resetSearch()
+      renderSearchResults();
     });
 
     selectButton.addEventListener('click', e => {
@@ -201,6 +202,17 @@ const beginFetch = () => {
       } else {
         renderRecipeCards(searchedRecipes);
         currentRecipeList = searchedRecipes;
+      }
+    };
+
+
+    const resetSearch = () => {
+      searchInput.value = ''; 
+      recipeContainer.innerHTML = '';
+      if (discoverRecipesHeader.innerText === 'Saved Recipes') {
+        currentRecipeList = currentUser.recipesToCook;
+      } else {
+        currentRecipeList = recipeData;
       }
     };
 
