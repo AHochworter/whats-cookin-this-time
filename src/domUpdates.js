@@ -85,6 +85,15 @@ const beginFetch = () => {
       renderSearchResults(currentRecipeList);
     });
 
+    //Can we get this working??
+    // searchInput.addEventListener('keydown', function (event) {
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault(); // Prevent the default form submission behavior
+    //     resetSearch();
+    //     renderSearchResults();
+    //   }
+    // });
+
     selectButton.addEventListener('click', e => {
       e.preventDefault();
       renderRecipeCardsByTag(currentRecipeList, dropDownMenu.value);
