@@ -29,8 +29,8 @@ nav {
   flex-direction: column-reverse;
   align-content: space-between;
   background-color: #66b9bf;
-  height: 65px;
-  margin-bottom: 50px;
+  height: 85px;
+  margin-bottom: 0px;
 }
 
 .nav-left {
@@ -163,6 +163,7 @@ select {
 .recipe-name {
   display: flex;
   justify-content: center;
+  text-align: center;
   margin: 0px 10px 2px 10px;
   font-family: 'Open Sans', sans-serif;
 }
