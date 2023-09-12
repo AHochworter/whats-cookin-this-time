@@ -83,9 +83,18 @@ const beginFetch = () => {
 
     clearSearch.addEventListener('click', function (event) {
       searchInput.value = '';
-      resetSearch()
+      resetSearch();
       renderSearchResults();
     });
+
+    //Can we get this working??
+    // searchInput.addEventListener('keydown', function (event) {
+    //   if (event.key === 'Enter') {
+    //     event.preventDefault(); // Prevent the default form submission behavior
+    //     resetSearch();
+    //     renderSearchResults();
+    //   }
+    // });
 
     selectButton.addEventListener('click', e => {
       e.preventDefault();
@@ -148,7 +157,9 @@ const beginFetch = () => {
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
-      const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
+      console.log('chosenRecipe', chosenRecipe);
+      const recipeCost = calculateRecipeCost(chosenRecipe, ingredientsData);
+      console.log('recipeCost', recipeCost);
       const instructions = getRecipeInstructions(recipeData, currentRecipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
@@ -206,9 +217,8 @@ const beginFetch = () => {
       }
     };
 
-
     const resetSearch = () => {
-      searchInput.value = ''; 
+      searchInput.value = '';
       recipeContainer.innerHTML = '';
       if (discoverRecipesHeader.innerText === 'Saved Recipes') {
         currentRecipeList = currentUser.recipesToCook;
