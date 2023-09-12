@@ -26,7 +26,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-content: space-between;
   background-color: #66b9bf;
   height: 85px;
@@ -98,7 +98,7 @@ button {
   border-radius: 30px 30px 30px 30px;
   padding-left: 16px;
   height: 45px;
-  width: 300px;
+  width: 250px;
   flex-grow: 2;
 }
 
@@ -106,7 +106,7 @@ button {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 750px;
+  width: 350px;
 }
 
 .search-btn,

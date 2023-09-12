@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import {
   filterByName,
 } from '../src/filter-recipes.js';
-import { getRandomUser, deleteRecipe, saveRecipe, savedRecipes } from '../src/user-recipes.js';
+import { getRandomUser, deleteRecipe, saveRecipe } from '../src/user-recipes.js';
 import recipeData from '../sample-data/sample-recipes';
 
 describe('getRandomUser', () => {
@@ -104,11 +104,11 @@ describe('Save recipes', () => {
     });
 
     it('should delete a recipe from the saved recipe array', () => {
-      const deleteARecipe = deleteRecipe(savedRecipes, filtered1.name);
+      const deleteARecipe = deleteRecipe(currentUser.recipesToCook, filtered1[0].name);
       const filtered2 = filterByName(recipeData, 'Sesame Cookies');
       const mySecondFavoriteRecipe = saveRecipe(recipeData, filtered2[0].name, currentUser);
-      const deleteBRecipe = deleteRecipe(savedRecipes, filtered2.name); 
-      expect(savedRecipes.length).to.equal(0);
+      const deleteBRecipe = deleteRecipe(currentUser.recipesToCook, filtered2[0].name); 
+      expect(currentUser.recipesToCook.length).to.equal(0);
     });
   });
 
