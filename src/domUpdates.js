@@ -82,7 +82,7 @@ const beginFetch = () => {
 
     clearSearch.addEventListener('click', function (event) {
       searchInput.value = '';
-      resetSearch()
+      resetSearch();
       renderSearchResults();
     });
 
@@ -156,7 +156,9 @@ const beginFetch = () => {
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
-      const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
+      console.log('chosenRecipe', chosenRecipe);
+      const recipeCost = calculateRecipeCost(chosenRecipe, ingredientsData);
+      console.log('recipeCost', recipeCost);
       const instructions = getRecipeInstructions(recipeData, currentRecipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
@@ -214,9 +216,8 @@ const beginFetch = () => {
       }
     };
 
-
     const resetSearch = () => {
-      searchInput.value = ''; 
+      searchInput.value = '';
       recipeContainer.innerHTML = '';
       if (discoverRecipesHeader.innerText === 'Saved Recipes') {
         currentRecipeList = currentUser.recipesToCook;
