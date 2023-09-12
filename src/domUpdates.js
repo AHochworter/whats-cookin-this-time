@@ -24,6 +24,7 @@ export let usersData;
 export let recipeData;
 export let ingredientsData;
 export let currentRecipeList;
+export let savedRecipes = [];
 
 //Query Selectors Here👇
 const recipeContainer = document.querySelector('.recipe-container');
