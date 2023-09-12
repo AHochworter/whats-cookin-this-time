@@ -75,3 +75,20 @@ export const formatInstructions = recipe => {
   });
   return recipeInstructions;
 };
+
+
+export const chooseRecipeByCost = (recipes, ingredients, costCriteria) => {
+return  recipes.filter((recipe) => {
+    const recipeCost = calculateRecipeCost(recipe, ingredients)
+    return recipeCost <= costCriteria
+    // recipeCost to be equal to or less than costCriteria
+  })
+
+}
+// returns a new array of recipes that are filtered based on some cost criteria.
+
+// what are we comparing? all recipes, 
+// use calculateRecipeCost to comparing the cost of a recipe to the user
+
+// recipeCost =< costCriteria
+// 

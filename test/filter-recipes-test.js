@@ -11,6 +11,7 @@ import {
   calculateRecipeCost,
   findRecipe,
   formatInstructions,
+  chooseRecipeByCost
 } from '../src/filter-recipes.js';
 
 describe('filter recipes', () => {
@@ -238,3 +239,16 @@ describe('formatInstructions', () => {
     });
   });
 });
+
+
+  describe('chooseRecipeByCost', () => {
+    
+    it('should be a function', () => {
+      expect(chooseRecipeByCost).to.be.a('function');
+    })
+
+      it('should return recipes based on user input cost amount.', () => {
+       const enteredRecipeCost = chooseRecipeByCost(recipeData, ingredientsData, 300)
+      })
+  }) 
+

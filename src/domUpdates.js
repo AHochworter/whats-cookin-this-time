@@ -148,6 +148,7 @@ const beginFetch = () => {
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
       const recipeCost = calculateRecipeCost(recipeData, ingredientsData);
+      console.log(recipeCost)
       const instructions = getRecipeInstructions(recipeData, currentRecipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
