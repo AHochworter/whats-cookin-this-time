@@ -94,8 +94,6 @@ const beginFetch = () => {
       if (!isNaN(maxCost)) {
         //checks to be sure the value is a valid number
         renderFilteredRecipes(maxCost);
-      } else {
-        //Add innerHTML here to display a message?
       }
     });
 
@@ -169,9 +167,9 @@ const beginFetch = () => {
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
-      console.log('chosenRecipe', chosenRecipe);
+      // console.log('chosenRecipe', chosenRecipe);
       const recipeCost = calculateRecipeCost(chosenRecipe, ingredientsData);
-      console.log('recipeCost', recipeCost);
+      // console.log('recipeCost', recipeCost);
       const instructions = getRecipeInstructions(recipeData, currentRecipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
@@ -267,10 +265,12 @@ const beginFetch = () => {
     };
 
     const renderFilteredRecipes = maxCost => {
+      console.log(currentRecipeList);
       const filteredRecipes = currentRecipeList.filter(recipe => {
-        const recipeCost = calculateRecipeCost(recipe, ingredientsData);
-        return !isNaN(recipeCost) && recipeCost <= maxCost; //chat-GBT suggested we have the !isNaN(recipeCost), it's protecting against the entry being a string
+        const recipeCostFiltered = calculateRecipeCost(recipe, ingredientsData);
+        return !isNaN(recipeCostFiltered) && recipeCostFiltered <= maxCost;
       });
+      console.log('filteredRecipes', filteredRecipes);
 
       if (filteredRecipes.length === 0) {
         recipeContainer.innerHTML = `
