@@ -45,6 +45,7 @@ const savedRecipesButton = document.querySelector('.saved-recipes-btn');
 const saveRecipeBtn = document.querySelector('.save-button');
 const deleteRecipeBtn = document.querySelector('.delete-button');
 const homeBtn = document.querySelector('.home-btn');
+const byCostButton = document.querySelector('.by-cost-button');
 const welcomeUser = document.querySelector('.welcome-user');
 
 //Event Listeners Here👇
@@ -85,6 +86,17 @@ const beginFetch = () => {
       searchInput.value = '';
       resetSearch();
       renderSearchResults();
+    });
+
+    byCostButton.addEventListener('click', function (event) {
+      const maxCost = parseFloat(document.getElementById('maxCostInput').value);
+      //parseFloat converts the users input from a string to a number
+      if (!isNaN(maxCost)) {
+        //checks to be sure the value is a valid number
+        renderFilteredRecipes(maxCost);
+      } else {
+        //Add innerHTML here to display a message?
+      }
     });
 
     //Can we get this working??
@@ -251,6 +263,23 @@ const beginFetch = () => {
       } else {
         renderRecipeCards(recipeByTagList);
         currentRecipeList = recipeByTagList;
+      }
+    };
+
+    const renderFilteredRecipes = maxCost => {
+      const filteredRecipes = currentRecipeList.filter(recipe => {
+        const recipeCost = calculateRecipeCost(recipe, ingredientsData);
+        return !isNaN(recipeCost) && recipeCost <= maxCost; //chat-GBT suggested we have the !isNaN(recipeCost), it's protecting against the entry being a string
+      });
+
+      if (filteredRecipes.length === 0) {
+        recipeContainer.innerHTML = `
+          <div class="no-recipes-found-message">
+            <p class="no-recipe-match">No recipes found within the specified cost.</p>
+          </div>`;
+      } else {
+        renderRecipeCards(filteredRecipes);
+        currentRecipeList = filteredRecipes;
       }
     };
 
