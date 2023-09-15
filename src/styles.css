@@ -40,8 +40,16 @@ nav {
   align-content: space-around;
   background-color: #66b9bf;
   height: 65px;
-  width: 50vw;
+  width: 30%;
 }
+
+.nav-center {
+    display: flex;
+    align-content: space-around;
+    background-color: #66b9bf;
+    height: 65px;
+    width: 40%;
+  }
 
 .nav-right {
   display: flex;
@@ -51,7 +59,7 @@ nav {
   align-content: center;
   background-color: #66b9bf;
   height: 65px;
-  width: 50vw;
+  width: 30%;
 }
 
 .welcome-user {
@@ -98,8 +106,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px 100px 0px 100px;
-  margin: 0px 100px 0px 100px;
+  /* padding: 0px 100px 0px 100px;
+  margin: 0px 100px 0px 100px; */
   width: 350px;
 }
 
@@ -111,7 +119,7 @@ button {
   border-radius: 30px 30px 30px 30px;
   padding-left: 25px;
   height: 35px;
-  width: 350px;
+  /* width: 350px; */
   /* flex-grow: 2; */
 }
 

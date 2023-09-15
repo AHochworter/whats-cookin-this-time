@@ -29,3 +29,24 @@ export const getIngredients = () => {
 };
 
 
+export const postRecipe = (recipeID, userID) => {
+  console.log(recipeID)
+  console.log(userID)
+  const postObject = { userID: userID, recipeID: recipeID }
+    
+ return fetch(`http://localhost:3001/api/v1/usersRecipes`, {
+      method: "POST",
+      body: JSON.stringify(postObject),
+      headers: {
+          "Content-Type": "application/json",
+      },
+  })
+  .then((response) => response.json())
+  // .then((data) =>  {
+  //   console.log(data) // iterate over recipe data match ID of recipe user has clicked on
+  // })
+  .catch((error) => console.log(error))
+}
+
+
+// populate savedRecipes with 
