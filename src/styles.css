@@ -91,12 +91,12 @@ h3 {
 
 button {
   background-color: #07889b;
-  color: #ffffff;
+  color: black;
   font-family: 'Poppins', sans-serif;
   width: 200px;
   height: 35px;
   font-size: 20px;
-  font-weight: 250;
+  font-weight: bold;
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
@@ -128,12 +128,12 @@ button {
 .clear-search-btn,
 .by-cost-button {
   background-color: #07889b;
-  color: #ffffff;
+  color: black;
   font-family: 'Poppins', sans-serif;
   width: 125px;
   height: 35px;
   font-size: 15px;
-  font-weight: 250;
+  font-weight: bold;
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
@@ -141,12 +141,12 @@ button {
 
 select {
   background-color: #07889b;
-  color: #ffffff;
+  color: black;
   font-family: 'Poppins', sans-serif;
   width: 200px;
   height: 35px;
   font-size: 20px;
-  font-weight: 250;
+  font-weight: bold;
   border-radius: 1px 50px;
   font-variant: common-ligatures;
   border: none;
@@ -384,7 +384,7 @@ button:hover {
 }
 
 button:active {
-  background-color: #66b9bf;
+  background-color: #dfd7c0;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
