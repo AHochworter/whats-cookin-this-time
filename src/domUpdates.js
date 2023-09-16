@@ -18,7 +18,7 @@ import tagData from './data/tags';
 
 //Global Variables👇
 let currentRecipeName;
-let currentUser
+let currentUser;
 
 export let usersData;
 export let recipeData;
@@ -57,7 +57,7 @@ const beginFetch = () => {
     ingredientsData = data[2].ingredients;
     currentRecipeList = recipeData;
     currentUser = getRandomUser(usersData);
-    console.log("USERS DATA", usersData)
+    console.log('USERS DATA', usersData);
     // currentUser = usersData[23];
 
     homeBtn.addEventListener('click', function () {
@@ -132,7 +132,7 @@ const beginFetch = () => {
     });
 
     const handleSaveRecipeClick = event => {
-      saveRecipe(recipeData, currentRecipeName, currentUser)
+      saveRecipe(recipeData, currentRecipeName, currentUser);
     };
 
     saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
@@ -147,8 +147,8 @@ const beginFetch = () => {
             <img class="recipe-card"
               src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
             />
-            <h4 class="recipe-card" id="${recipe.name}">category not indicated</h4>
-            <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+            <h3 class="recipe-tag recipe-card" id="${recipe.name}">category not indicated</h3>
+            <h4 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h4>
           </div>`;
         } else {
           recipeContainer.innerHTML += `
@@ -156,8 +156,8 @@ const beginFetch = () => {
             <img class="recipe-card"
               src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
             />
-            <h4 class="recipe-card" id="${recipe.name}">${recipe.tags[0]}</h4>
-            <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+            <h3 class="recipe-tag recipe-card" id="${recipe.name}">${recipe.tags[0]}</h3>
+            <h4 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h4>
           </div>`;
         }
       });
