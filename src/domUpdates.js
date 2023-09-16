@@ -146,7 +146,7 @@ const beginFetch = () => {
         if (recipe.tags.length === 0) {
           recipeContainer.innerHTML += `
           <div class="recipe recipe-card" id="${recipe.name}">
-            <img class="recipe-card"
+            <img class="recipe-card" role="button"
               src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
             />
             <h3 class="recipe-tag recipe-card" id="${recipe.name}">category not indicated</h3>
@@ -155,7 +155,7 @@ const beginFetch = () => {
         } else {
           recipeContainer.innerHTML += `
           <div class="recipe recipe-card" id="${recipe.name}">
-            <img class="recipe-card"
+            <img class="recipe-card" role="button"
               src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
             />
             <h3 class="recipe-tag recipe-card" id="${recipe.name}">${recipe.tags[0]}</h3>
@@ -189,7 +189,7 @@ const beginFetch = () => {
         <h3 class="recipe-name-recipe-view">${chosenRecipe.name}</h3>
         </div>
         <div class="recipe-image-details-wrapper">
-          <img 
+          <img
                   src="${chosenRecipe.image}" alt="${
         chosenRecipe.name
       }" class="recipe-image-details">
