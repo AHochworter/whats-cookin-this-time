@@ -13,7 +13,12 @@ import {
 } from '../src/filter-recipes';
 
 import { saveRecipe, deleteRecipe, getRandomUser } from '../src/user-recipes';
-import { getUsers, getRecipes, getIngredients } from './apiCalls';
+import {
+  getUsers,
+  getRecipes,
+  getIngredients,
+  refreshSavedRecipes,
+} from './apiCalls';
 import tagData from './data/tags';
 
 //Global Variables👇
@@ -122,8 +127,8 @@ const beginFetch = () => {
         dropDownMenu,
         selectButton,
       ]);
+      currentRecipeList = currentUser.recipesToCook; // Update currentRecipeList
       renderSavedRecipeResults();
-      currentRecipeList = currentUser.recipesToCook;
       dropDownMenu.value = 'all';
     });
 

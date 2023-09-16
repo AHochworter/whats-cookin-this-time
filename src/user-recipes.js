@@ -35,18 +35,6 @@ export const saveRecipe = async (recipeList, recipeName, currentUser) => {
   }
 };
 
-// Function to perform a GET request to refresh saved recipes
-const refreshSavedRecipes = currentUser => {
-  return getUsers().then(usersDataResponse => {
-    const usersData = usersDataResponse.users;
-    const updatedUserObj = usersData.find(user => user.id === currentUser.id);
-    if (updatedUserObj) {
-      return updatedUserObj.recipesToCook;
-    }
-    return [];
-  });
-};
-
 // recipesToCook will be populated by fetch call. separate reliance on data model. do immediate fetch after post to get the data that was posted. GET and POST calls populate data.
 // iterate through recipe list to get ID.
 

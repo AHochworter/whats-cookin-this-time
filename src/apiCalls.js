@@ -48,25 +48,38 @@ export const postRecipe = (recipeID, userID) => {
   );
 };
 
-export const updateUsers = (currentUser, savedRecipe) => {
-  const currentRecipe = currentUser['recipesToCook'].find(
-    item => item === savedRecipe
-  );
-  if (currentRecipe) {
-    console.log('Duplicate recipeID found. Cannot add the same recipe again.');
-    return Promise.reject('Duplicate recipeID');
-  }
-  const promise = fetch('http://localhost:3001/api/v1/usersRecipes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      userID: currentUser['id'],
-      recipeID: savedRecipe['id'],
-    }),
-  })
-    .then(response => response.json())
-    .catch(err => console.error(`You got an ${err}`));
-  return promise;
+// Function to perform a GET request to refresh saved recipes
+export const refreshSavedRecipes = currentUser => {
+  return getUsers().then(usersDataResponse => {
+    const usersData = usersDataResponse.users;
+    const updatedUserObj = usersData.find(user => user.id === currentUser.id);
+    if (updatedUserObj) {
+      return updatedUserObj.recipesToCook;
+    }
+    return [];
+  });
 };
+
+//Jack's code for reference
+// export const updateUsers = (currentUser, savedRecipe) => {
+//   const currentRecipe = currentUser['recipesToCook'].find(
+//     item => item === savedRecipe
+//   );
+//   if (currentRecipe) {
+//     console.log('Duplicate recipeID found. Cannot add the same recipe again.');
+//     return Promise.reject('Duplicate recipeID');
+//   }
+//   const promise = fetch('http://localhost:3001/api/v1/usersRecipes', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       userID: currentUser['id'],
+//       recipeID: savedRecipe['id'],
+//     }),
+//   })
+//     .then(response => response.json())
+//     .catch(err => console.error(`You got an ${err}`));
+//   return promise;
+// };
