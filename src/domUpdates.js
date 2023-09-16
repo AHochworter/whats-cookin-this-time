@@ -18,7 +18,7 @@ import tagData from './data/tags';
 
 //Global Variables👇
 let currentRecipeName;
-let currentUser
+let currentUser;
 
 export let usersData;
 export let recipeData;
@@ -57,7 +57,7 @@ const beginFetch = () => {
     ingredientsData = data[2].ingredients;
     currentRecipeList = recipeData;
     currentUser = getRandomUser(usersData);
-    console.log("USERS DATA", usersData)
+    console.log('USERS DATA', usersData);
     // currentUser = usersData[23];
 
     homeBtn.addEventListener('click', function () {
@@ -132,7 +132,7 @@ const beginFetch = () => {
     });
 
     const handleSaveRecipeClick = event => {
-      saveRecipe(recipeData, currentRecipeName, currentUser)
+      saveRecipe(recipeData, currentRecipeName, currentUser);
     };
 
     saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
@@ -245,7 +245,12 @@ const beginFetch = () => {
         recipeContainer.innerHTML = '';
       } else {
         discoverRecipesHeader.innerText = 'Saved Recipes';
-        renderRecipeCards(currentUser.recipesToCook);
+        // Filter the recipes that match the IDs in currentUser.recipesToCook
+        const savedRecipesToDisplay = recipeData.filter(recipe =>
+          currentUser.recipesToCook.includes(recipe.id)
+        );
+        renderRecipeCards(savedRecipesToDisplay);
+        currentRecipeList = savedRecipesToDisplay;
       }
     };
 
