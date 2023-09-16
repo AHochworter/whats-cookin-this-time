@@ -33,7 +33,7 @@ nav {
   flex-direction: column;
   align-content: space-between;
   background-color: #66b9bf;
-  height: 85px;
+  height: 100px;
   margin-bottom: 0px;
 }
 
@@ -122,8 +122,10 @@ button {
   border-radius: 30px 30px 30px 30px;
   padding-left: 25px;
   height: 35px;
-  /* width: 350px; */
-  /* flex-grow: 2; */
+}
+
+.max-cost-input {
+  width: 90px;
 }
 
 .search-btn,
