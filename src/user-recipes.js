@@ -4,18 +4,19 @@ export function getRandomUser(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
-//async helps it run in order
+//async helps it run in order 
 export const saveRecipe = async (recipeList, recipeName, currentUser) => { //without the async. 2 tests were failing and it was saying "fetch is not defined". With the async in front of the parameters, only the saved recipes was failing and we can fix that once again...for the 3rd time. 
   const recipeFullInfo = recipeList.find(
     (recipe) => recipe.name === recipeName
   );
-  console.log("recipeFullInfo:=====", recipeFullInfo); //gives you the full object back
   if (
     !currentUser.recipesToCook.some(
       (currentRecipe) => recipeFullInfo.id === currentRecipe.id
-    )
-  ) {
+      )
+      ) {
+    console.log("recipeFullInfo:=====", recipeFullInfo); //gives you the full object back
     return postRecipe (recipeFullInfo, currentUser.id) //need to pass in recipe's full info to get the object
+
       .then((postData) => {
         //this .then handles the response from the postRecipe function. It's now adding the newly saved recipe oistData.recipeFullInfo to the currentUser.recipesToCook array.
         currentUser.recipesToCook.push(postData.recipeFullInfo);
