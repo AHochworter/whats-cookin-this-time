@@ -30,9 +30,10 @@ export const getIngredients = () => {
 
 
 export const postRecipe = (recipeID, userID) => {
-  console.log(recipeID)
-  console.log(userID)
-  const postObject = { userID: userID, recipeID: recipeID }
+  // console.log(recipeID)
+  // console.log(userID)
+  const postObject = { userID: userID, recipeID: recipeID } 
+  //put the postObject into the body. This was from the spec
     
  return fetch(`http://localhost:3001/api/v1/usersRecipes`, {
       method: "POST",

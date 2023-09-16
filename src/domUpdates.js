@@ -132,8 +132,7 @@ const beginFetch = () => {
     });
 
     const handleSaveRecipeClick = event => {
-      saveRecipe(recipeData, currentRecipeName, currentUser);
-      // fetch again. iterate. match recipe id from recipes array and get that object.
+      saveRecipe(recipeData, currentRecipeName, currentUser)
     };
 
     saveRecipeBtn.addEventListener('click', handleSaveRecipeClick);
