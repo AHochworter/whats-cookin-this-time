@@ -47,6 +47,7 @@ const deleteRecipeBtn = document.querySelector('.delete-button');
 const homeBtn = document.querySelector('.home-btn');
 const byCostButton = document.querySelector('.by-cost-button');
 const welcomeUser = document.querySelector('.welcome-user');
+const navCenter = document.querySelector('.nav-center')
 
 //Event Listeners Here👇
 
@@ -67,6 +68,7 @@ const beginFetch = () => {
         homeView,
         dropDownMenu,
         selectButton,
+        navCenter,
       ]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
@@ -165,7 +167,7 @@ const beginFetch = () => {
 
     const renderRecipeDetails = recipeName => {
       removeHiddenClass([individualRecipeView]);
-      addHiddenClass([recipeContainer, homeView, selectButton, dropDownMenu]);
+      addHiddenClass([recipeContainer, homeView, selectButton, dropDownMenu, navCenter]);
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
