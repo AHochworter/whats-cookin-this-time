@@ -360,8 +360,6 @@ select {
 
 .recipe-instructions-list {
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: center; */
   align-items: flex-start;
   padding: 75px 50px 20px 50px;
   background-color: #ffffff;

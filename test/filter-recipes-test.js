@@ -227,13 +227,10 @@ describe('formatInstructions', () => {
       );
 
       const ingredientsFormatted = formatIngredients(ingredientNames);
-
-      // Define the expected formatted string with line breaks
       const expectedFormattedString =
         'apple cider\napple\ncorn starch\ndijon style mustard\nwhole garlic clove\nwhole grain dijon mustard\nmaple\nmiso\npork chop\ns&p\nsoy sauce\nsriracha sauce';
-
-      // Trim any trailing whitespace or newline characters from both strings
-      expect(ingredientsFormatted.trim()).to.equal(
+      
+        expect(ingredientsFormatted.trim()).to.equal(
         expectedFormattedString.trim()
       );
     });
