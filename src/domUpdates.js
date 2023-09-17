@@ -137,6 +137,7 @@ const beginFetch = () => {
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
+      console.log('getting here-delete button clicked');
       renderDeleteRecipeResults();
     });
 
@@ -269,6 +270,7 @@ const beginFetch = () => {
     };
 
     const renderDeleteRecipeResults = () => {
+      console.log(currentUser.recipeToCook);
       renderRecipeCards(currentUser.recipesToCook);
       deleteRecipe(currentUser.recipesToCook, currentRecipeName);
     };
