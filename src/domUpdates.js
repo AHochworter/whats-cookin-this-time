@@ -13,7 +13,12 @@ import {
 } from '../src/filter-recipes';
 
 import { saveRecipe, deleteRecipe, getRandomUser } from '../src/user-recipes';
-import { getUsers, getRecipes, getIngredients } from './apiCalls';
+import {
+  getUsers,
+  getRecipes,
+  getIngredients,
+  refreshSavedRecipes,
+} from './apiCalls';
 import tagData from './data/tags';
 
 //Global Variables👇
@@ -89,7 +94,11 @@ const beginFetch = () => {
     clearSearch.addEventListener('click', function (event) {
       searchInput.value = '';
       resetSearch();
-      renderSearchResults();
+      if (discoverRecipesHeader.innerText === 'Saved Recipes') {
+        renderSavedRecipeResults(); // Render saved recipes when clearing search in saved recipes view
+      } else {
+        renderSearchResults();
+      }
     });
 
     byCostButton.addEventListener('click', function (event) {
@@ -124,12 +133,13 @@ const beginFetch = () => {
         dropDownMenu,
         selectButton,
       ]);
+      currentRecipeList = currentUser.recipesToCook; // Update currentRecipeList
       renderSavedRecipeResults();
-      currentRecipeList = currentUser.recipesToCook;
       dropDownMenu.value = 'all';
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
+      console.log('getting here-delete button clicked');
       renderDeleteRecipeResults();
     });
 
@@ -226,6 +236,11 @@ const beginFetch = () => {
             <p class="no-recipe-match">No recipes found</p>
           </div>`;
       } else {
+        if (discoverRecipesHeader.innerText === 'Saved Recipes') {
+          // If in the saved recipes view, reset currentRecipeList and header text
+          currentRecipeList = currentUser.recipesToCook;
+          discoverRecipesHeader.innerText = 'Saved Recipes';
+        }
         renderRecipeCards(searchedRecipes);
         currentRecipeList = searchedRecipes;
       }
@@ -247,11 +262,17 @@ const beginFetch = () => {
         recipeContainer.innerHTML = '';
       } else {
         discoverRecipesHeader.innerText = 'Saved Recipes';
-        renderRecipeCards(currentUser.recipesToCook);
+        // Filter the recipes that match the IDs in currentUser.recipesToCook
+        const savedRecipesToDisplay = recipeData.filter(recipe =>
+          currentUser.recipesToCook.includes(recipe.id)
+        );
+        renderRecipeCards(savedRecipesToDisplay);
+        currentRecipeList = savedRecipesToDisplay;
       }
     };
 
     const renderDeleteRecipeResults = () => {
+      console.log(currentUser.recipeToCook);
       renderRecipeCards(currentUser.recipesToCook);
       deleteRecipe(currentUser.recipesToCook, currentRecipeName);
     };
