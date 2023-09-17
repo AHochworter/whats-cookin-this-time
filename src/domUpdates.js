@@ -132,6 +132,7 @@ const beginFetch = () => {
         homeView,
         dropDownMenu,
         selectButton,
+        navCenter
       ]);
       currentRecipeList = currentUser.recipesToCook; // Update currentRecipeList
       renderSavedRecipeResults();

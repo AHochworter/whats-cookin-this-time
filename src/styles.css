@@ -44,15 +44,19 @@ nav {
   align-content: space-around;
   background-color: #66b9bf;
   height: 65px;
-  width: 25%;
+  width: 25vw;
 }
 
 .nav-center {
   display: flex;
-  align-content: space-around;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  justify-content: center;
+  align-items: center;
   background-color: #66b9bf;
   height: 65px;
-  width: 50%;
+  width: 50vw;
 }
 
 .nav-right {
@@ -63,7 +67,7 @@ nav {
   align-content: center;
   background-color: #66b9bf;
   height: 65px;
-  width: 25%;
+  width: 25vw;
 }
 
 .welcome-user {
