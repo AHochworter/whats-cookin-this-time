@@ -15,7 +15,7 @@
 - Added a PR template in .github/pull_request_template.md
 
 ## Preview of the App
-![Whats-Cookin_01](https://user-images.githubusercontent.com/130494366/265861865-969a1361-ad61-4f65-b5f9-36cdd669211a.gif)
+![Whats-Cookin_03](https://user-images.githubusercontent.com/130494366/268521958-36a8d72c-c7df-400c-980d-93a18dd704c9.gif)
 
 The details of this project are outlined in the <a href="https://frontend.turing.edu/projects/What%27sCookin-PartOne.html" target="\__blank">project spec</a>.
 
@@ -27,12 +27,14 @@ The details of this project are outlined in the <a href="https://frontend.turing
 
 ## Installation Instructions
 
-1. Fork this repository.
-2. Clone it to your local machine.
-3. Run the command: `cd whats-cookin-this-time`
-4. Run the command: `npm install`
-5. Run the command: `npm start`
-6. Once the modules have finished compiling, enter `http://localhost:8080/` into your browser to see the live web page.
+1. Copy SSH key.
+2. Open up the terminal.
+3. Change into the directory you wish to clone the app into with the cd command.
+4. Use the git clone git@github.com:AHochworter/whats-cookin-this-time.git command followed by pasting the copied SSH key.
+5. Change into the cloned directory with the cd command followed by the name of the directory.
+6. Run npm install and wait a few seconds until its finish installing
+7. Run npm start
+8. Click What's Cookin API github and follow the README instructions
 
 ## Learning Goals
 
@@ -49,7 +51,7 @@ The details of this project are outlined in the <a href="https://frontend.turing
 - Document changes with atomic commits and code reviews during standups
 
 ## Tech Used: 
-- Github, Terminal, VS Code, Dev Tools, Javascript, Figma, CSS, and HTML.
+- Github, Terminal, VS Code, Dev Tools, Javascript, Figma, CSS, and HTML, Network Requests
 
 ## Resources Used: 
 - MDN Documents, Google, Stack Overflow.
@@ -63,10 +65,10 @@ The details of this project are outlined in the <a href="https://frontend.turing
 - We became better at troubleshooting by using console.log, inspecting elements in Dev Tools and drawing on our existing knowledge to formulate targeted/searchable questions.
 - Utilizing GitHub issues and project board to track feature progress and bug fixes
 - We effectively collaborated together as a team, navigating through challenges and resolving bugs.
-- As a team, we learned how to utilize “issues” and “projects” incorporated in GitHub
 - We exchanged ideas and collaboratively addressed code issues.
 - We learned a plethora of new material as a team and solidified concepts learned in lecture.
 - Equipped with a comprehensive DTR, we strategized our project approach, incorporating detailed notes that will serve as valuable reference for future projects.
+- User is able to filter recipes by price 
 
 ### Challenges:
 - Establishing our git flow practice as a group and resolving merge conflicts
