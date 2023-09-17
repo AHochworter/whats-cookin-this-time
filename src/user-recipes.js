@@ -4,6 +4,7 @@ export function getRandomUser(data) {
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
+
 //async helps it run in order
 export const saveRecipe = async (recipeList, recipeName, currentUser) => {
   // Find the recipe object by name in the recipeList

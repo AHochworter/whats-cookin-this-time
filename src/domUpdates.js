@@ -52,6 +52,7 @@ const deleteRecipeBtn = document.querySelector('.delete-button');
 const homeBtn = document.querySelector('.home-btn');
 const byCostButton = document.querySelector('.by-cost-button');
 const welcomeUser = document.querySelector('.welcome-user');
+const navCenter = document.querySelector('.nav-center')
 
 //Event Listeners Here👇
 
@@ -72,6 +73,7 @@ const beginFetch = () => {
         homeView,
         dropDownMenu,
         selectButton,
+        navCenter,
       ]);
       recipeContainer.innerHTML = '';
       currentRecipeList = recipeData;
@@ -154,20 +156,20 @@ const beginFetch = () => {
         if (recipe.tags.length === 0) {
           recipeContainer.innerHTML += `
           <div class="recipe recipe-card" id="${recipe.name}">
-            <img class="recipe-card"
+            <img class="recipe-card" role="button"
               src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
             />
-            <h4 class="recipe-card" id="${recipe.name}">category not indicated</h4>
-            <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+            <h3 class="recipe-tag recipe-card" id="${recipe.name}">category not indicated</h3>
+            <h4 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h4>
           </div>`;
         } else {
           recipeContainer.innerHTML += `
           <div class="recipe recipe-card" id="${recipe.name}">
-            <img class="recipe-card"
+            <img class="recipe-card" role="button"
               src="${recipe.image}" alt="${recipe.name}" class="recipe-image" id="${recipe.name}"
             />
-            <h4 class="recipe-card" id="${recipe.name}">${recipe.tags[0]}</h4>
-            <h3 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h3>
+            <h3 class="recipe-tag recipe-card" id="${recipe.name}">${recipe.tags[0]}</h3>
+            <h4 class="recipe-name recipe-card" id="${recipe.name}">${recipe.name}</h4>
           </div>`;
         }
       });
@@ -175,7 +177,7 @@ const beginFetch = () => {
 
     const renderRecipeDetails = recipeName => {
       removeHiddenClass([individualRecipeView]);
-      addHiddenClass([recipeContainer, homeView, selectButton, dropDownMenu]);
+      addHiddenClass([recipeContainer, homeView, selectButton, dropDownMenu, navCenter]);
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
@@ -197,7 +199,7 @@ const beginFetch = () => {
         <h3 class="recipe-name-recipe-view">${chosenRecipe.name}</h3>
         </div>
         <div class="recipe-image-details-wrapper">
-          <img 
+          <img
                   src="${chosenRecipe.image}" alt="${
         chosenRecipe.name
       }" class="recipe-image-details">
