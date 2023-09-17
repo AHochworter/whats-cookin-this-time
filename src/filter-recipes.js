@@ -47,9 +47,6 @@ export const formatIngredients = ingredients => {
 };
 
 export const calculateRecipeCost = (recipe, ingredients) => {
-  // console.log('recipe-inside calculateRecipeCost:', recipe);
-  // console.log('ingredients-inside calculateRecipeCost:', ingredients);
-  // console.log('recipe.ingredients', recipe.ingredients);
   const totalCost = recipe.ingredients.reduce((sum, ingredient) => {
     const recipeIngredId = ingredient.id;
     const recipeAmount = ingredient.quantity.amount;

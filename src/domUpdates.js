@@ -63,8 +63,6 @@ const beginFetch = () => {
     ingredientsData = data[2].ingredients;
     currentRecipeList = recipeData;
     currentUser = getRandomUser(usersData);
-    console.log('USERS DATA', usersData);
-    // currentUser = usersData[23];
 
     homeBtn.addEventListener('click', function () {
       addHiddenClass([individualRecipeView]);
@@ -95,7 +93,7 @@ const beginFetch = () => {
       searchInput.value = '';
       resetSearch();
       if (discoverRecipesHeader.innerText === 'Saved Recipes') {
-        renderSavedRecipeResults(); // Render saved recipes when clearing search in saved recipes view
+        renderSavedRecipeResults(); 
       } else {
         renderSearchResults();
       }
@@ -103,21 +101,10 @@ const beginFetch = () => {
 
     byCostButton.addEventListener('click', function (event) {
       const maxCost = parseFloat(document.getElementById('maxCostInput').value);
-      //parseFloat converts the users input from a string to a number
       if (!isNaN(maxCost)) {
-        //checks to be sure the value is a valid number
         renderFilteredRecipes(maxCost);
       }
     });
-
-    //Can we get this working??
-    // searchInput.addEventListener('keydown', function (event) {
-    //   if (event.key === 'Enter') {
-    //     event.preventDefault(); // Prevent the default form submission behavior
-    //     resetSearch();
-    //     renderSearchResults();
-    //   }
-    // });
 
     selectButton.addEventListener('click', e => {
       e.preventDefault();
@@ -134,13 +121,12 @@ const beginFetch = () => {
         selectButton,
         navCenter
       ]);
-      currentRecipeList = currentUser.recipesToCook; // Update currentRecipeList
+      currentRecipeList = currentUser.recipesToCook; 
       renderSavedRecipeResults();
       dropDownMenu.value = 'all';
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
-      console.log('getting here-delete button clicked');
       renderDeleteRecipeResults();
     });
 
@@ -182,9 +168,7 @@ const beginFetch = () => {
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
-      // console.log('chosenRecipe', chosenRecipe);
       const recipeCost = calculateRecipeCost(chosenRecipe, ingredientsData);
-      // console.log('recipeCost', recipeCost);
       const instructions = getRecipeInstructions(recipeData, currentRecipeName);
       const formattedInstructions = formatInstructions(instructions);
       const ingredientDetails = getIngredientsByRecipe(
@@ -238,7 +222,6 @@ const beginFetch = () => {
           </div>`;
       } else {
         if (discoverRecipesHeader.innerText === 'Saved Recipes') {
-          // If in the saved recipes view, reset currentRecipeList and header text
           currentRecipeList = currentUser.recipesToCook;
           discoverRecipesHeader.innerText = 'Saved Recipes';
         }
@@ -263,7 +246,6 @@ const beginFetch = () => {
         recipeContainer.innerHTML = '';
       } else {
         discoverRecipesHeader.innerText = 'Saved Recipes';
-        // Filter the recipes that match the IDs in currentUser.recipesToCook
         const savedRecipesToDisplay = recipeData.filter(recipe =>
           currentUser.recipesToCook.includes(recipe.id)
         );
@@ -273,7 +255,6 @@ const beginFetch = () => {
     };
 
     const renderDeleteRecipeResults = () => {
-      console.log(currentUser.recipeToCook);
       renderRecipeCards(currentUser.recipesToCook);
       deleteRecipe(currentUser.recipesToCook, currentRecipeName);
     };
@@ -291,12 +272,10 @@ const beginFetch = () => {
     };
 
     const renderFilteredRecipes = maxCost => {
-      console.log(currentRecipeList);
       const filteredRecipes = currentRecipeList.filter(recipe => {
         const recipeCostFiltered = calculateRecipeCost(recipe, ingredientsData);
         return !isNaN(recipeCostFiltered) && recipeCostFiltered <= maxCost;
       });
-      console.log('filteredRecipes', filteredRecipes);
 
       if (filteredRecipes.length === 0) {
         recipeContainer.innerHTML = `
