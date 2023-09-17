@@ -92,7 +92,11 @@ const beginFetch = () => {
     clearSearch.addEventListener('click', function (event) {
       searchInput.value = '';
       resetSearch();
-      renderSearchResults();
+      if (discoverRecipesHeader.innerText === 'Saved Recipes') {
+        renderSavedRecipeResults(); // Render saved recipes when clearing search in saved recipes view
+      } else {
+        renderSearchResults();
+      }
     });
 
     byCostButton.addEventListener('click', function (event) {
@@ -229,6 +233,11 @@ const beginFetch = () => {
             <p class="no-recipe-match">No recipes found</p>
           </div>`;
       } else {
+        if (discoverRecipesHeader.innerText === 'Saved Recipes') {
+          // If in the saved recipes view, reset currentRecipeList and header text
+          currentRecipeList = currentUser.recipesToCook;
+          discoverRecipesHeader.innerText = 'Saved Recipes';
+        }
         renderRecipeCards(searchedRecipes);
         currentRecipeList = searchedRecipes;
       }
