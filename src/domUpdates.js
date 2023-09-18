@@ -52,7 +52,7 @@ const deleteRecipeBtn = document.querySelector('.delete-button');
 const homeBtn = document.querySelector('.home-btn');
 const byCostButton = document.querySelector('.by-cost-button');
 const welcomeUser = document.querySelector('.welcome-user');
-const navCenter = document.querySelector('.nav-center')
+const navCenter = document.querySelector('.nav-center');
 
 //Event Listeners Here👇
 
@@ -82,6 +82,8 @@ const beginFetch = () => {
 
     recipeContainer.addEventListener('click', event => {
       const recipeName = event.target.closest('div').id;
+      currentRecipeName = recipeName;
+      console.log(recipeName);
       renderRecipeDetails(recipeName);
     });
 
@@ -93,7 +95,7 @@ const beginFetch = () => {
       searchInput.value = '';
       resetSearch();
       if (discoverRecipesHeader.innerText === 'Saved Recipes') {
-        renderSavedRecipeResults(); 
+        renderSavedRecipeResults();
       } else {
         renderSearchResults();
       }
@@ -119,16 +121,58 @@ const beginFetch = () => {
         homeView,
         dropDownMenu,
         selectButton,
-        navCenter
+        navCenter,
       ]);
-      currentRecipeList = currentUser.recipesToCook; 
+      currentRecipeList = currentUser.recipesToCook;
       renderSavedRecipeResults();
       dropDownMenu.value = 'all';
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
-      renderDeleteRecipeResults();
+      // Debug: Log the currentRecipeName before calling the function
+      console.log('Before calling deleteRecipeFromDOM:', currentRecipeName);
+
+      // Delete the recipe from the DOM
+      deleteRecipeFromDOM(currentRecipeName);
+
+      // Update the currentUser.recipesToCook array
+      currentUser.recipesToCook = deleteRecipe(
+        currentUser.recipesToCook,
+        currentRecipeName
+      );
+
+      // Refresh the saved recipes view
+      refreshSavedRecipesView();
     });
+
+    // Function to delete the recipe from the DOM
+    function deleteRecipeFromDOM(recipeName) {
+      // Remove the recipe's HTML element from the DOM
+      const recipeElement = document.getElementById(recipeName);
+      console.log(recipeElement);
+      console.log('inside deleteRecipeFromDom', recipeName);
+      if (recipeElement) {
+        recipeElement.remove();
+      }
+
+      // Optionally, you can clear the individualRecipeView as well
+      individualRecipeContainer.innerHTML = '';
+    }
+
+    // Function to refresh the saved recipes view
+    function refreshSavedRecipesView() {
+      addHiddenClass([individualRecipeView]);
+      removeHiddenClass([
+        recipeContainer,
+        homeView,
+        dropDownMenu,
+        selectButton,
+        navCenter,
+      ]);
+      currentRecipeList = currentUser.recipesToCook;
+      renderSavedRecipeResults();
+      dropDownMenu.value = 'all';
+    }
 
     const handleSaveRecipeClick = event => {
       saveRecipe(recipeData, currentRecipeName, currentUser);
@@ -164,7 +208,13 @@ const beginFetch = () => {
 
     const renderRecipeDetails = recipeName => {
       removeHiddenClass([individualRecipeView]);
-      addHiddenClass([recipeContainer, homeView, selectButton, dropDownMenu, navCenter]);
+      addHiddenClass([
+        recipeContainer,
+        homeView,
+        selectButton,
+        dropDownMenu,
+        navCenter,
+      ]);
       individualRecipeContainer.innerHTML = ' ';
       currentRecipeName = event.target.id;
       const chosenRecipe = findRecipe(recipeData, currentRecipeName);
@@ -254,10 +304,10 @@ const beginFetch = () => {
       }
     };
 
-    const renderDeleteRecipeResults = () => {
-      renderRecipeCards(currentUser.recipesToCook);
-      deleteRecipe(currentUser.recipesToCook, currentRecipeName);
-    };
+    // const renderDeleteRecipeResults = () => {
+    //   renderRecipeCards(currentUser.recipesToCook);
+    //   deleteRecipe(currentUser.recipesToCook, currentRecipeName);
+    // };
 
     const renderRecipeCardsByTag = (recipeList, tag) => {
       const recipeByTagList = filterByTag(currentRecipeList, tag);
