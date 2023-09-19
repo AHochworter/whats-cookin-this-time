@@ -129,20 +129,21 @@ const beginFetch = () => {
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
-      // Debug: Log the currentRecipeName before calling the function
-      console.log('Before calling deleteRecipeFromDOM:', currentRecipeName);
-
       // Delete the recipe from the DOM
       deleteRecipeFromDOM(currentRecipeName);
 
-      // Update the currentUser.recipesToCook array
-      currentUser.recipesToCook = deleteRecipe(
-        currentUser.recipesToCook,
-        currentRecipeName
-      );
+      // Find the recipe object to get its ID
+      const deletedRecipe = findRecipe(recipeData, currentRecipeName);
 
-      // Refresh the saved recipes view
-      refreshSavedRecipesView();
+      if (deletedRecipe) {
+        // Update the currentUser.recipesToCook array by removing the deleted recipe's ID
+        currentUser.recipesToCook = currentUser.recipesToCook.filter(
+          recipeId => recipeId !== deletedRecipe.id
+        );
+
+        // Refresh the saved recipes view
+        refreshSavedRecipesView();
+      }
     });
 
     // Function to delete the recipe from the DOM
