@@ -13,12 +13,7 @@ import {
 } from '../src/filter-recipes';
 
 import { saveRecipe, deleteRecipe, getRandomUser } from '../src/user-recipes';
-import {
-  getUsers,
-  getRecipes,
-  getIngredients,
-  refreshSavedRecipes,
-} from './apiCalls';
+import { getUsers, getRecipes, getIngredients } from './apiCalls';
 import tagData from './data/tags';
 
 //Global Variables👇
@@ -83,7 +78,6 @@ const beginFetch = () => {
     recipeContainer.addEventListener('click', event => {
       const recipeName = event.target.closest('div').id;
       currentRecipeName = recipeName;
-      console.log(recipeName);
       renderRecipeDetails(recipeName);
     });
 
@@ -129,38 +123,25 @@ const beginFetch = () => {
     });
 
     deleteRecipeBtn.addEventListener('click', function () {
-      // Delete the recipe from the DOM
       deleteRecipeFromDOM(currentRecipeName);
-
-      // Find the recipe object to get its ID
       const deletedRecipe = findRecipe(recipeData, currentRecipeName);
 
       if (deletedRecipe) {
-        // Update the currentUser.recipesToCook array by removing the deleted recipe's ID
         currentUser.recipesToCook = currentUser.recipesToCook.filter(
           recipeId => recipeId !== deletedRecipe.id
         );
-
-        // Refresh the saved recipes view
         refreshSavedRecipesView();
       }
     });
 
-    // Function to delete the recipe from the DOM
     function deleteRecipeFromDOM(recipeName) {
-      // Remove the recipe's HTML element from the DOM
       const recipeElement = document.getElementById(recipeName);
-      console.log(recipeElement);
-      console.log('inside deleteRecipeFromDom', recipeName);
       if (recipeElement) {
         recipeElement.remove();
       }
-
-      // Optionally, you can clear the individualRecipeView as well
       individualRecipeContainer.innerHTML = '';
     }
 
-    // Function to refresh the saved recipes view
     function refreshSavedRecipesView() {
       addHiddenClass([individualRecipeView]);
       removeHiddenClass([
@@ -236,7 +217,7 @@ const beginFetch = () => {
         </div>
         <div class="recipe-image-details-wrapper">
           <img
-                  src="${chosenRecipe.image}" alt="${
+            src="${chosenRecipe.image}" alt="${
         chosenRecipe.name
       }" class="recipe-image-details">
         </div>
@@ -304,11 +285,6 @@ const beginFetch = () => {
         currentRecipeList = savedRecipesToDisplay;
       }
     };
-
-    // const renderDeleteRecipeResults = () => {
-    //   renderRecipeCards(currentUser.recipesToCook);
-    //   deleteRecipe(currentUser.recipesToCook, currentRecipeName);
-    // };
 
     const renderRecipeCardsByTag = (recipeList, tag) => {
       const recipeByTagList = filterByTag(currentRecipeList, tag);

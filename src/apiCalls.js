@@ -29,27 +29,13 @@ export const getIngredients = () => {
 export const postRecipe = (recipeID, userID) => {
   const postObject = { userID: userID, recipeID: recipeID };
 
-  return (
-    fetch(`http://localhost:3001/api/v1/usersRecipes`, {
-      method: 'POST',
-      body: JSON.stringify(postObject),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .catch(error => console.log(error))
-  );
+  return fetch(`http://localhost:3001/api/v1/usersRecipes`, {
+    method: 'POST',
+    body: JSON.stringify(postObject),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json())
+    .catch(error => console.log(error));
 };
-
-export const refreshSavedRecipes = currentUser => {
-  return getUsers().then(usersDataResponse => {
-    const usersData = usersDataResponse.users;
-    const updatedUserObj = usersData.find(user => user.id === currentUser.id);
-    if (updatedUserObj) {
-      return updatedUserObj.recipesToCook;
-    }
-    return [];
-  });
-};
-
