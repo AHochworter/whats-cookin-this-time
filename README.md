@@ -4,15 +4,12 @@
 
 - Discover, Save, and Savor: Your Friendly Recipe Companion!
 
-- Our application transforms how users engage with a diverse recipe collection. Featuring a user-friendly and colorful interface, it invites users to explore, save, and enjoy their favorite dishes like never before.
+Our application transforms how users engage with a diverse recipe collection. Featuring a user-friendly and colorful interface, it invites users to explore, save, and enjoy their favorite dishes like never before.
 
-- With a wide array of recipes catering to all tastes, from novice cooks to seasoned chefs, finding and saving beloved recipes is effortless. Our intuitive search options, based on tags or ingredients, simplify the quest for specific dishes.
+With a wide array of recipes catering to all tastes, from novice cooks to seasoned chefs, finding and saving beloved recipes is effortless. Our intuitive search options, based on tags or ingredients, simplify the quest for specific dishes. A simple click on a recipe card leads users to a dedicated page with all the essential details, from ingredients to step-by-step instructions, tags, and cost considerations. This ensures users have all they need to create delicious meals at their fingertips.
 
-- A simple click on a recipe card leads users to a dedicated page with all the essential details, from ingredients to step-by-step instructions, tags, and cost considerations. This ensures users have all they need to create delicious meals at their fingertips.
+In essence, our application is the ideal culinary companion, offering a rich recipe collection, user-friendly search features, and comprehensive recipe details for passionate cooks and food enthusiasts.
 
-- In essence, our application is the ideal culinary companion, offering a rich recipe collection, user-friendly search features, and comprehensive recipe details for passionate cooks and food enthusiasts.
-
-- Added a PR template in .github/pull_request_template.md
 
 ## Preview of the App
 ![Whats-Cookin_03](https://user-images.githubusercontent.com/130494366/268521958-36a8d72c-c7df-400c-980d-93a18dd704c9.gif)
@@ -52,6 +49,7 @@ The details of this project are outlined in the <a href="https://frontend.turing
 
 ## Tech Used: 
 - Github, Terminal, VS Code, Dev Tools, Javascript, Figma, CSS, and HTML, Network Requests
+- Added a PR template in .github/pull_request_template.md
 
 ## Resources Used: 
 - MDN Documents, Google, Stack Overflow.
