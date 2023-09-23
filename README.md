@@ -2,7 +2,7 @@
 
 # Abstract
 
-- Discover, Save, and Savor: Your Friendly Recipe Companion!
+### Discover, Save, and Savor: Your Friendly Recipe Companion!
 
 Our application transforms how users engage with a diverse recipe collection. Featuring a user-friendly and colorful interface, it invites users to explore, save, and enjoy their favorite dishes like never before.
 
