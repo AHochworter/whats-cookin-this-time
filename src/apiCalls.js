@@ -1,6 +1,6 @@
 // Your fetch requests will live here!
 export const getUsers = () => {
-  return fetch('http://localhost:3001/api/v1/users')
+  return fetch('http://whats-cookin-api/v1/users')
     .then(response => response.json())
     .then(data => {
       return data;
@@ -9,7 +9,7 @@ export const getUsers = () => {
 };
 
 export const getRecipes = () => {
-  return fetch('http://localhost:3001/api/v1/recipes')
+  return fetch('http://whats-cookin/api/v1/recipes')
     .then(response => response.json())
     .then(data => {
       return data;
@@ -18,7 +18,7 @@ export const getRecipes = () => {
 };
 
 export const getIngredients = () => {
-  return fetch('	http://localhost:3001/api/v1/ingredients')
+  return fetch('	http://whats-cookin/api/v1/ingredients')
     .then(response => response.json())
     .then(data => {
       return data;
@@ -29,7 +29,7 @@ export const getIngredients = () => {
 export const postRecipe = (recipeID, userID) => {
   const postObject = { userID: userID, recipeID: recipeID };
 
-  return fetch(`http://localhost:3001/api/v1/usersRecipes`, {
+  return fetch(`http://whats-cookin/api/v1/usersRecipes`, {
     method: 'POST',
     body: JSON.stringify(postObject),
     headers: {

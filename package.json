@@ -1,12 +1,19 @@
 {
   "name": "whats-cookin",
   "version": "1.0.0",
-  "description": "Starter kit for Turing FE2 paired project",
-  "main": "index.js",
+  "description": "Mod2 Group Project",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AHochworter/whats-cookin-this-time.git"
+  },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "start": "webpack serve",
     "build": "webpack",
-    "test": "mochapack 'test/**/*.js'"
+    "test": "mochapack 'test/**/*.js'",
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
@@ -14,6 +21,7 @@
     "chai": "^4.3.4",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.0.0",
     "mocha": "^8.4.0",
     "mochapack": "^2.1.2",
     "sass": "^1.34.0",
