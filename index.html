@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href=".src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Whats Cookin</title>
+  </head>
+  <body>
+    <header>
+      <h1>Whats Cookin</h1>
+    </header>
+    <p class="welcome-user">Welcome to the site !</p>
+    <nav>
+      <section class="nav-left">
+        <form>
+          <select 
+          aria-label="drop-down-menu"
+          class="drop-down-menu">
+            <!-- drop down menu renders here -->
+          </select>
+          <button type="submit" class="select-button">Filter</button>
+        </form>
+      </section>
+      <section class="nav-center">
+        <div class="search-bar">
+          <input
+            aria-label="search-all-recipes"
+            class="search-bar-input"
+            id="searchInput"
+            type="text"
+            placeholder="Search All Recipes"
+          />
+          <button class="search-btn">Search</button>
+          <button class="clear-search-btn">Clear Search</button>
+        </div>
+        <div class="max-cost-search-bar">
+          <input
+            aria-label="search-recipes-by-cost"
+            class="max-cost-input"
+            type="number"
+            id="maxCostInput"
+            placeholder="Enter max $"
+          />
+          <button class="by-cost-button">Recipes By Cost</button>
+        </div>
+      </section>
+      <section class="nav-right">
+        <button class="home-btn">Home</button>
+        <button class="saved-recipes-btn">Saved Recipes</button>
+      </section>
+      <!--  Navigation search & buttons  -->
+    </nav>
+    <main>
+      <section class="homepage-view">
+        <h2 class="discover-header">Discover Recipes</h2>
+        <div class="recipe-container homepageViewContainer">
+        <!-- Recipe Cards Render Here -->
+      </section>
+      <section class="saved-recipes-view hidden">
+        <h2 class="discoverHeader" id="myRecipesHeader">My Saved Recipes</h2>
+        <div class="recipe-container" id="mySavedRecipesContainer">
+          <!-- Saved recipes go here -->
+        </div>
+      </section>
+      <section class="individual-recipe-view hidden">
+        <div class="button-wrapper">
+          <button class="save-button">SAVE</button>
+          <button class="delete-button">DELETE</button>
+        </div>
+        <div class="individual-recipe-container">
+          <div class="recipe-image-wrapper"></div>
+          <div class="recipe-ingredients-wrapper">
+            <h3 class="individual-recipe-headings"></h3>
+            <div class="recipe-ingredients-list"></div>
+          </div>
+          <div class="recipe-instructions-wrapper">
+            <h3 class="individual-recipe-headings"></h3>
+            <div class="recipe-instructions-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+  <script src="bundle.js"></script>
+</html>
