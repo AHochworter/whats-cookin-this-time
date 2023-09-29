@@ -2,7 +2,7 @@
   "name": "whats-cookin",
   "version": "1.0.0",
   "description": "Mod2 Group Project",
-  "main": "src/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/AHochworter/whats-cookin-this-time.git"
